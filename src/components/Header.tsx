@@ -48,7 +48,7 @@ export default function Header() {
   return (
     <header className="bg-blue-600 text-white p-4 shadow-md sticky top-0 z-50">
       <nav className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold mr-6">AI for Healthcare</Link>
+        <Link href="/" className="text-xl font-bold mr-6">CLINICAL AI ACADEMY</Link>
 
         {/* Desktop Navigation (Hidden on small screens) */}
         <div className="hidden md:flex items-center">
