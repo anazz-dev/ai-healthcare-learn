@@ -64,7 +64,7 @@ export default function ProgressPage() {
               border: 10px solid #004080; /* Dark blue border */
               padding: 40px;
               width: 800px;
-              height: 565px; /* Approx A4 landscape ratio */
+              height: 585 px; /* Approx A4 landscape ratio */
               margin: 20px auto;
               background-color: #ffffff;
               display: flex;
@@ -189,7 +189,7 @@ export default function ProgressPage() {
                 <img src="${signatureSvgDataUri}" alt="Signature" class="signature-image">
                 <p class="expert-name">Ahmad N. Naz, MD, PhD</p>
                 <p class="expert-title">Program Director, Clinical AI Academy</p>
-                <p class="accreditation-note" style="font-size: 0.8rem; margin-top: 1rem;">
+                <p class="accreditation-note" style="font-size: 0.8rem">
                 Eligible for CPD certification—pending accreditation.
                 </p>
               </div>
