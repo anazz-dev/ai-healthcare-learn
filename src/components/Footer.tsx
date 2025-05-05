@@ -10,7 +10,7 @@ export default function Footer() {
           <li><Link href="/privacy" className="hover:underline">Privacy Policy</Link></li>
           {/* <li><Link href="/contact" className="hover:underline">Contact</Link></li> */}
         </ul>
-        <p className="mt-2">&copy; {new Date().getFullYear()} AI for Healthcare Learning. All rights reserved.</p>
+        <p className="mt-2">&copy; {new Date().getFullYear()} Clinical AI Academy. All rights reserved.</p>
       </nav>
     </footer>
   );
