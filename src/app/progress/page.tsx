@@ -188,6 +188,8 @@ export default function ProgressPage() {
                 <img src="${signatureSvgDataUri}" alt="Signature" class="signature-image">
                 <p class="expert-name">Ahmad M. Nazzal MD, PhD</p>
                 <p class="expert-title">Medical Director, Clinical AI Academy</p>
+                <p><p>
+                <p class="expert-title">Eligible for CPD certification—pending accreditation.</p>
               </div>
             </div>
           </div>

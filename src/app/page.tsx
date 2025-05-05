@@ -4,10 +4,11 @@ import { Award } from 'lucide-react'; // Import an icon for the certificate
 
 export default function HomePage() {
   // Call to Action Content (from cta_content.md)
-  const ctaTitle = "Secure Your Future in Healthcare: Embrace AI Literacy Today";
+  const ctaTitle = "Needs Assessment: AI Literacy for Health professionals";
   const ctaParagraph1 = "Artificial Intelligence is no longer a futuristic concept; it's rapidly transforming the healthcare landscape right now. From revolutionizing diagnostics and treatment planning to streamlining administrative tasks, AI is becoming an indispensable tool for medical professionals. Understanding AI isn't just about staying current – it's about securing your career and enhancing your ability to provide exceptional patient care in the years to come.";
   const ctaParagraph2 = "Ignoring this technological shift is not an option. Professionals who embrace AI literacy will find themselves better equipped to collaborate with AI-driven systems, interpret AI-generated insights, and contribute to the ethical implementation of these powerful tools. This knowledge will not only make you more effective in your current role but also significantly enhance your career prospects and resilience in an evolving job market.";
-  const ctaParagraph3 = "This course is designed specifically for healthcare professionals like you. It demystifies AI and Machine Learning, focusing on practical applications, ethical considerations, and the impact on patient privacy. By investing a small amount of time now, you gain the foundational knowledge needed to navigate the future of healthcare confidently. Don't get left behind – start your AI learning journey today and position yourself as a leader in the next generation of healthcare.";
+  const ctaParagraph3 = "This course is designed specifically for healthcare professionals like you. It demystifies AI and Machine Learning, focusing on practical applications, ethical considerations, and the impact on patient privacy. By investing a small amount of time now, you gain the foundational knowledge needed to navigate the future of healthcare confidently.";
+  const ctaParagraph4 = "* This course is designed in line with CPD standards and is under review for formal accreditation.";
 
   return (
     <div className="space-y-12 pb-12"> {/* Added padding-bottom */} 
@@ -15,7 +16,7 @@ export default function HomePage() {
       <section className="text-center py-10 md:py-16 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg shadow-lg mx-4 md:mx-0"> {/* Adjusted padding for mobile */}
         {/* More aggressive responsive text sizes */}
         <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 px-2 sm:px-4">Welcome to AI for Healthcare Professionals</h1>
-        <p className="text-sm sm:text-base md:text-xl mb-6 px-4 sm:px-6">Your essential starting point for mastering Artificial Intelligence in the medical field.</p>
+        <p className="text-sm sm:text-base md:text-xl mb-6 px-4 sm:px-6">Your essential starting point for Artificial Intelligence in the medical field.</p>
         <Link href="/modules"
           // More aggressive responsive padding and text size
           className="bg-white text-blue-600 font-semibold py-2 px-4 sm:py-3 sm:px-8 rounded-full hover:bg-gray-100 transition duration-300 text-sm sm:text-lg">
@@ -31,6 +32,7 @@ export default function HomePage() {
           <p>{ctaParagraph1}</p>
           <p>{ctaParagraph2}</p>
           <p className="font-medium text-indigo-600 dark:text-indigo-400">{ctaParagraph3}</p>
+          <p>{ctaParagraph4}</p>
         </div>
       </section>
 
