@@ -103,7 +103,8 @@ const InteractiveModuleViewer: React.FC<InteractiveModuleViewerProps> = ({
     if (showQuiz) {
       setShowQuiz(false);
     } else if (currentSlideIndex > 0) {
-      setCurrentSlideIndex(prev => prev + 1);
+      // Corrected: Decrement index to go to previous slide
+      setCurrentSlideIndex(prev => prev - 1);
     }
   };
 
@@ -138,7 +139,8 @@ const InteractiveModuleViewer: React.FC<InteractiveModuleViewerProps> = ({
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4">{moduleTitle}</h1>
+      {/* Use responsive text size for title */}
+      <h1 className="text-2xl md:text-3xl font-bold mb-4">{moduleTitle}</h1>
 
       {isFirstSlide && learningObjectives}
 
@@ -158,7 +160,8 @@ const InteractiveModuleViewer: React.FC<InteractiveModuleViewerProps> = ({
         )
       ) : (
         <article
-          className="prose dark:prose-invert max-w-none mb-8"
+          // Add responsive text size adjustments if needed via prose classes
+          className="prose dark:prose-invert max-w-none mb-8 prose-sm sm:prose-base"
           dangerouslySetInnerHTML={{ __html: slides[currentSlideIndex] }}
         />
       )}
@@ -171,43 +174,46 @@ const InteractiveModuleViewer: React.FC<InteractiveModuleViewerProps> = ({
         </div>
       )}
 
-      <div className="mt-8 flex justify-between items-center border-t pt-6 dark:border-gray-700">
-        <div>
+      {/* Responsive Bottom Navigation */}
+      <div className="mt-8 flex flex-col sm:flex-row sm:justify-between sm:items-center border-t pt-6 dark:border-gray-700 space-y-4 sm:space-y-0">
+        {/* Previous Button Area (Always on left or top) */}
+        <div className="flex justify-start">
           {(isFirstSlide && previousModulePath) ? (
             <Link href={previousModulePath} passHref>
-              <Button variant="outline">← Previous Module</Button>
+              <Button variant="outline" className="w-full sm:w-auto">← Previous Module</Button>
             </Link>
           ) : (
-            <Button onClick={goToPreviousSlide} disabled={isFirstSlide} variant="outline">
+            <Button onClick={goToPreviousSlide} disabled={isFirstSlide} variant="outline" className="w-full sm:w-auto">
               {showQuiz ? '← Back to Content' : '← Previous Slide'}
             </Button>
           )}
         </div>
 
-        {/* Show Next Slide/Start Quiz button only when not showing quiz */}
-        {!showQuiz && (
-          <div className="flex items-center space-x-4">
-            <Button onClick={goToNextSlide} variant="default">
+        {/* Next/Completion Button Area (Always on right or bottom) */}
+        <div className="flex justify-end">
+          {/* Show Next Slide/Start Quiz button only when not showing quiz */}
+          {!showQuiz && (
+            <Button onClick={goToNextSlide} variant="default" className="w-full sm:w-auto">
               {isLastSlide && canShowQuiz ? 'Start Quiz →' : 'Next Slide →'}
             </Button>
-          </div>
-        )}
+          )}
 
-        {/* Show Next Module/Back to Modules buttons ONLY if module is completed (quiz passed or no quiz) */}
-        {(isCompleted || !hasQuiz) && (
-            <div className="flex items-center space-x-4">
-                {nextModulePath ? (
-                    <Link href={nextModulePath} passHref>
-                        <Button variant="default">Next Module →</Button>
-                    </Link>
-                ) : (
-                    // On the last module, link back to the main modules page or progress page
-                    <Link href="/progress" passHref> 
-                        <Button variant="default">View Progress</Button>
-                    </Link>
-                )}
-            </div>
-        )}
+          {/* Show Next Module/Back to Modules buttons ONLY if module is completed (quiz passed or no quiz) */}
+          {(isCompleted || !hasQuiz) && (
+              <div className="w-full sm:w-auto">
+                  {nextModulePath ? (
+                      <Link href={nextModulePath} passHref>
+                          <Button variant="default" className="w-full">Next Module →</Button>
+                      </Link>
+                  ) : (
+                      // On the last module, link back to the main modules page or progress page
+                      <Link href="/progress" passHref>
+                          <Button variant="default" className="w-full">View Progress</Button>
+                      </Link>
+                  )}
+              </div>
+          )}
+        </div>
       </div>
     </div>
   );
