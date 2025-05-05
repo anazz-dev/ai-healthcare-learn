@@ -172,25 +172,27 @@ export default function ProgressPage() {
           </style>
         </head>
         <body class="bg-gray-100">
-          <div class="certificate-container">
+         <div class="certificate-container">
             <div class="certificate-header">
               <h1 class="academy-name">Clinical AI Academy</h1>
             </div>
             <div class="certificate-body">
-              <p class="completion-text">This certificate is proudly presented to</p>
+              <p class="completion-text">This certifies that</p>
               <p class="recipient-name">${userName}</p>
-              <p class="course-text">for successfully completing the course</p>
+              <p class="course-text"> successfully completed the course</p>
               <h2 class="course-name">AI Literacy for Healthcare Professionals</h2>
+              <p class="course-text">demonstrating foundational competence in clinical applications of artificial intelligence</p>
               <p class="completion-date">Date: ${new Date().toLocaleDateString()}</p>
             </div>
             <div class="certificate-footer">
               <div class="signature-section">
                 <img src="${signatureSvgDataUri}" alt="Signature" class="signature-image">
-                <p class="expert-name">Ahmad M. Nazzal MD, PhD</p>
-                <p class="expert-title">Medical Director, Clinical AI Academy</p>
-                <p><p>
-                <p class="expert-title">Eligible for CPD certification—pending accreditation.</p>
+                <p class="expert-name">Ahmad N. Naz, MD, PhD</p>
+                <p class="expert-title">Program Director, Clinical AI Academy</p>
               </div>
+              <p class="accreditation-note" style="font-size: 0.8rem; margin-top: 1rem;">
+                Eligible for CPD certification—pending accreditation.
+              </p>
             </div>
           </div>
           <div class="print-button-container">
