@@ -3,7 +3,7 @@ import React from 'react';
 // Placeholder component for the Contact page
 const ContactPage: React.FC = () => {
   // Replace with your actual contact email address
-  const CONTACT_EMAIL = "your.email@example.com"; 
+  const CONTACT_EMAIL = "contact@clinicalaiacademy.com"; 
 
   return (
     <div className="container mx-auto px-4 py-8">
