@@ -9,6 +9,14 @@ const posts = [
     excerpt: 'AI is rapidly becoming an integral part of modern medicine, particularly in diagnostics. Understand the fundamentals and why AI literacy is essential...',
     date: 'May 04, 2025', // Example date
   },
+
+  {
+    slug: 'ai-literacy-in-healthcare',
+    title: 'AI Literacy in Healthcare: A Comprehensive Guide for Clinicians, Administrators, and MedTech Companies',
+    excerpt: 'AI literacy is now a core competency in modern healthcare. This guide details the essential skills, regulatory requirements in the EU and USA, ethical safeguards, and best‑practice steps for integrating AI tools safely and effectively.',
+    date: 'May 06, 2025', // Publication date
+  }
+  
   // Add more posts here later
 ];
 
