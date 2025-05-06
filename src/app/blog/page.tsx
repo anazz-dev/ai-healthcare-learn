@@ -5,7 +5,7 @@ import Link from 'next/link';
 const posts = [
   {
     slug: 'introduction-to-ai-in-diagnostics',
-    title: 'Unlocking the Future: An Introduction to AI in Diagnostics for Clinicians',
+    title: 'An Introduction to AI in Diagnostics for Clinicians',
     excerpt: 'AI is rapidly becoming an integral part of modern medicine, particularly in diagnostics. Understand the fundamentals and why AI literacy is essential...',
     date: 'May 04, 2025', // Example date
   },
