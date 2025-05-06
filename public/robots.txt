@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://clinicalaiacademy.com
+
+# Sitemaps
+Sitemap: https://clinicalaiacademy.com/sitemap.xml

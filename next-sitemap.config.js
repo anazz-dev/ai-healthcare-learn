@@ -1,6 +1,6 @@
-/** @type {import("next-sitemap").IConfig} */
+/** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://www.clinicalaiacademy.com",
-  generateRobotsTxt: true, // (optional)
-  // ...other Sitemaps configurations
+  siteUrl: 'https://clinicalaiacademy.com',
+  generateRobotsTxt: true,
+  outDir: './public',  // ← required for static hosting on Vercel
 };
