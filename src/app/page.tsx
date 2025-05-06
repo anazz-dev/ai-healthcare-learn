@@ -20,14 +20,14 @@ export default function HomePage() {
     "Modular micro-courses on dataset bias, interpretability, model drift, and regulatory compliance",
     "Workshops tailored by specialty—including radiology, general practice, and hospital IT",
     "Designed for real-world application, not just theory",
-    "Our flagship course “AI for Healthcare Professionals” is mapped to the European Accreditation Council for Continuing Medical Education (EACCME) criteria."
+    "Our flagship course “AI Literacy for Healthcare Professionals” is mapped to the European Accreditation Council for Continuing Medical Education (EACCME) criteria."
   ];
 
   return (
     <div className="space-y-12 pb-12">
       {/* Hero Section */}
       <section className="text-center py-10 md:py-16 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg shadow-lg mx-4 md:mx-0">
-        <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 px-2 sm:px-4">Welcome to AI for Healthcare Professionals</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 px-2 sm:px-4">Welcome to Clinical AI Academy</h1>
         <p className="text-sm sm:text-base md:text-xl mb-6 px-4 sm:px-6">Your essential starting point for mastering Artificial Intelligence in the medical field.</p>
         <Link href="/modules"
           className="bg-white text-blue-600 font-semibold py-2 px-4 sm:py-3 sm:px-8 rounded-full hover:bg-gray-100 transition duration-300 text-sm sm:text-lg">
