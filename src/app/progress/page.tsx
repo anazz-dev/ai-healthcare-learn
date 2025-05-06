@@ -186,11 +186,8 @@ export default function ProgressPage() {
             </div>
             <div class="certificate-footer">
               <div class="signature-section">
-                <img src="${signatureSvgDataUri}" alt="Signature" class="signature-image">
-                <p class="expert-name">Ahmad N. Naz, MD, PhD</p>
-                <p class="expert-title">Program Director, Clinical AI Academy</p>
                 <p class="accreditation-note" style="font-size: 0.8rem">
-                Eligible for CPD certification—pending accreditation.
+                Course is aligned with Continuing Professional Development (CPD) and Continuing Medical Education (CME) standards.
                 </p>
               </div>
             </div>
