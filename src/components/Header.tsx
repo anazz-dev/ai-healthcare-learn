@@ -17,29 +17,32 @@ import {
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet" // Import Sheet components
 import { Button } from "@/components/ui/button" // Import Button
 
-// Updated components array: Removed Case Studies and Resource Library
+// Updated components array for the "Learn" dropdown
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Course Modules",
+    title: "Courses", // Changed from "Course Modules"
     href: "/modules",
-    description:
-      "Dive into structured lessons covering AI fundamentals to advanced topics.",
+    description: "", // Tagline removed as per user request
+  },
+  {
+    title: "My Progress", // Added "My Progress" here
+    href: "/progress",
+    description: "", // No tagline, consistent with "Courses"
   },
 ]
 
-// Define navigation items for reuse
+// Define navigation items for mobile menu (excluding items under "Learn")
 const navItems = [
   { href: "/", text: "Home" },
   { href: "/blog", text: "Blog" },
   { href: "/contact", text: "Contact" },
-  { href: "/progress", text: "My Progress" },
+  // "My Progress" is removed from here as it's now under "Learn"
 ];
 
 export default function Header() {
@@ -85,11 +88,7 @@ export default function Header() {
                     Contact
                   </NavigationMenuLink>
               </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink href="/progress" className={cn(navigationMenuTriggerStyle(), "text-gray-900 dark:text-white")}>
-                    My Progress
-                  </NavigationMenuLink>
-              </NavigationMenuItem>
+              {/* "My Progress" standalone link removed from desktop nav */}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
@@ -108,7 +107,7 @@ export default function Header() {
                 <SheetTitle>Navigation</SheetTitle>
               </SheetHeader>
               <div className="grid gap-4 py-4">
-                {/* Mobile Links */}
+                {/* Mobile Links from navItems array */}
                 {navItems.map((item) => (
                   <Link
                     key={item.href}
@@ -119,13 +118,21 @@ export default function Header() {
                     {item.text}
                   </Link>
                 ))}
-                {/* Mobile Learn Link (simplified) */}
+                {/* Mobile Learn Links - explicitly listed */}
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 pt-2">Learn:</p>
                 <Link
                   href="/modules"
-                  className="text-lg font-medium text-gray-900 dark:text-white hover:underline"
+                  className="text-lg font-medium text-gray-900 dark:text-white hover:underline pl-4"
                   onClick={() => setIsMobileMenuOpen(false)} // Close menu on click
                 >
-                  Learn (Modules)
+                  Courses
+                </Link>
+                <Link
+                  href="/progress"
+                  className="text-lg font-medium text-gray-900 dark:text-white hover:underline pl-4"
+                  onClick={() => setIsMobileMenuOpen(false)} // Close menu on click
+                >
+                  My Progress
                 </Link>
               </div>
             </SheetContent>
@@ -152,9 +159,11 @@ const ListItem = React.forwardRef<
           {...props}
         >
           <div className="text-sm font-medium leading-none text-gray-900 dark:text-white">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground text-gray-600 dark:text-gray-400">
-            {children}
-          </p>
+          {children && (
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground text-gray-600 dark:text-gray-400">
+              {children}
+            </p>
+          )}
         </a>
       </NavigationMenuLink>
     </li>
