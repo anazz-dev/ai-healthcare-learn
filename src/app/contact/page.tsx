@@ -21,9 +21,6 @@ const ContactPage: React.FC = () => {
               <strong>AI Strategy Consultations:</strong> Tailored advice on implementing AI solutions in clinical or operational workflows.
             </li>
             <li>
-              <strong>Regulatory Healthtech Guidance:</strong> Navigating compliance and regulatory pathways for AI-driven medical devices and software (SaMD).
-            </li>
-            <li>
               <strong>Medical & Technical Writing:</strong> Clear, accurate documentation, publications, and content related to healthcare AI.
             </li>
             <li>
