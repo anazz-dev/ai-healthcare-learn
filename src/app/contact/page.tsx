@@ -12,29 +12,17 @@ const ContactPage: React.FC = () => {
       <div className="grid md:grid-cols-2 gap-12">
         {/* Services Section */}
         <div>
-          <h2 className="text-2xl font-semibold mb-4">Our Services</h2>
+         <h2 className="text-2xl font-semibold mb-4">Our Services</h2>
           <p className="mb-6 text-gray-700 dark:text-gray-300">
-            We offer specialized services to help navigate the intersection of AI and healthcare. Reach out to discuss how we can support your goals.
+  We communicate clinical AI. For teams building, adopting, or evaluating AI in healthcare, we create content that makes your AI understandable, trustworthy, and usable.
           </p>
+          <p className="mb-4 text-gray-700 dark:text-gray-300">We write the following documents:</p>
           <ul className="space-y-3 list-disc list-inside text-gray-700 dark:text-gray-300">
-            <li>
-              <strong>AI Strategy Consultations:</strong> Tailored advice on implementing AI solutions in clinical or operational workflows.
-            </li>
-            <li>
-              <strong>Regulatory Healthtech Guidance:</strong> Navigating compliance and regulatory pathways for AI-driven medical devices and software (SaMD).
-            </li>
-            <li>
-              <strong>Medical & Technical Writing:</strong> Clear, accurate documentation, publications, and content related to healthcare AI.
-            </li>
-            <li>
-              <strong>Custom Webinars:</strong> Engaging online sessions on specific AI topics relevant to your organization.
-            </li>
-            <li>
-              <strong>Team Training Programs:</strong> Upskilling your healthcare team with practical AI knowledge and applications.
-            </li>
-            <li>
-              <strong>Free Initial Discussion (30 mins):</strong> Book a complimentary call to explore your needs and how we might assist (please mention this when contacting us).
-            </li>
+          <li>Clinical evaluation reports</li>
+          <li>Literature reviews and evidence summaries</li>
+          <li>Science submissions and funding proposals</li>
+          <li>White papers, blogs, and strategic briefings</li>
+          <li>Pitch decks and stakeholder presentations</li>
           </ul>
         </div>
 
