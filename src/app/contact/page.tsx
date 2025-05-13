@@ -1,8 +1,6 @@
 import React from 'react';
 
-// Placeholder component for the Contact page
 const ContactPage: React.FC = () => {
-  // Replace with your actual contact email address
   const CONTACT_EMAIL = "contact@clinicalaiacademy.com"; 
 
   return (
@@ -14,24 +12,20 @@ const ContactPage: React.FC = () => {
         <div>
           <h2 className="text-2xl font-semibold mb-4">Our Services</h2>
           <p className="mb-6 text-gray-700 dark:text-gray-300">
-            We offer specialized services to help navigate the intersection of AI and healthcare. Reach out to discuss how we can support your goals.
+            We communicate clinical AI.
+          </p>
+          <p className="mb-6 text-gray-700 dark:text-gray-300">
+            For teams building, adopting, or evaluating AI in healthcare, we create content that makes your AI understandable, trustworthy, and usable.
+          </p>
+           <p className="mb-6 text-gray-700 dark:text-gray-300">
+            We write the following documents:
           </p>
           <ul className="space-y-3 list-disc list-inside text-gray-700 dark:text-gray-300">
-            <li>
-              <strong>AI Strategy Consultations:</strong> Tailored advice on implementing AI solutions in clinical or operational workflows.
-            </li>
-            <li>
-              <strong>Medical & Technical Writing:</strong> Clear, accurate documentation, publications, and content related to healthcare AI.
-            </li>
-            <li>
-              <strong>Custom Webinars:</strong> Engaging online sessions on specific AI topics relevant to your organization.
-            </li>
-            <li>
-              <strong>Team Training Programs:</strong> Upskilling your healthcare team with practical AI knowledge and applications.
-            </li>
-            <li>
-              <strong>Free Initial Discussion (30 mins):</strong> Book a complimentary call to explore your needs and how we might assist (please mention this when contacting us).
-            </li>
+            <li>Clinical evaluation reports</li>
+            <li>Literature reviews and evidence summaries</li>
+            <li>Regulatory submissions and funding proposals</li>
+            <li>White papers, blogs, and strategic briefings</li>
+            <li>Pitch decks and stakeholder presentations</li>
           </ul>
         </div>
 
@@ -39,7 +33,7 @@ const ContactPage: React.FC = () => {
         <div>
           <h2 className="text-2xl font-semibold mb-4">Get In Touch</h2>
           <p className="mb-6 text-gray-700 dark:text-gray-300">
-            Interested in our services, have a question, or want to book your free initial discussion? Please contact us directly via email:
+            Have a question or want to explore how we can support your project? Let’s talk. Book a free 30-minute call to see if we’re a good fit.
           </p>
           <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-md text-center">
             <a 
@@ -48,12 +42,9 @@ const ContactPage: React.FC = () => {
             >
               {CONTACT_EMAIL}
             </a>
-            {CONTACT_EMAIL === "your.email@example.com" && (
-               <p className="text-xs text-yellow-600 dark:text-yellow-400 mt-2">(Please update this placeholder email in `src/app/contact/page.tsx`)</p>
-            )}
           </div>
           <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-            We aim to respond to all inquiries within 1-2 business days.
+            We aim to respond within 1–2 business days.
           </p>
         </div>
       </div>
@@ -62,4 +53,3 @@ const ContactPage: React.FC = () => {
 };
 
 export default ContactPage;
-
