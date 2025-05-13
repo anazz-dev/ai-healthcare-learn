@@ -31,14 +31,14 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           {/* Service Item 1 (Merged) */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Clinical Evaluation Reports & Literature Reviews</h4>
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Comprehensive reports and systematic reviews assessing the clinical validity, performance, safety, and effectiveness of AI tools, including concise summaries of existing evidence for AI applications.</p>
+            <h4 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Clinical Evaluation Reports and Literature Reviews</h4>
+            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Comprehensive documents assessing the clinical validity, safety, and effectiveness of AI tools.</p>
             <Link href="#contact-section" className="text-blue-600 dark:text-blue-400 hover:underline font-medium flex items-center">Discuss Your Needs <ArrowRight size={16} className="ml-1" /></Link>
           </div>
 
           {/* Service Item 2 */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-         <h4 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">White Papers, Blogs & Strategic Briefings</h4>            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Developing insightful content to position your AI solutions and inform key stakeholders.</p>
+         <h4 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">White Papers, Blogs, and Social Media Content</h4>            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Developing insightful content to position your AI solutions and inform key stakeholders.</p>
             <Link href="#contact-section" className="text-blue-600 dark:text-blue-400 hover:underline font-medium flex items-center">Discuss Your Needs <ArrowRight size={16} className="ml-1" /></Link>
           </div>
         </div>
