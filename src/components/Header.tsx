@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Menu } from "lucide-react" // Import Menu icon
+import { Menu, BookText } from "lucide-react" // Import Menu icon and BookText for CARI
 
 import { cn } from "@/lib/utils"
 import {
@@ -26,14 +26,19 @@ import { Button } from "@/components/ui/button" // Import Button
 // Updated components array for the "Learn" dropdown
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Courses", // Changed from "Course Modules"
+    title: "Courses",
     href: "/modules",
-    description: "", // Tagline removed as per user request
+    description: "Explore our comprehensive course modules.", // Restored a generic description
   },
   {
-    title: "My Progress", // Added "My Progress" here
+    title: "My Progress",
     href: "/progress",
-    description: "", // No tagline, consistent with "Courses"
+    description: "Track your learning journey and achievements.", // Restored a generic description
+  },
+  {
+    title: "CARI Tool", // Added CARI Tool link
+    href: "/learn/cari-tool",
+    description: "Assess clinical AI readiness with our index tool.",
   },
 ]
 
@@ -42,7 +47,6 @@ const navItems = [
   { href: "/", text: "Home" },
   { href: "/blog", text: "Blog" },
   { href: "/contact", text: "Contact" },
-  // "My Progress" is removed from here as it's now under "Learn"
 ];
 
 export default function Header() {
@@ -88,7 +92,6 @@ export default function Header() {
                     Contact
                   </NavigationMenuLink>
               </NavigationMenuItem>
-              {/* "My Progress" standalone link removed from desktop nav */}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
@@ -107,32 +110,37 @@ export default function Header() {
                 <SheetTitle>Navigation</SheetTitle>
               </SheetHeader>
               <div className="grid gap-4 py-4">
-                {/* Mobile Links from navItems array */}
                 {navItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
                     className="text-lg font-medium text-gray-900 dark:text-white hover:underline"
-                    onClick={() => setIsMobileMenuOpen(false)} // Close menu on click
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.text}
                   </Link>
                 ))}
-                {/* Mobile Learn Links - explicitly listed */}
                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400 pt-2">Learn:</p>
                 <Link
                   href="/modules"
                   className="text-lg font-medium text-gray-900 dark:text-white hover:underline pl-4"
-                  onClick={() => setIsMobileMenuOpen(false)} // Close menu on click
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Courses
                 </Link>
                 <Link
                   href="/progress"
                   className="text-lg font-medium text-gray-900 dark:text-white hover:underline pl-4"
-                  onClick={() => setIsMobileMenuOpen(false)} // Close menu on click
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   My Progress
+                </Link>
+                <Link
+                  href="/learn/cari-tool" // Added CARI Tool link for mobile
+                  className="text-lg font-medium text-gray-900 dark:text-white hover:underline pl-4 flex items-center"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <BookText size={18} className="mr-2" /> CARI Tool
                 </Link>
               </div>
             </SheetContent>
