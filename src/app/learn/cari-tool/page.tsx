@@ -91,7 +91,7 @@ const cariQuestions = [
   },
   {
     id: 15,
-    text: "What are the established protocols and contingency plans if the AI system fails, provides clearly erroneous information, or becomes unavailable due to technical issues? How will patient care be managed safely and effectively in such scenarios without relying on the AI tool?",
+    text: "Are there established protocols and contingency plans if the AI system fails, provides clearly erroneous information, or becomes unavailable due to technical issues? Will patient care be managed safely and effectively in such scenarios without relying on the AI tool?",
     frameworks: "Health Care AI Toolkit",
     icon: <ServerCrash className="w-5 h-5 mr-2 flex-shrink-0" />
   }
