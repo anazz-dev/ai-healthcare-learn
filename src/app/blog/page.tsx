@@ -16,6 +16,16 @@ const posts = [
     excerpt: 'AI literacy is now a core competency in modern healthcare. This guide details the essential skills, regulatory requirements in the EU and USA, ethical safeguards, and best‑practice steps for integrating AI tools safely and effectively.',
     date: 'May 06, 2025', // Publication date
   }
+
+  {
+  slug: 'decision-curve-tutorial',
+  title: 'Decision Curve Analysis in Clinical Practice: A Step-by-Step Tutorial for Clinicians',
+  excerpt: 'Decision Curve Analysis (DCA) helps clinicians evaluate the real-world utility of prediction models. This tutorial introduces DCA using a PSA-based biopsy decision case, guiding readers through net benefit, threshold probability, and clinical decision-making trade-offs.',
+  date: 'May 19, 2025'
+  }
+
+
+  
   
   // Add more posts here later
 ];
