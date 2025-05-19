@@ -15,7 +15,7 @@ const posts = [
     title: 'AI Literacy in Healthcare: A Comprehensive Guide for Clinicians, Administrators, and MedTech Companies',
     excerpt: 'AI literacy is now a core competency in modern healthcare. This guide details the essential skills, regulatory requirements in the EU and USA, ethical safeguards, and best‑practice steps for integrating AI tools safely and effectively.',
     date: 'May 06, 2025', // Publication date
-  }
+  },
 
   {
   slug: 'decision-curve-tutorial',
