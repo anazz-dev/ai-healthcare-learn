@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Ahmad">
+  <meta name="description" content="Tutorial on decision curve analysis using PSA-based biopsy decisions. Explains net benefit, threshold probability, and comparison of clinical strategies using decision curve analysis.">
+  <meta name="keywords" content="Decision Curve Analysis, PSA, Net Benefit, Threshold Probability, Medical Decision-Making, Prostate Biopsy">
+  <title>Decision Curve Analysis Tutorial – PSA-Based Case</title>
+</head>
+<body>
+  <h1>Decision Curve Analysis Tutorial: A PSA-Based Clinical Case</h1>
+
+  <h2>Introduction</h2>
+  <p>In clinical research, prediction models are typically evaluated using discrimination (e.g., AUC) and calibration. However, these metrics do not reflect the real-world consequences of clinical decision-making. Decision Curve Analysis (DCA), introduced by Vickers and Elkin in 2006, fills this gap by measuring a model's clinical utility through the concept of net benefit across threshold probabilities.</p>
+
+  <h2>Why Decision Curve Analysis?</h2>
+  <p>DCA helps answer the question: "Does using this model improve patient outcomes compared to treating all or none?" It does so by calculating net benefit — a balance of true positives and false positives, weighted by the threshold probability at which a clinician would opt to intervene.</p>
+  <p>Rather than relying solely on AUC or p-values, DCA evaluates whether using a model leads to better decisions <strong>compared to common strategies</strong> like “treat everyone” or “treat no one.”</p>
+
+  <h2>Core Concepts Recap</h2>
+  <ul>
+    <li><strong>Threshold probability</strong>: The minimum predicted risk at which we would recommend intervention (e.g., biopsy). It reflects clinical preferences.</li>
+    <li><strong>Net benefit</strong>: A summary of clinical value, expressed as true positives per 100 patients, adjusted for the harm of unnecessary interventions.</li>
+    <li><strong>Baseline strategies</strong>: “Treat all” and “treat none” provide essential clinical comparators.</li>
+  </ul>
+
+  <h2>Teaching Case: PSA-Based Biopsy Decision</h2>
+  <p>To illustrate DCA, we’ll use a simplified clinical case. Although modern practice includes MRI, we focus on <strong>PSA alone</strong> for teaching purposes.</p>
+
+  <h2>Clinical Vignette</h2>
+  <p><strong>Patient:</strong> Mr. J., 62 years old<br>
+     <strong>Presentation:</strong> PSA = 5.2 ng/mL<br>
+     <strong>No prior biopsy, no family history, asymptomatic</strong></p>
+  <p><strong>Clinical Question:</strong> Should Mr. J. undergo a prostate biopsy based on his PSA level?</p>
+
+  <h2>Diagnostic Strategies Compared</h2>
+  <h3>Strategy A: Binary PSA Threshold</h3>
+  <p>Biopsy if PSA ≥ 4 ng/mL. A yes/no rule — simple but crude.<br>
+     <strong>Assumed performance:</strong> Sensitivity = 40%, Specificity = 90%</p>
+
+  <h3>Strategy B: PSA-Based AI Risk Model</h3>
+  <p>Uses PSA as a continuous input to output an individual probability of high-grade prostate cancer.<br>
+     For example: “Patient has 12.3% risk of high-grade cancer → biopsy indicated (since >10%).”</p>
+
+  <h2>Decision Curve Analysis</h2>
+  <p>We analyze net benefit of each strategy across <strong>thresholds from 5% to 20%</strong> — reflecting realistic clinical preferences for biopsy.</p>
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Threshold</th>
+        <th>Biopsy All</th>
+        <th>PSA ≥ 4</th>
+        <th>AI Model</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>5%</td><td>0.06</td><td>0.04</td><td>0.05</td></tr>
+      <tr><td>10%</td><td>0.04</td><td>0.05</td><td><strong>0.08</strong></td></tr>
+      <tr><td>15%</td><td>0.02</td><td>0.03</td><td><strong>0.06</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Interpretation</h2>
+  <p>At <strong>10% threshold</strong>, the AI model has the highest net benefit. It leads to 8 more true positives per 100 men compared to no biopsy, and 3 more than using PSA ≥ 4. This illustrates that even a simple risk model based on PSA can improve decision-making compared to binary cutoffs.</p>
+
+  <h2>Clinical Takeaway</h2>
+  <ul>
+    <li>DCA lets us compare models based on <strong>clinical consequences</strong>.</li>
+    <li><strong>Threshold = clinical judgment</strong>, not statistical output.</li>
+    <li>Use DCA to <strong>quantify benefit</strong> and justify or reject predictive tools in practice.</li>
+  </ul>
+
+  <h2>Further Resources</h2>
+  <ul>
+    <li><a href="https://mskcc-epi-bio.github.io/decisioncurveanalysis/index.html" target="_blank">Decision Curve Analysis website – MSKCC</a></li>
+  </ul>
+
+  <h2>Key References</h2>
+  <ul>
+    <li>Vickers AJ, Elkin EB. Decision curve analysis: a novel method for evaluating prediction models. <em>Med Decis Making</em>. 2006;26(6):565–74.</li>
+    <li>Vickers AJ, Van Calster B, Steyerberg EW. Net benefit approaches to the evaluation of prediction models. <em>BMJ</em>. 2016;352:i6.</li>
+    <li>Fitzgerald M, Saville BR, Lewis RJ. Decision curve analysis. <em>JAMA</em>. 2015;313(4):409–10.</li>
+    <li>Holmberg L, Vickers A. Evaluation of prediction models for decision-making. <em>PLoS Med</em>. 2013;10(7):e1001491.</li>
+  </ul>
+</body>
+</html>
