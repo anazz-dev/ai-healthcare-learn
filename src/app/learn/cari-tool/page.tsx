@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from 'react';
-import { ShieldCheck, AlertTriangle, Info, Download, Award, BookOpen, BarChart3, Users, ShieldAlert, Lightbulb, Target, Eye, Lock, UsersRound, ServerCrash } from 'lucide-react';
+import { ShieldCheck, AlertTriangle, Info, Download, Award, BookOpen, BarChart3, Users, ShieldAlert, Lightbulb, Target, Eye, Lock, UsersRound, ServerCrash, Mail } from 'lucide-react';
+import Link from 'next/link';
 
 // --- CARI Tool Data and Logic (Moved here) ---
 const cariQuestions = [
@@ -91,7 +92,7 @@ const cariQuestions = [
   },
   {
     id: 15,
-    text: "Are there established protocols and contingency plans if the AI system fails, provides clearly erroneous information, or becomes unavailable due to technical issues? Will patient care be managed safely and effectively in such scenarios without relying on the AI tool?",
+    text: "What are the established protocols and contingency plans if the AI system fails, provides clearly erroneous information, or becomes unavailable due to technical issues? How will patient care be managed safely and effectively in such scenarios without relying on the AI tool?",
     frameworks: "Health Care AI Toolkit",
     icon: <ServerCrash className="w-5 h-5 mr-2 flex-shrink-0" />
   }
@@ -103,8 +104,6 @@ export default function CariToolPage() {
   const [cariAnswers, setCariAnswers] = useState<Record<number, string>>({});
   const [cariScore, setCariScore] = useState<number | null>(null);
   const [cariQuizCompleted, setCariQuizCompleted] = useState(false);
-  const [cariEmail, setCariEmail] = useState("");
-  const [cariFormMessage, setCariFormMessage] = useState("");
   const [showFrameworks, setShowFrameworks] = useState<Record<number, boolean>>({});
 
   const handleCariAnswerChange = (questionId: number, answer: string) => {
@@ -137,53 +136,6 @@ export default function CariToolPage() {
     return "Significant gaps identified. Your AI requires substantial development to be considered clinically serious.";
   };
 
-  const handleCariEmailSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setCariFormMessage('Submitting...');
-    const formData = new FormData(e.currentTarget);
-    if (formData.get('_honeypot')) {
-        console.log("Honeypot field filled, likely spam.");
-        setCariFormMessage("Submission failed. Please try again.");
-        return;
-    }
-    try {
-      const response = await fetch("https://formspree.io/f/mwpoqpba", {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (response.ok) {
-        setCariFormMessage('Thank you! Your email has been submitted. Your downloads will begin shortly.');
-        setCariEmail('');
-        const pdfLink = document.createElement('a');
-        pdfLink.href = '/assets/clinical_ai_readiness_index_detailed_rubric.pdf';
-        pdfLink.download = 'Clinical_AI_Readiness_Index_Detailed_Rubric.pdf';
-        document.body.appendChild(pdfLink);
-        pdfLink.click();
-        document.body.removeChild(pdfLink);
-        if (cariScore !== null && cariScore >= 10) {
-          const badgeLink = document.createElement('a');
-          badgeLink.href = '/assets/ai_skeptic_verified_badge.png';
-          badgeLink.download = 'AI_Skeptic_Verified_Badge.png';
-          document.body.appendChild(badgeLink);
-          setTimeout(() => {
-            badgeLink.click();
-            document.body.removeChild(badgeLink);
-          }, 500);
-        }
-      } else {
-        const data = await response.json();
-        if (Object.hasOwn(data, 'errors')) {
-          setCariFormMessage(data["errors"].map((error: any) => error["message"]).join(", "));
-        } else {
-          setCariFormMessage('Oops! There was a problem submitting your form. Please try again.');
-        }
-      }
-    } catch (error) {
-      setCariFormMessage('Oops! There was a problem submitting your form. Please try again.');
-    }
-  };
-
   const toggleFrameworks = (questionId: number) => {
     setShowFrameworks(prev => ({ ...prev, [questionId]: !prev[questionId] }));
   };
@@ -193,7 +145,7 @@ export default function CariToolPage() {
     <div className="container mx-auto px-4 py-8 md:py-12 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       <div className="text-center mb-12">
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white mb-3">The Clinical AI Readiness Index™ (CARI) Tool</h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">Assess your AI model against 15 critical questions. If you can’t pass this checklist, your AI isn’t clinically serious.</p>
+        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">Assess your AI model against 15 critical questions. If you can't pass this checklist, your AI isn't clinically serious.</p>
       </div>
       
       <div className="space-y-8 max-w-4xl mx-auto">
@@ -244,26 +196,16 @@ export default function CariToolPage() {
             <p className="text-lg md:text-xl mb-8 text-gray-700 dark:text-gray-300">{getCariScoreInterpretation()}</p>
             <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700">
               <Award className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 text-yellow-500" />
-              <h4 className="text-xl md:text-2xl font-semibold mb-3 text-gray-800 dark:text-white">Unlock Your Detailed Scorecard & AI-Skeptic Verified Badge</h4>
+              <h4 className="text-xl md:text-2xl font-semibold mb-3 text-gray-800 dark:text-white">Need to discuss your results with our experts?</h4>
               <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm md:text-base">
-                Enter your email to download a comprehensive PDF detailing the scoring rubric for each question, understand your AI\'s strengths and weaknesses, and receive an 'AI-Skeptic Verified' digital badge (badge awarded for scores 10+). You\'ll also be notified of updates to the Index.
+                Our team can help you understand your AI's strengths and weaknesses, and provide guidance on improving its clinical readiness.
               </p>
-              <form onSubmit={handleCariEmailSubmit} className="flex flex-col sm:flex-row gap-3 justify-center">
-                <input type="text" name="_honeypot" style={{display: 'none'}} tabIndex={-1} autoComplete="off" />
-                <input 
-                  type="email" 
-                  name="email"
-                  value={cariEmail}
-                  onChange={(e) => setCariEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  required 
-                  className="flex-grow p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white" />
-                <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center">
-                  <Download size={20} className="mr-2" /> Download & Get Badge
-                </button>
-              </form>
-              {cariFormMessage && <p className="mt-4 text-sm text-gray-600 dark:text-gray-300">{cariFormMessage}</p>}
-              <p className="mt-4 text-xs text-gray-500 dark:text-gray-400">The Index is an evaluative tool, not a formal certification. Badge eligibility: score 10 or higher.</p>
+              <a 
+                href="mailto:contact@clinicalaiacademy.com" 
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center mx-auto w-fit"
+              >
+                <Mail size={20} className="mr-2" /> contact@clinicalaiacademy.com
+              </a>
             </div>
           </div>
         </section>
@@ -271,4 +213,3 @@ export default function CariToolPage() {
     </div>
   );
 }
-
