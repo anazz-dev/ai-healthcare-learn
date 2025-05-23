@@ -102,7 +102,7 @@ export default function HomePage() {
         </div>
         <div className="max-w-xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 text-center">
           <a href="mailto:contact@clinicalaiacademy.com" className="inline-flex items-center justify-center text-blue-600 dark:text-blue-400 hover:underline text-xl font-semibold">
-            <Mail size={24} className="mr-3" /> contact@clinicalaiacademy.com
+            <Mail size={24} className="mr-3" /> Email Us
           </a>
         </div>
       </section>
