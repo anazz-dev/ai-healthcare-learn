@@ -203,12 +203,7 @@ const ProgressPage = () => {
             
             <div class="signature-section">
               <div class="signature">
-                <div class="signature-line"></div>
-                <div class="signature-text">Course Director</div>
-              </div>
-              <div class="signature">
-                <div class="signature-line"></div>
-                <div class="signature-text">Medical AI Specialist</div>
+                 <div class="signature-text">Dr. Ahmad Nazzal, Course Director</div>
               </div>
             </div>
             
