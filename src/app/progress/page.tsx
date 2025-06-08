@@ -47,8 +47,188 @@ const ProgressPage = () => {
 
   const generateCertificate = (name: string, email: string) => {
     const certificateWindow = window.open('', '_blank', 'width=900,height=700,scrollbars=yes,resizable=yes');
+    
     if (certificateWindow) {
-      certificateWindow.document.write(`<html><body><h1>Certificate for ${name}</h1><p>Email: ${email}</p></body></html>`);
+      certificateWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Clinical AI Academy Certificate</title>
+          <style>
+            body {
+              font-family: 'Georgia', serif;
+              margin: 0;
+              padding: 30px;
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              min-height: 100vh;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .certificate {
+              background: white;
+              width: 600px;
+              max-width: 90vw;
+              min-height: 450px;
+              padding: 30px;
+              border: 2px solid #2563eb;
+              border-radius: 8px;
+              box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+              text-align: center;
+              position: relative;
+            }
+            .header {
+              border-bottom: 4px solid #2563eb;
+              padding-bottom: 15px;
+              margin-bottom: 20px;
+            }
+            .academy-name {
+              font-size: 24px;
+              font-weight: bold;
+              color: #1e40af;
+              margin-bottom: 5px;
+            }
+            .certificate-title {
+              font-size: 20px;
+              color: #374151;
+              margin-bottom: 20px;
+            }
+            .recipient-name {
+              font-size: 28px;
+              font-weight: bold;
+              color: #1f2937;
+              margin: 15px 0;
+              border-bottom: 2px solid #e5e7eb;
+              padding-bottom: 8px;
+            }
+            .course-description {
+              font-size: 16px;
+              color: #4b5563;
+              margin: 15px 0;
+              line-height: 1.4;
+            }
+            .main-content {
+              margin: 20px 0;
+            }
+            .completion-date {
+              font-size: 14px;
+              color: #6b7280;
+              margin-top: 20px;
+            }
+            .signature-section {
+              margin-top: 25px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+            .signature {
+              text-align: center;
+              flex: 1;
+            }
+            .signature-line {
+              border-top: 1px solid #9ca3af;
+              margin-bottom: 5px;
+              width: 120px;
+              margin: 0 auto 5px auto;
+            }
+            .signature-text {
+              font-size: 12px;
+              color: #6b7280;
+            }
+            .accreditation {
+              font-size: 11px;
+              color: #9ca3af;
+              margin-top: 20px;
+              font-style: italic;
+            }
+            .print-section {
+              margin-top: 20px;
+              padding-top: 15px;
+              border-top: 1px solid #e5e7eb;
+            }
+            .share-buttons {
+              display: flex;
+              justify-content: center;
+              gap: 8px;
+              margin-top: 10px;
+            }
+            .share-btn {
+              padding: 6px 12px;
+              background: #2563eb;
+              color: white;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              font-size: 12px;
+              text-decoration: none;
+              display: inline-block;
+            }
+            .share-btn:hover {
+              background: #1d4ed8;
+            }
+            @media print {
+              body { background: white; }
+              .print-section { display: none; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="certificate">
+            <div class="header">
+              <div class="academy-name">Clinical AI Academy</div>
+              <div class="certificate-title">Certificate of Completion</div>
+            </div>
+            
+            <div class="main-content">
+              <p style="font-size: 14px; color: #6b7280; margin-bottom: 10px;">This certifies that</p>
+              
+              <div class="recipient-name">${name}</div>
+              
+              <p style="font-size: 14px; color: #6b7280; margin: 10px 0;">has successfully completed</p>
+              
+              <div class="course-description">
+                <strong>AI Literacy for Healthcare Professionals</strong><br>
+                A comprehensive course covering AI fundamentals, clinical applications, 
+                ethics, safety, and implementation strategies in healthcare settings.
+              </div>
+              
+              <div class="completion-date">
+                Completed on ${new Date().toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
+              </div>
+            </div>
+            
+            <div class="signature-section">
+              <div class="signature">
+                <div class="signature-line"></div>
+                <div class="signature-text">Course Director</div>
+              </div>
+              <div class="signature">
+                <div class="signature-line"></div>
+                <div class="signature-text">Medical AI Specialist</div>
+              </div>
+            </div>
+            
+            <div class="accreditation">
+              This certificate demonstrates completion of 4+ hours of continuing education 
+              in artificial intelligence applications for healthcare professionals.
+            </div>
+            
+            <div class="print-section">
+              <div class="share-buttons">
+                <button class="share-btn" onclick="window.print()">Print Certificate</button>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}" 
+                   target="_blank" class="share-btn">Share on LinkedIn</a>
+                <button class="share-btn" onclick="window.close()">Close</button>
+              </div>
+            </div>
+          </div>
+        </body>
+        </html>
+      `);
       certificateWindow.document.close();
     }
   };
@@ -173,18 +353,8 @@ const ProgressPage = () => {
                   Certificate Generated!
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  You can now download or share it.
+                   Your certificate has opened in a pop-up window and you can download it or share it on Linkedin from pop-up. Make sure your pop-up blocker is turned off. You can refresh and regenerate your certificate if needed.
                 </p>
-                <div className="flex justify-center space-x-4">
-                  <Button className="bg-green-600 hover:bg-green-700 text-white">
-                    <Download className="w-5 h-5 mr-2" />
-                    Download PDF
-                  </Button>
-                  <Button variant="outline">
-                    <Share2 className="w-5 h-5 mr-2" />
-                    Share on LinkedIn
-                  </Button>
-                </div>
               </div>
             )}
           </CardContent>
