@@ -1,0 +1,61 @@
+<h2>Slide 1 – Let’s Recap</h2>
+<p>From Module 1, you learned:</p>
+<ul>
+    <li>AI learns from examples, not rules</li>
+    <li>It builds patterns—not understanding</li>
+    <li>It performs well only if the training data was fair and relevant</li>
+</ul>
+<p>Now, we’ll explore how it learns, and what can go wrong inside that black box.</p>
+
+<h2>Slide 2 – A Simple Learning Analogy</h2>
+<p>Imagine teaching a child to tell cats from dogs.<br/>You don’t give rules. You show 500 pictures:<br/>“This is a cat.” “This is a dog.”</p>
+<p>The child starts picking up features—ears, tails, size.<br/>But if all the “dogs” are outdoors and all the “cats” are indoors, they might just learn:<br/>“Outside = dog.”</p>
+<p>That’s how AI can learn the wrong thing.</p>
+
+<h2>Slide 3 – So, What Is a Model?</h2>
+<p>A model is the AI’s memory of what patterns go with what outcomes.</p>
+<p>It doesn’t remember individual cases.<br/>It builds statistical shortcuts.</p>
+<p>✅ A model can detect subtle signals faster than any human<br/>❌ But it will also learn shortcuts—even bad ones—if they’re present in the data</p>
+
+<h2>Slide 4 – The Goal Isn’t Perfection on Training Data</h2>
+<p>Good models don’t just memorise—they generalise.</p>
+<p>They work on new patients just as well as on old ones.</p>
+<p>That’s why we don’t only ask: “How accurate is it?”<br/>We ask: “Does it still work on data it’s never seen before?”</p>
+
+<h2>Slide 5 – What Is Overfitting?</h2>
+<p>Overfitting = the model memorised the training set instead of learning general patterns.</p>
+<p>🧠 It performs beautifully on old data<br/>😓 And fails badly on new data</p>
+<p>Common signs:</p>
+<ul>
+    <li>Too-perfect performance on training cases</li>
+    <li>Big drop in external validation</li>
+    <li>Learning irrelevant details (e.g., scanner brand)</li>
+</ul>
+
+<h2>Slide 6 – Two Real Examples</h2>
+<p>🧪 A model “learned” that images with portable X-rays = pneumonia<br/>→ because more pneumonia patients were scanned that way.</p>
+<p>🧪 A tool trained on light-skinned patients underperformed on dark skin<br/>→ because it didn’t learn enough variation in the training set.</p>
+<p>These aren’t bugs—they’re features of the data. The model was doing exactly what it was told.</p>
+
+<h2>Slide 7 – What Makes a Model Trustworthy?</h2>
+<p>✅ Diverse training data (different hospitals, populations)<br/>✅ External validation<br/>✅ Labels confirmed by gold standards (e.g., biopsy, consensus)<br/>✅ No obvious shortcuts or confounders</p>
+<p>If it wasn’t tested in a real-world setting, be cautious.</p>
+
+<h2>Slide 8 – Questions to Ask Before You Trust a Model</h2>
+<p>Was it trained on patients like mine?</p>
+<p>Was it tested outside the original institution?</p>
+<p>Are the predictions clinically sensible?</p>
+<p>Were the labels accurate and consistent?</p>
+<p>If you can’t answer these, don’t trust the AI blindly.</p>
+
+<h2>Slide 9 – Summary (Key Messages)</h2>
+<ul>
+    <li>AI learns statistical shortcuts, not meanings</li>
+    <li>It’s only as good as its training data</li>
+    <li>Overfitting happens when the AI learns things that don’t generalise</li>
+    <li>Clinicians must look at validation, population, and data quality</li>
+</ul>
+
+<!-- Quiz Placeholder -->
+<div id="quiz-placeholder"></div>
+

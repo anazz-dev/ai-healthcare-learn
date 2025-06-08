@@ -1,0 +1,124 @@
+<h2>Slide 1: From Theory to Practice</h2>
+<p>You now understand that AI learns from examples, not logic. But how does this play out in real clinical settings? In this module, we’ll walk through key clinical studies that claimed “expert-level” AI performance. Some delivered. Some didn’t.</p>
+<p>As always, the devil is in the details: how the data was collected, labelled, and tested.</p>
+
+<h2>Slide 2: Skin Cancer and the AI That Matched Dermatologists</h2>
+<p>One of the first high-impact studies came from Esteva et al. (2017), who trained a convolutional neural network (CNN) to classify skin lesions using over 129,000 clinical images. They reported performance comparable to 21 board-certified dermatologists on biopsy-proven cases.</p>
+<blockquote>"We tested our algorithm against 21 board-certified dermatologists on biopsy-proven clinical images and found that its performance was on par with all tested experts." – Esteva et al., 2017</blockquote>
+<p>But most of the data was from light-skinned patients, raising concerns about generalisability. A later external validation showed that performance dropped significantly on darker skin tones (Daneshjou et al., 2021).</p>
+<p><strong>Key points:</strong></p>
+<ul>
+    <li>Broad dataset but limited demographic diversity</li>
+    <li>High AUROC, but fairness concerns emerged later</li>
+    <li>Label quality: biopsy-confirmed, strong foundation</li>
+</ul>
+
+<p>References:<br>
+<em>  1. Esteva, A., Kuprel, B., Novoa, R. et al. Dermatologist-level classification of skin cancer with deep neural networks. Nature 542, 115–118 (2017). https://doi.org/10.1038/nature21056</em><br>
+<em>  2. Daneshjou R, Smith MP, Sun MD, Rotemberg V, Zou J. Lack of Transparency and Potential Bias in Artificial Intelligence Data Sets and Algorithms: A Scoping Review. JAMA Dermatol. 2021;157(11):1362-1369. doi:10.1001/jamadermatol.2021.3129</em></p>
+
+
+<h2>Slide 3: Chest X-rays and CheXNet’s Claims</h2>
+<p>In 2017, Rajpurkar et al. introduced CheXNet, a deep learning model trained on 112,000 chest X-rays from the NIH ChestX-ray14 dataset to detect pneumonia. The authors reported that CheXNet matched average radiologist performance.</p>
+<p>However, the dataset used labels extracted from radiology reports using NLP tools, which introduced noise. Later reviews estimated label error rates as high as 10–20%. Moreover, CheXNet was not externally validated in a different hospital.</p>
+<blockquote>"Labels were extracted automatically using text mining, which may introduce inaccuracies." – Rajpurkar et al., 2017</blockquote>
+<p><strong>Key points:</strong></p>
+<ul>
+    <li>Performance looked strong (AUROC ∼ 0.76 for pneumonia)</li>
+    <li>Label quality was weak, affecting trust</li>
+    <li>External generalisability was not tested</li>
+</ul>
+  <p>References:<br>
+  <em>  1. Rajpurkar P, Irvin J, Zhu K, et al. CheXNet: Radiologist-Level Pneumonia Detection on Chest X-Rays with Deep Learning. Published online December 25, 2017. doi:10.48550/arXiv.1711.05225</em><</p>
+
+<h2>Slide 4: Google’s Lung Cancer AI – A 3D Leap</h2>
+<p>Ardila et al. (2019) developed an AI model using full 3D low-dose chest CT volumes to predict lung cancer risk (Nature Medicine, 25, 954-961). The model achieved an AUROC of 0.94, rivalling experienced radiologists.</p>
+<blockquote>"Our model achieved an AUC of 94.4% on a dataset from Northwestern University, and showed improved sensitivity over radiologists when prior imaging was available." – Ardila et al., 2019</blockquote>
+<p>What made this study stand out was its external validation on an independent dataset (NLST), and use of end-to-end input (no human pre-annotation). Still, its performance on out-of-protocol CT scans or international populations remains unknown.</p>
+<p><strong>Key points:</strong></p>
+<ul>
+    <li>Strong performance and external validation</li>
+    <li>Generalisation to broader settings still unproven</li>
+    <li>Example of good study design with test set separation</li>
+</ul>
+<p>References:<br>
+<em>  1. Ardila, D., Kiraly, A.P., Bharadwaj, S. et al. End-to-end lung cancer screening with three-dimensional deep learning on low-dose chest computed tomography. Nat Med 25, 954–961 (2019). https://doi.org/10.1038/s41591-019-0447-x</em><</p>
+
+
+
+<h2>Slide 5: Segmentation with U-Net in Radiology</h2>
+<p>Ronneberger et al. (2015) introduced the U-Net architecture for biomedical image segmentation (MICCAI). It has since become the backbone of organ and tumour outlining across radiology and pathology.</p>
+<blockquote>"The network has only 23 convolutional layers and can be trained from scratch with just a few dozen images. It achieved state-of-the-art segmentation performance on the EM ISBI 2012 dataset." – Ronneberger et al., 2015</blockquote>
+<p>U-Net performs well on small datasets, making it ideal for rare conditions or highly localised tasks.</p>
+<p><strong>Key points:</strong></p>
+<ul>
+    <li>Needs relatively few images to train</li>
+    <li>Excellent at segmentation tasks (e.g., tumour borders)</li>
+    <li>Easy to adapt to clinical workflows</li>
+</ul>
+<p>References:<br>
+<em>  1. Ronneberger O, Fischer P, Brox T. U-Net: Convolutional Networks for Biomedical Image Segmentation. Published online May 18, 2015. doi:10.48550/arXiv.1505.04597</em><</p>
+
+
+
+
+<h2>Slide 6: How to Judge AI Performance</h2>
+<p>Not all performance metrics mean the same thing. A high AUROC might sound impressive, but it only tells you how well a model ranks positive vs negative cases. It says nothing about real-world usability.</p>
+<p><strong>Clinical metrics to watch:</strong></p>
+<ul>
+    <li>AUROC: discrimination, not calibration</li>
+    <li>Sensitivity: good for screening tools</li>
+    <li>Specificity: critical in triage</li>
+    <li>Dice coefficient: overlap quality in segmentation</li>
+    <li>Calibration: how well predicted probabilities match observed outcomes</li>
+</ul>
+<p><em>Clinical mini-example:</em> A lung nodule model with AUROC 0.93 but poor calibration might flag too many low-risk nodules for follow-up.</p>
+
+<h2>Slide 7: Why External Validation Is Crucial</h2>
+<p>Internal testing is not enough. AI must be evaluated on unseen data from different sites to prove generalisability. Without this, performance may collapse in new environments due to dataset shift.</p>
+<blockquote>"Dataset shift remains one of the main threats to AI generalisability in healthcare." – Kelly et al., 2019, BMC Medicine</blockquote>
+<p><strong>Checklist:</strong></p>
+<ul>
+    <li>External datasets?</li>
+    <li>Geographic and equipment diversity?</li>
+    <li>Performance across subgroups?</li>
+</ul>
+<p>References:<br>
+<em>  1. Kelly, C.J., Karthikesalingam, A., Suleyman, M. et al. Key challenges for delivering clinical impact with artificial intelligence. BMC Med 17, 195 (2019). https://doi.org/10.1186/s12916-019-1426-2</em><</p>
+
+
+<h2>Slide 8: Clinician + AI > AI Alone</h2>
+<p>The best use of AI is not replacing the clinician, but augmenting them. Studies show that humans assisted by AI outperform either alone.</p>
+<blockquote>"With AI support, dermatology residents increased their sensitivity for melanoma detection by 9%, with minimal change in specificity." – Haenssle et al., 2018, JAMA Dermatology</blockquote>
+<p><strong>Look for studies that test:</strong></p>
+<ul>
+    <li>Impact on clinical decision-making</li>
+    <li>Time to diagnosis</li>
+    <li>Confidence shift with vs without AI support</li>
+</ul>
+<p>References:<br>
+<em>  1. Haenssle HA, Fink C, Schneiderbauer R, et al. Man against machine: diagnostic performance of a deep learning convolutional neural network for dermoscopic melanoma recognition in comparison to 58 dermatologists. Ann Oncol. 2018;29(8):1836-1842. doi:10.1093/annonc/mdy166</em><</p>
+
+
+<h2>Slide 9: Red Flags in AI Claims</h2>
+<p>When evaluating AI tools or studies, some patterns should raise concern:</p>
+<ul>
+    <li>❌ No external validation</li>
+    <li>❌ Weak, noisy labels (e.g., NLP from reports)</li>
+    <li>❌ No subgroup analysis (ethnicity, age)</li>
+    <li>❌ Results reported only as AUROC without confusion matrix or confidence intervals</li>
+</ul>
+<p><em>Quick test:</em> If a study doesn’t mention its dataset’s diversity or limitations, be cautious.</p>
+
+<h2>Slide 10: Summary Takeaways</h2>
+<ul>
+    <li>Some AI models match expert clinicians in narrow tasks—but only under ideal conditions.</li>
+    <li>Many studies rely on weak labels or lack external validation.</li>
+    <li>AUROC alone doesn’t equal clinical utility.</li>
+    <li>The most trustworthy models are transparent about their data, limits, and tested on real-world populations.</li>
+    <li>Clinicians must actively participate in evaluating and integrating AI tools.</li>
+</ul>
+<p>Your role: Think like a reviewer—always ask: Was this tested on patients like mine?</p>
+
+<!-- Quiz Placeholder -->
+<div id="quiz-placeholder"></div>
