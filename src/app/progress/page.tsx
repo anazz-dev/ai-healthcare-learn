@@ -215,8 +215,6 @@ const ProgressPage = () => {
             <div class="print-section">
               <div class="share-buttons">
                 <button class="share-btn" onclick="window.print()">Print Certificate</button>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}" 
-                   target="_blank" class="share-btn">Share on LinkedIn</a>
                 <button class="share-btn" onclick="window.close()">Close</button>
               </div>
             </div>
