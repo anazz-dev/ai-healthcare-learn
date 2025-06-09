@@ -718,7 +718,7 @@ export default function HomePage() {
 
           <Button asChild className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-lg py-3">
                   <Link href="/readiness-index">
-                    Start Your Free Clinical AI Skills Check 
+                    Start Your AI Skills Check 
                   </Link>
           </Button>
 
