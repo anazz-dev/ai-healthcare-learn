@@ -40,17 +40,21 @@ export default function CertificateActions({ name }: CertificateActionsProps) {
 
   /* PDF download ---------------------------------------------------- */
   const handleDownload = async () => {
-    if (!certRef.current) return;
-    const html2pdf = (await import('html2pdf.js')).default;
-    html2pdf()
-      .from(certRef.current)
-      .set({
-        filename: `${name.replace(/\s+/g, '_')}_certificate.pdf`,
-        html2canvas: { scale: 2 },
-        jsPDF:      { format: 'a4', orientation: 'portrait' },
-      })
-      .save();
+      if (!certRef.current || typeof window === 'undefined') return;
+
+      const html2pdf = (await import('html2pdf.js')).default;
+
+      html2pdf()
+        .from(certRef.current)
+        .set({
+          filename: `${name}_certificate.pdf`,
+          html2canvas: { scale: 2 },
+          jsPDF: { format: 'a4', orientation: 'portrait' }
+        })
+        .save();
   };
+
+
 
   /* markup ---------------------------------------------------------- */
   return (
