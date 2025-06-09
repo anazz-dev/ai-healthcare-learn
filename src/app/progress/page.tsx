@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   Button
 } from '@/components/ui/button';
@@ -30,202 +31,39 @@ import {
 import UnifiedEmailForm from '@/components/UnifiedEmailForm';
 
 const ProgressPage = () => {
-  const [showCertificateForm, setShowCertificateForm] = useState(false);
+  const [showCertificateForm, setShowCertificateForm]   = useState(false);
   const [certificateGenerated, setCertificateGenerated] = useState(false);
-  const [userProgress, setUserProgress] = useState({
+
+  const [userProgress] = useState({
     completedModules: 4,
     totalModules: 4,
     skillsAssessmentCompleted: true,
     overallProgress: 100
   });
 
-  const handleCertificateRequest = (data: any) => {
-    generateCertificate(data.name, data.email);
+  const router = useRouter(); // (used only if you want to route internally)
+
+  /* ───────────────────────────────────────────── */
+  /* 1 ▸ handle e-mail form submit                 */
+  /* ───────────────────────────────────────────── */
+  const handleCertificateRequest = (data: { name: string; email: string }) => {
+    generateCertificate(data.name.trim());
     setCertificateGenerated(true);
     setShowCertificateForm(false);
   };
 
-  const generateCertificate = (name: string, email: string) => {
-    const certificateWindow = window.open('', '_blank', 'width=900,height=700,scrollbars=yes,resizable=yes');
-    
-    if (certificateWindow) {
-      certificateWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Clinical AI Academy Certificate</title>
-          <style>
-            body {
-              font-family: 'Georgia', serif;
-              margin: 0;
-              padding: 30px;
-              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-              min-height: 100vh;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-            .certificate {
-              background: white;
-              width: 600px;
-              max-width: 90vw;
-              min-height: 450px;
-              padding: 30px;
-              border: 2px solid #2563eb;
-              border-radius: 8px;
-              box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-              text-align: center;
-              position: relative;
-            }
-            .header {
-              border-bottom: 4px solid #2563eb;
-              padding-bottom: 15px;
-              margin-bottom: 20px;
-            }
-            .academy-name {
-              font-size: 24px;
-              font-weight: bold;
-              color: #1e40af;
-              margin-bottom: 5px;
-            }
-            .certificate-title {
-              font-size: 20px;
-              color: #374151;
-              margin-bottom: 20px;
-            }
-            .recipient-name {
-              font-size: 28px;
-              font-weight: bold;
-              color: #1f2937;
-              margin: 15px 0;
-              border-bottom: 2px solid #e5e7eb;
-              padding-bottom: 8px;
-            }
-            .course-description {
-              font-size: 16px;
-              color: #4b5563;
-              margin: 15px 0;
-              line-height: 1.4;
-            }
-            .main-content {
-              margin: 20px 0;
-            }
-            .completion-date {
-              font-size: 14px;
-              color: #6b7280;
-              margin-top: 20px;
-            }
-            .signature-section {
-              margin-top: 25px;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            }
-            .signature {
-              text-align: center;
-              flex: 1;
-            }
-            .signature-line {
-              border-top: 1px solid #9ca3af;
-              margin-bottom: 5px;
-              width: 120px;
-              margin: 0 auto 5px auto;
-            }
-            .signature-text {
-              font-size: 12px;
-              color: #6b7280;
-            }
-            .accreditation {
-              font-size: 11px;
-              color: #9ca3af;
-              margin-top: 20px;
-              font-style: italic;
-            }
-            .print-section {
-              margin-top: 20px;
-              padding-top: 15px;
-              border-top: 1px solid #e5e7eb;
-            }
-            .share-buttons {
-              display: flex;
-              justify-content: center;
-              gap: 8px;
-              margin-top: 10px;
-            }
-            .share-btn {
-              padding: 6px 12px;
-              background: #2563eb;
-              color: white;
-              border: none;
-              border-radius: 4px;
-              cursor: pointer;
-              font-size: 12px;
-              text-decoration: none;
-              display: inline-block;
-            }
-            .share-btn:hover {
-              background: #1d4ed8;
-            }
-            @media print {
-              body { background: white; }
-              .print-section { display: none; }
-            }
-          </style>
-        </head>
-        <body>
-          <div class="certificate">
-            <div class="header">
-              <div class="academy-name">Clinical AI Academy</div>
-              <div class="certificate-title">Certificate of Completion</div>
-            </div>
-            
-            <div class="main-content">
-              <p style="font-size: 14px; color: #6b7280; margin-bottom: 10px;">This certifies that</p>
-              
-              <div class="recipient-name">${name}</div>
-              
-              <p style="font-size: 14px; color: #6b7280; margin: 10px 0;">has successfully completed</p>
-              
-              <div class="course-description">
-                <strong>AI Literacy for Healthcare Professionals</strong><br>
-                A comprehensive course covering AI fundamentals, clinical applications, 
-                ethics, safety, and implementation strategies in healthcare settings.
-              </div>
-              
-              <div class="completion-date">
-                Completed on ${new Date().toLocaleDateString('en-US', { 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })}
-              </div>
-            </div>
-            
-            <div class="signature-section">
-              <div class="signature">
-                 <div class="signature-text">Dr. Ahmad Nazzal, Course Director</div>
-              </div>
-            </div>
-            
-            <div class="accreditation">
-              This certificate demonstrates completion of 4+ hours of continuing education 
-              in artificial intelligence applications for healthcare professionals.
-            </div>
-            
-            <div class="print-section">
-              <div class="share-buttons">
-                <button class="share-btn" onclick="window.print()">Print Certificate</button>
-                <button class="share-btn" onclick="window.close()">Close</button>
-              </div>
-            </div>
-          </div>
-        </body>
-        </html>
-      `);
-      certificateWindow.document.close();
-    }
+  /* ───────────────────────────────────────────── */
+  /* 2 ▸ build /certificate/<slug> URL             */
+  /* ───────────────────────────────────────────── */
+  const generateCertificate = (name: string) => {
+    const slug = encodeURIComponent(name.toLowerCase().replace(/\s+/g, '-'));
+    const url  = `/certificate/${slug}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
+  /* ───────────────────────────────────────────── */
+  /* 3 ▸ component render                          */
+  /* ───────────────────────────────────────────── */
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -238,7 +76,7 @@ const ProgressPage = () => {
           </p>
         </div>
 
-        {/* Progress Overview */}
+        {/* ──────────────── Progress Overview ──────────────── */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
@@ -251,15 +89,20 @@ const ProgressPage = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
+              {/* overall bar */}
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm font-medium text-gray-700">Overall Progress</span>
-                  <span className="text-sm text-gray-500">{userProgress.overallProgress}%</span>
+                  <span className="text-sm text-gray-500">
+                    {userProgress.overallProgress}%
+                  </span>
                 </div>
                 <Progress value={userProgress.overallProgress} className="h-3" />
               </div>
 
+              {/* modules & assessments lists */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* completed modules */}
                 <div className="space-y-4">
                   <h3 className="font-semibold text-gray-900">Completed Modules</h3>
                   {[
@@ -276,6 +119,7 @@ const ProgressPage = () => {
                   ))}
                 </div>
 
+                {/* assessments */}
                 <div className="space-y-4">
                   <h3 className="font-semibold text-gray-900">Assessments</h3>
                   <div className="flex items-center space-x-3">
@@ -294,7 +138,7 @@ const ProgressPage = () => {
           </CardContent>
         </Card>
 
-        {/* Certificate Section */}
+        {/* ──────────────── Certificate Section ──────────────── */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
@@ -306,6 +150,7 @@ const ProgressPage = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
+            {/* initial CTA */}
             {!showCertificateForm && !certificateGenerated && (
               <div className="text-center py-8">
                 <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -317,7 +162,7 @@ const ProgressPage = () => {
                 <p className="text-gray-600 mb-6">
                   You've completed the course. Generate your certificate now.
                 </p>
-                <Button 
+                <Button
                   onClick={() => setShowCertificateForm(true)}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
                 >
@@ -327,6 +172,7 @@ const ProgressPage = () => {
               </div>
             )}
 
+            {/* form */}
             {showCertificateForm && (
               <div className="max-w-md mx-auto">
                 <UnifiedEmailForm
@@ -337,6 +183,7 @@ const ProgressPage = () => {
               </div>
             )}
 
+            {/* success message */}
             {certificateGenerated && (
               <div className="text-center py-8">
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -346,7 +193,9 @@ const ProgressPage = () => {
                   Certificate Generated!
                 </h3>
                 <p className="text-gray-600 mb-6">
-                   Your certificate has opened in a pop-up window and you can download it or share it on Linkedin from pop-up. Make sure your pop-up blocker is turned off. You can refresh and regenerate your certificate if needed.
+                  Your certificate opened in a new tab at its own shareable URL.
+                  Copy that link (or use LinkedIn’s share dialog on that page).
+                  If a pop-up blocker intervened, allow pop-ups for this site and try again.
                 </p>
               </div>
             )}
@@ -354,11 +203,13 @@ const ProgressPage = () => {
         </Card>
       </div>
 
-      {/* Premium Course CTA */}
+      {/* ──────────────── Premium Course CTA (unchanged) ──────────────── */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <Badge className="bg-blue-100 text-blue-800 px-4 py-2 mb-6">Continue Your Education</Badge>
+            <Badge className="bg-blue-100 text-blue-800 px-4 py-2 mb-6">
+              Continue Your Education
+            </Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               Advance Your Clinical AI Practice
             </h2>
@@ -369,6 +220,7 @@ const ProgressPage = () => {
 
           <Card className="max-w-4xl mx-auto border-2 border-blue-200 shadow-xl">
             <div className="grid lg:grid-cols-2 gap-0">
+              {/* left column */}
               <div className="p-8 lg:p-12">
                 <div className="flex items-center space-x-3 mb-6">
                   <Badge className="bg-blue-100 text-blue-800">Premium Course</Badge>
@@ -380,7 +232,9 @@ const ProgressPage = () => {
                 </h3>
 
                 <p className="text-lg text-gray-600 mb-6">
-                  Master the safe and effective use of ChatGPT in clinical settings. Learn patient communication, decision support, and ethical best practices in 33 focused minutes.
+                  Master the safe and effective use of ChatGPT in clinical settings.
+                  Learn patient communication, decision support, and ethical best practices
+                  in 33 focused minutes.
                 </p>
 
                 <div className="space-y-4 mb-8">
@@ -409,7 +263,11 @@ const ProgressPage = () => {
                 </div>
 
                 <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3 mb-4">
-                  <a href="https://www.udemy.com/course/chatgpt-in-medical-practice/?referralCode=7B978913D4F20BE53121" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.udemy.com/course/chatgpt-in-medical-practice/?referralCode=7B978913D4F20BE53121"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Enroll on Udemy
                     <ExternalLink className="w-5 h-5 ml-2" />
                   </a>
@@ -420,17 +278,18 @@ const ProgressPage = () => {
                 </p>
               </div>
 
+              {/* right column */}
               <div className="bg-blue-50 p-8 lg:p-12">
                 <h4 className="text-xl font-semibold text-gray-900 mb-6">
                   What You'll Learn:
                 </h4>
                 <div className="space-y-4">
                   {[
-                    ["AI in Healthcare Overview", "Foundational knowledge of ChatGPT's clinical relevance"],
-                    ["Ethics and Confidentiality", "Stay compliant with privacy and professional standards"],
-                    ["Clinical Decision Support", "Support diagnosis and care pathways safely"],
-                    ["Effective Patient Communication", "Use AI to clarify, educate, and guide"],
-                    ["Prompting Best Practices", "Optimize your inputs for real-world scenarios"]
+                    ['AI in Healthcare Overview', 'Foundational knowledge of ChatGPT’s clinical relevance'],
+                    ['Ethics and Confidentiality', 'Stay compliant with privacy and professional standards'],
+                    ['Clinical Decision Support', 'Support diagnosis and care pathways safely'],
+                    ['Effective Patient Communication', 'Use AI to clarify, educate, and guide'],
+                    ['Prompting Best Practices', 'Optimize your inputs for real-world scenarios']
                   ].map(([title, desc], idx) => (
                     <div key={idx} className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-blue-600 mt-1" />
