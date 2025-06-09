@@ -147,16 +147,7 @@ export default function CertificateActions({ name }: CertificateActionsProps) {
           Print&nbsp;/&nbsp;Save&nbsp;PDF
         </button>
 
-        <a
-          href={shareUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded bg-blue-600
-                     px-4 py-2 text-white hover:bg-blue-700"
-        >
-          <Share2 className="h-4 w-4" />
-          Share&nbsp;on&nbsp;LinkedIn
-        </a>
+  
       </div>
     </>
   );
