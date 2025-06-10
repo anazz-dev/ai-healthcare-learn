@@ -27,18 +27,20 @@ export default function HomePage() {
     <div className="min-h-screen">
       <Head>
         <title>Clinical AI Mastery | Clinical AI Academy</title>
-        <meta name="description" content="Master AI in healthcare. EU AI Act-compliant, CME/CPD-aligned courses for clinicians and medical leaders." />
+        <meta name="description" content="Master AI in healthcare. EU AI Act-compliant, CME/CPD-aligned courses for clinicians and medical leaders. Practical tools, regulatory insights, and case-based learning." />
 
         {/* Open Graph */}
         <meta property="og:title" content="Clinical AI Mastery | Clinical AI Academy" />
-        <meta property="og:description" content="Master AI in healthcare. EU AI Act-compliant, CME/CPD-aligned courses for clinicians and medical leaders." />
-        <meta property="og:url" content="https://clinicalaiacademy.com/" />
+        <meta property="og:description" content="Master AI in healthcare. EU AI Act-compliant, CME/CPD-aligned courses for clinicians and medical leaders. Practical tools, regulatory insights, and case-based learning." />
+        <meta property="og:image" content="https://clinicalaiacademy.com/social-preview.jpg" />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://clinicalaiacademy.com/" />
+        
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Clinical AI Mastery | Clinical AI Academy" />
-        <meta name="twitter:description" content="Master AI in healthcare. EU AI Act-compliant, CME/CPD-aligned courses for clinicians and medical leaders." />
+        <meta name="twitter:description" content="Master AI in healthcare. EU AI Act-compliant, CME/CPD-aligned courses for clinicians and medical leaders. Practical tools, regulatory insights, and case-based learning." />
     </Head>
 
       {/* Hero Section */}
