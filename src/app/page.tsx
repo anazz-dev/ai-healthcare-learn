@@ -32,7 +32,6 @@ export default function HomePage() {
         {/* Open Graph */}
         <meta property="og:title" content="Clinical AI Mastery | Clinical AI Academy" />
         <meta property="og:description" content="Master AI in healthcare. EU AI Act-compliant, CME/CPD-aligned courses for clinicians and medical leaders." />
-        <meta property="og:image" content="https://clinicalaiacademy.com/social-preview.jpg" />
         <meta property="og:url" content="https://clinicalaiacademy.com/" />
         <meta property="og:type" content="website" />
 
@@ -40,7 +39,6 @@ export default function HomePage() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Clinical AI Mastery | Clinical AI Academy" />
         <meta name="twitter:description" content="Master AI in healthcare. EU AI Act-compliant, CME/CPD-aligned courses for clinicians and medical leaders." />
-        <meta name="twitter:image" content="https://clinicalaiacademy.com/social-preview.jpg" />
     </Head>
 
       {/* Hero Section */}
