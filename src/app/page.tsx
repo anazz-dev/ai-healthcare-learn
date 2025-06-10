@@ -20,10 +20,29 @@ import {
   Globe,
   ExternalLink
 } from 'lucide-react';
+import Head from 'next/head';
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
+      <Head>
+        <title>Clinical AI Mastery | Clinical AI Academy</title>
+        <meta name="description" content="Master AI in healthcare. EU AI Act-compliant, CME/CPD-aligned courses for clinicians and medical leaders." />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Clinical AI Mastery | Clinical AI Academy" />
+        <meta property="og:description" content="Master AI in healthcare. EU AI Act-compliant, CME/CPD-aligned courses for clinicians and medical leaders." />
+        <meta property="og:image" content="https://clinicalaiacademy.com/social-preview.jpg" />
+        <meta property="og:url" content="https://clinicalaiacademy.com/" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Clinical AI Mastery | Clinical AI Academy" />
+        <meta name="twitter:description" content="Master AI in healthcare. EU AI Act-compliant, CME/CPD-aligned courses for clinicians and medical leaders." />
+        <meta name="twitter:image" content="https://clinicalaiacademy.com/social-preview.jpg" />
+    </Head>
+
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
