@@ -13,8 +13,15 @@ const posts = [
   {
     slug: 'ai-literacy-in-healthcare',
     title: 'AI Literacy in Healthcare: A Comprehensive Guide for Clinicians, Administrators, and MedTech Companies',
-    excerpt: 'AI literacy is now a core competency in modern healthcare. This guide details the essential skills, regulatory requirements in the EU and USA, ethical safeguards, and best‑practice steps for integrating AI tools safely and effectively.',
+    excerpt: 'AI literacy is now a core competency in modern healthcare. This guide details the essential skills, regulatory requirements in the EU and USA, ethical safeguards, and best‑practice steps for integrating AI tools safely and effectively. Clinical AI Readiness Score (CARS), is a comprehensive conceptual framework for assessing the deployment readiness of AI systems in healthcare settings, addressing technical, clinical, ethical, and operational dimensions.',
     date: 'May 06, 2025', // Publication date
+  },
+
+   {
+    slug: 'cars',
+    title: 'Clinical AI Readiness Score (CARS): A Proposed Framework for Assessing Artificial Intelligence Deployment Readiness in Healthcare Settings',
+    excerpt: 'Despite significant advances in artificial intelligence (AI) research for healthcare applications, the translation from research to clinical practice remains limited.',
+    date: 'June 28, 2025', // Publication date
   }
   
   // Add more posts here later
