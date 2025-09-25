@@ -22,7 +22,14 @@ const posts = [
     title: 'Clinical AI Readiness Score (CARS): A Proposed Framework for Assessing Artificial Intelligence Deployment Readiness in Healthcare Settings',
     excerpt: 'Despite significant advances in artificial intelligence (AI) research for healthcare applications, the translation from research to clinical practice remains limited.',
     date: 'June 28, 2025', // Publication date
-  }
+  },
+
+    {
+  slug: 'what-is-clinical-ai',
+  title: 'What is Clinical AI? A Primer for Healthcare Professionals',
+  excerpt: 'Clinical AI refers to artificial intelligence systems that directly support patient care through diagnostics, prognostics, and treatment decisions — a critical subset of medical AI that clinicians need to understand.',
+  date: 'September 25, 2025', // Publication date
+  }   
   
   // Add more posts here later
 ];
