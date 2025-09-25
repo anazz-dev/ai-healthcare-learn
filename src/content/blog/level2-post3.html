@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI in Prognosis and Risk Prediction</title>
+  <meta name="description" content="Learn how AI is transforming prognosis in medicine. From ICU mortality risk to oncology recurrence prediction, AI enables data-driven forecasting.">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #111827;
+      margin: 0;
+      padding: 2rem;
+      background: #f9fafb;
+    }
+    h1, h2, h3 {
+      color: #1f2937;
+      line-height: 1.3;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      margin-bottom: .75rem;
+    }
+    p, li {
+      margin-bottom: 1rem;
+    }
+    ul {
+      margin: 0 0 1rem 1.25rem;
+    }
+    .diagram {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .author-box {
+      max-width: 600px;
+      margin: 3rem auto 1rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #374151;
+    }
+    .author-box a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    .author-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AI in Prognosis and Risk Prediction</h1>
+
+  <h2>Introduction</h2>
+  <p>
+    Prognosis is central to clinical decision-making: will a patient deteriorate, recover, or relapse?
+    Traditional tools like APACHE or SOFA scores provide benchmarks, but AI offers more granular, patient-specific forecasts by learning from vast datasets.
+    This post explores how AI enables risk prediction in critical care, oncology, and chronic disease management.
+  </p>
+
+  <h2>ICU and Critical Care</h2>
+  <p>
+    In the ICU, AI models integrate vital signs, labs, and EHR data streams to predict outcomes such as:
+  </p>
+  <ul>
+    <li>Mortality risk within 24–48 hours.</li>
+    <li>Sepsis onset prediction.</li>
+    <li>Need for mechanical ventilation.</li>
+  </ul>
+  <p>
+    Unlike static scoring systems, AI continuously updates predictions as new data arrives, offering real-time decision support.
+  </p>
+
+  <h2>Oncology</h2>
+  <p>
+    Cancer prognosis often involves estimating recurrence or survival.
+    AI models trained on genomics, pathology, and imaging data can stratify patients into low-, medium-, or high-risk groups,
+    supporting individualized treatment planning.
+  </p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 500 300" role="img" aria-label="Kaplan-Meier style risk stratification curve" style="width:100%;height:auto;display:block">
+      <rect width="500" height="300" fill="#fff"/>
+      <line x1="50" y1="250" x2="480" y2="250" stroke="#9ca3af" stroke-width="1"/>
+      <line x1="50" y1="250" x2="50" y2="40" stroke="#9ca3af" stroke-width="1"/>
+      <text x="250" y="280" text-anchor="middle" font-size="12" fill="#374151">Time (months)</text>
+      <text x="15" y="150" transform="rotate(-90,15,150)" font-size="12" fill="#374151">Survival Probability</text>
+
+      <!-- High risk curve -->
+      <path d="M60,220 L150,200 L250,160 L350,120 L450,80" stroke="#dc2626" stroke-width="2" fill="none"/>
+      <text x="460" y="85" font-size="12" fill="#dc2626">High risk</text>
+
+      <!-- Medium risk curve -->
+      <path d="M60,200 L150,180 L250,150 L350,130 L450,110" stroke="#f59e0b" stroke-width="2" fill="none"/>
+      <text x="460" y="115" font-size="12" fill="#f59e0b">Medium risk</text>
+
+      <!-- Low risk curve -->
+      <path d="M60,180 L150,170 L250,160 L350,150 L450,140" stroke="#16a34a" stroke-width="2" fill="none"/>
+      <text x="460" y="145" font-size="12" fill="#16a34a">Low risk</text>
+    </svg>
+    <p style="font-size:14px;color:#6b7280;margin-top:.5rem">
+      Example: AI-based survival stratification compared with traditional risk groups.
+    </p>
+  </div>
+
+  <h2>Chronic Disease Management</h2>
+  <p>
+    Beyond acute care and oncology, AI predicts:
+  </p>
+  <ul>
+    <li>Hospital readmission risk in heart failure and COPD.</li>
+    <li>Progression of diabetic nephropathy.</li>
+    <li>Stroke recurrence risk.</li>
+  </ul>
+  <p>
+    These forecasts inform preventive strategies and personalized follow-up.
+  </p>
+
+  <h2>Limitations and Challenges</h2>
+  <ul>
+    <li><strong>Data drift:</strong> predictions may degrade as populations or treatments change.</li>
+    <li><strong>Bias:</strong> underrepresentation of subgroups may distort forecasts.</li>
+    <li><strong>Interpretability:</strong> clinicians need transparency to trust survival predictions.</li>
+  </ul>
+
+  <h2>Conclusion & Next Step</h2>
+  <p>
+    AI transforms prognosis from population-based averages to individualized forecasts.
+    Clinicians must critically evaluate the models’ validity and applicability before acting on predictions.
+    In the next post, we will examine <a href="/blog/level2-post4">AI in Therapeutics and Decision Support</a>.
+  </p>
+
+  <div class="author-box">
+    <p><strong>Author:</strong>
+      <a href="https://www.linkedin.com/in/drahmadnazzal/" target="_blank" rel="noopener noreferrer">
+        Ahmad Nazzal
+      </a>
+    </p>
+    <p>
+      Physician-scientist (MD, PhD in neuroscience) specializing in AI for healthcare as a researcher and writer.
+    </p>
+  </div>
+
+</body>
+</html>

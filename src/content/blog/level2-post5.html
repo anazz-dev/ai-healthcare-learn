@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transformers and Large Language Models in Healthcare</title>
+  <meta name="description" content="A clinician-friendly primer on transformers and large language models (LLMs) in medicine. Learn their foundations, applications, and limitations in healthcare.">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #111827;
+      margin: 0;
+      padding: 2rem;
+      background: #f9fafb;
+    }
+    h1, h2, h3 {
+      color: #1f2937;
+      line-height: 1.3;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      margin-bottom: .75rem;
+    }
+    p, li {
+      margin-bottom: 1rem;
+    }
+    ul {
+      margin: 0 0 1rem 1.25rem;
+    }
+    .diagram {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .author-box {
+      max-width: 600px;
+      margin: 3rem auto 1rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #374151;
+    }
+    .author-box a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    .author-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Transformers and Large Language Models in Healthcare</h1>
+
+  <h2>Introduction</h2>
+  <p>
+    Large language models (LLMs) like GPT, BERT, and Med-PaLM have captured global attention for their ability to generate coherent, human-like text.
+    At the core of these systems is the <em>transformer</em> architecture, a deep learning design that revolutionized natural language processing (NLP).
+    This post introduces transformers in clinician-friendly terms, explores applications in healthcare, and highlights the limitations and risks of LLMs.
+  </p>
+
+  <h2>What Makes Transformers Different?</h2>
+  <p>
+    Before transformers, NLP relied on recurrent networks that processed text sequentially, making them slow and limited in handling long contexts.
+    Transformers use an <strong>attention mechanism</strong>, allowing the model to weigh relationships between all words in a sequence simultaneously.
+    This parallelism enables LLMs to handle large datasets and capture nuanced language patterns.
+  </p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 900 240" role="img" aria-label="Transformer attention flow diagram" style="width:100%;height:auto;display:block">
+      <rect width="900" height="240" fill="#fff"/>
+      <!-- Input tokens -->
+      <g transform="translate(40,50)">
+        <rect width="100" height="40" rx="8" fill="#e0f2fe" stroke="#38bdf8"/>
+        <text x="50" y="25" text-anchor="middle" font-size="14" fill="#0369a1">Token A</text>
+      </g>
+      <g transform="translate(40,120)">
+        <rect width="100" height="40" rx="8" fill="#e0f2fe" stroke="#38bdf8"/>
+        <text x="50" y="25" text-anchor="middle" font-size="14" fill="#0369a1">Token B</text>
+      </g>
+
+      <!-- Attention arrows -->
+      <line x1="140" y1="70" x2="400" y2="80" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="140" y1="140" x2="400" y2="80" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="140" y1="70" x2="400" y2="160" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="140" y1="140" x2="400" y2="160" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Attention box -->
+      <g transform="translate(400,80)">
+        <rect width="160" height="80" rx="12" fill="#fef3c7" stroke="#f59e0b"/>
+        <text x="80" y="45" text-anchor="middle" font-size="14" font-weight="600" fill="#92400e">Attention Layer</text>
+      </g>
+
+      <!-- Output -->
+      <line x1="560" y1="120" x2="750" y2="120" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow)"/>
+      <g transform="translate(750,100)">
+        <rect width="100" height="40" rx="8" fill="#dcfce7" stroke="#22c55e"/>
+        <text x="50" y="25" text-anchor="middle" font-size="14" fill="#166534">Contextual Output</text>
+      </g>
+
+      <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#9ca3af"></path>
+      </marker>
+    </svg>
+    <p style="font-size:14px;color:#6b7280;margin-top:.5rem">
+      Simplified illustration: tokens processed in parallel through the attention mechanism, producing context-aware outputs.
+    </p>
+  </div>
+
+  <h2>Applications in Healthcare</h2>
+  <ul>
+    <li><strong>Clinical documentation:</strong> Summarizing lengthy EHR notes into concise progress reports.</li>
+    <li><strong>Radiology reporting:</strong> Drafting structured reports from dictated findings.</li>
+    <li><strong>Patient communication:</strong> Generating discharge instructions in plain language.</li>
+    <li><strong>Literature review:</strong> Rapid synthesis of medical research for clinicians and guideline developers.</li>
+    <li><strong>Trial matching:</strong> Identifying eligible patients for clinical trials by parsing eligibility criteria.</li>
+  </ul>
+
+  <h2>Limitations and Risks</h2>
+  <ul>
+    <li><strong>Hallucinations:</strong> LLMs may generate plausible but false information.</li>
+    <li><strong>Context limits:</strong> Performance depends on how much text fits in the model’s context window.</li>
+    <li><strong>Data privacy:</strong> Sensitive clinical text must be handled with strict safeguards.</li>
+    <li><strong>Regulation:</strong> Few LLM-based clinical tools have yet been cleared by the FDA or CE-marked.</li>
+  </ul>
+
+  <h2>Conclusion & Next Step</h2>
+  <p>
+    Transformers and LLMs represent a powerful new wave of clinical AI, with promising applications in documentation, reporting, and communication.
+    But they also introduce risks such as hallucinations and privacy concerns.
+    With this foundation, we are ready to transition into the <a href="/blog/level3-post1.html">Advanced Level</a>, beginning with Bias, Fairness, and Explainability.
+  </p>
+
+  <div class="author-box">
+    <p><strong>Author:</strong>
+      <a href="https://www.linkedin.com/in/drahmadnazzal/" target="_blank" rel="noopener noreferrer">
+        Ahmad Nazzal
+      </a>
+    </p>
+    <p>
+      Physician-scientist (MD, PhD in neuroscience) specializing in AI for healthcare as a researcher and writer.
+    </p>
+  </div>
+
+</body>
+</html>
