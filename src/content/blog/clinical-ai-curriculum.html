@@ -41,13 +41,19 @@
     li {
       margin-bottom: .75rem;
     }
-    a {
-      color: #2563eb;
-      text-decoration: none;
+
+  
+
+    a, a:visited {
+  color: #2563eb !important;   /* force blue */
+  text-decoration: underline;  /* make them obviously clickable */
     }
+
     a:hover {
+      color: #1d4ed8 !important;   /* darker blue on hover */
       text-decoration: underline;
     }
+
     .author-box {
       max-width: 600px;
       margin: 3rem auto 1rem;
