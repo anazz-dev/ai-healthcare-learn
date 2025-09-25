@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bias, Fairness, and Explainability in Clinical AI</title>
+  <meta name="description" content="Bias, fairness, and explainability are central to trustworthy AI in healthcare. Learn how bias arises, how fairness is measured, and why explainability matters for clinicians and patients.">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #111827;
+      margin: 0;
+      padding: 2rem;
+      background: #f9fafb;
+    }
+    h1, h2, h3 {
+      color: #1f2937;
+      line-height: 1.3;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      margin-bottom: .75rem;
+    }
+    p, li {
+      margin-bottom: 1rem;
+    }
+    ul {
+      margin: 0 0 1rem 1.25rem;
+    }
+    blockquote {
+      border-left: 4px solid #d1d5db;
+      padding-left: 1rem;
+      color: #374151;
+      font-style: italic;
+      margin: 1.5rem 0;
+    }
+    .author-box {
+      max-width: 600px;
+      margin: 3rem auto 1rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #374151;
+    }
+    .author-box a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    .author-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Bias, Fairness, and Explainability in Clinical AI</h1>
+
+  <h2>Introduction</h2>
+  <p>
+    Trust in clinical AI depends not only on accuracy but also on <strong>fairness</strong> and <strong>explainability</strong>.
+    A model that systematically underperforms in certain patient groups—or produces opaque, “black-box” recommendations—risks harm, erodes trust, and undermines clinical accountability.
+    This post examines how bias arises, how fairness can be assessed, and why explainability matters for clinicians and patients alike.
+  </p>
+
+  <h2>How Bias Arises in Clinical AI</h2>
+  <p>
+    Bias in AI is rarely intentional; it usually stems from the data used for training and the context in which models are deployed. Key sources include:
+  </p>
+  <ul>
+    <li><strong>Sampling bias:</strong> training datasets overrepresent one demographic (e.g. predominantly White patients in dermatology imaging).</li>
+    <li><strong>Measurement bias:</strong> proxies for health status (like healthcare spending) may not reflect true need.</li>
+    <li><strong>Deployment bias:</strong> models validated in tertiary centers may fail in community hospitals with different populations.</li>
+  </ul>
+
+  <h3>Case Example: Risk Stratification Model</h3>
+  <p>
+    A widely used U.S. hospital risk-stratification algorithm used healthcare cost as a proxy for illness severity.
+    Because Black patients historically received less healthcare spending, the model systematically under-identified high-risk Black patients
+    (<a href="https://science.sciencemag.org/content/366/6464/447" target="_blank">Obermeyer et al., Science 2019</a>).
+  </p>
+
+  <h2>Fairness Metrics in Clinical AI</h2>
+  <p>
+    Fairness is multidimensional and context-dependent. Common metrics include:
+  </p>
+  <ul>
+    <li><strong>Equal opportunity:</strong> similar sensitivity across subgroups.</li>
+    <li><strong>Predictive parity:</strong> similar positive predictive value (PPV) across subgroups.</li>
+    <li><strong>Calibration:</strong> predicted risks match observed outcomes equally well across groups.</li>
+  </ul>
+  <p>
+    No single metric suffices—clinicians and regulators must decide which fairness criteria align with ethical and clinical goals.
+  </p>
+
+  <h2>Explainability: Opening the Black Box</h2>
+  <p>
+    Many AI models, especially deep learning, function as “black boxes,” making decisions that are difficult to interpret.
+    Explainability tools aim to bridge this gap:
+  </p>
+  <ul>
+    <li><strong>SHAP and LIME:</strong> attribute predictions to input features (e.g. which lab values drove a sepsis alert).</li>
+    <li><strong>Saliency maps:</strong> highlight image regions most influential in a radiology model’s decision.</li>
+    <li><strong>Counterfactuals:</strong> show how small input changes would alter the prediction.</li>
+  </ul>
+
+  <blockquote>
+    Explainability is not an end in itself—it is a means to <strong>clinical accountability</strong>.
+    Clinicians must understand enough of an AI’s reasoning to responsibly accept or reject its recommendations.
+  </blockquote>
+
+  <h2>Ethical and Regulatory Perspectives</h2>
+  <p>
+    Both the <strong>FDA</strong> and the <strong>EU AI Act</strong> emphasize transparency, human oversight, and post-market monitoring of clinical AI systems.
+    In practice, this means:
+  </p>
+  <ul>
+    <li>Vendors must disclose intended use, limitations, and performance data.</li>
+    <li>Hospitals must monitor AI tools for bias and performance drift.</li>
+    <li>Clinicians remain ultimately responsible for patient care decisions.</li>
+  </ul>
+
+  <h2>Conclusion & Next Step</h2>
+  <p>
+    Bias and opacity are not abstract risks—they directly affect patient safety and trust.
+    Fairness metrics and explainability tools provide ways forward, but they must be combined with clinical judgment and regulatory oversight.
+    In the next post, we will examine <a href="/blog/level3-post2.html">Regulation and Compliance: FDA, CE Marking, and the EU AI Act</a>.
+  </p>
+
+  <div class="author-box">
+    <p><strong>Author:</strong>
+      <a href="https://www.linkedin.com/in/drahmadnazzal/" target="_blank" rel="noopener noreferrer">
+        Ahmad Nazzal
+      </a>
+    </p>
+    <p>
+      Physician-scientist (MD, PhD in neuroscience) specializing in AI for healthcare as a researcher and writer.
+    </p>
+  </div>
+
+</body>
+</html>
