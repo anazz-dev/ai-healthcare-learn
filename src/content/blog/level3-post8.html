@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Continuous Monitoring and Auditing of Clinical AI</title>
+  <meta name="description" content="How to ensure safety, fairness, and performance of AI in clinical practice through continuous monitoring, auditing, and governance." />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #111827;
+      margin: 0;
+      padding: 2rem;
+      background: #f9fafb;
+    }
+    h1, h2, h3 {
+      color: #1f2937;
+      line-height: 1.3;
+    }
+    h1 { font-size: 2rem; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: .75rem; }
+    p, li { margin-bottom: 1rem; }
+    ul, ol { margin: 0 0 1rem 1.25rem; }
+    blockquote {
+      border-left: 4px solid #d1d5db;
+      padding-left: 1rem;
+      color: #374151;
+      font-style: italic;
+      margin: 1.5rem 0;
+    }
+    .callout {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin: 1.25rem 0;
+    }
+    .author-box {
+      max-width: 600px;
+      margin: 3rem auto 1rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #374151;
+    }
+    .author-box a { color: #2563eb; text-decoration: none; }
+    .author-box a:hover { text-decoration: underline; }
+    a, a:visited { color: #2563eb !important; text-decoration: underline; }
+    a:hover { color: #1d4ed8 !important; }
+  </style>
+</head>
+<body>
+
+  <h1>Continuous Monitoring and Auditing of Clinical AI</h1>
+
+  <h2>Introduction</h2>
+  <p>
+    Deploying an AI model in healthcare is not the end of the journey—it is the beginning of its life cycle.
+    Models evolve as data, populations, and workflows change.
+    Continuous monitoring and auditing ensure AI remains safe, fair, and effective in real-world use.
+  </p>
+
+  <h2>Why Continuous Monitoring Matters</h2>
+  <ul>
+    <li><strong>Data drift:</strong> Shifts in patient demographics, disease prevalence, or clinical practice may degrade performance.</li>
+    <li><strong>Model drift:</strong> Over time, accuracy may fall as the training distribution no longer matches the real-world setting.</li>
+    <li><strong>Equity drift:</strong> Biases may emerge if some subgroups change faster than others in the population.</li>
+    <li><strong>Operational safety:</strong> Unmonitored models can generate silent errors that compromise patient care.</li>
+  </ul>
+
+  <h2>Key Components of Monitoring</h2>
+  <ol>
+    <li><strong>Performance tracking:</strong> Accuracy, sensitivity, specificity, and calibration metrics updated regularly.</li>
+    <li><strong>Fairness auditing:</strong> Subgroup analyses (age, sex, ethnicity, comorbidity) to detect inequities.</li>
+    <li><strong>Usage monitoring:</strong> Logging how clinicians interact with the system—overrides, ignored alerts, adoption rates.</li>
+    <li><strong>Alerting and thresholds:</strong> Predefined triggers for investigation when performance falls below safety margins.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Best practice:</strong> Monitoring should be automated where possible, but include <em>human oversight committees</em> for accountability and context.
+  </div>
+
+  <h2>Auditing Practices</h2>
+  <p>
+    Audits are periodic, systematic reviews of how the AI system performs and how it is governed.
+    Unlike day-to-day monitoring, audits check alignment with <strong>regulations, ethics, and institutional policies</strong>.
+  </p>
+  <ul>
+    <li><strong>Technical audit:</strong> Evaluate reproducibility of results, dataset lineage, and version control.</li>
+    <li><strong>Clinical audit:</strong> Review clinical impact, error cases, and clinician satisfaction.</li>
+    <li><strong>Ethical/legal audit:</strong> Assess compliance with privacy laws, explainability, and fairness obligations.</li>
+    <li><strong>Operational audit:</strong> Evaluate costs, workflow impact, and sustainability.</li>
+  </ul>
+
+  <h2>Governance Frameworks</h2>
+  <p>
+    Effective monitoring requires a governance structure:
+  </p>
+  <ul>
+    <li><strong>Model owner:</strong> A named team or individual responsible for each deployed model.</li>
+    <li><strong>Oversight committee:</strong> Multidisciplinary board reviewing monitoring dashboards and audit reports.</li>
+    <li><strong>Incident response plan:</strong> Steps for pausing, rolling back, or retraining models if safety thresholds are breached.</li>
+    <li><strong>Documentation:</strong> Version history, known limitations, and audit results accessible to stakeholders.</li>
+  </ul>
+
+  <h2>Case Example: Sepsis Prediction Model</h2>
+  <p>
+    A hospital deployed an AI sepsis prediction tool. Initial validation was strong, but after one year,
+    monitoring revealed increased false alarms due to changes in lab testing frequency.
+    The model was retrained and recalibrated, restoring performance and clinician trust.
+  </p>
+
+  <h2>Conclusion</h2>
+  <p>
+    Clinical AI is not a “set-and-forget” technology. Continuous monitoring and regular audits are essential
+    for maintaining safety, fairness, and trustworthiness.
+    Institutions that treat monitoring as an ongoing duty—not an afterthought—will be best positioned to sustain reliable AI in practice.
+  </p>
+  <p>
+    Next in the curriculum: <a href="level3-post9">Multimodal and Federated Learning in Clinical AI</a>.
+  </p>
+
+  <div class="author-box">
+    <p><strong>Author:</strong>
+      <a href="https://www.linkedin.com/in/drahmadnazzal/" target="_blank" rel="noopener noreferrer">Ahmad Nazzal</a>
+    </p>
+    <p>
+      Physician-scientist (MD, PhD in neuroscience) specialising in AI for healthcare as a researcher and writer.
+    </p>
+  </div>
+
+</body>
+</html>

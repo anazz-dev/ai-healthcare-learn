@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multimodal and Federated Learning in Clinical AI</title>
+  <meta name="description" content="Exploring how multimodal and federated learning approaches are shaping the future of AI in clinical medicine—integrating diverse data while protecting privacy." />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #111827;
+      margin: 0;
+      padding: 2rem;
+      background: #f9fafb;
+    }
+    h1, h2, h3 {
+      color: #1f2937;
+      line-height: 1.3;
+    }
+    h1 { font-size: 2rem; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: .75rem; }
+    p, li { margin-bottom: 1rem; }
+    ul, ol { margin: 0 0 1rem 1.25rem; }
+    blockquote {
+      border-left: 4px solid #d1d5db;
+      padding-left: 1rem;
+      color: #374151;
+      font-style: italic;
+      margin: 1.5rem 0;
+    }
+    .callout {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin: 1.25rem 0;
+    }
+    .author-box {
+      max-width: 600px;
+      margin: 3rem auto 1rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #374151;
+    }
+    .author-box a { color: #2563eb; text-decoration: none; }
+    .author-box a:hover { text-decoration: underline; }
+    a, a:visited { color: #2563eb !important; text-decoration: underline; }
+    a:hover { color: #1d4ed8 !important; }
+  </style>
+</head>
+<body>
+
+  <h1>Multimodal and Federated Learning in Clinical AI</h1>
+
+  <h2>Introduction</h2>
+  <p>
+    Clinical decision-making rarely depends on a single type of data.
+    Physicians integrate imaging, lab tests, patient history, and genomics.
+    Modern AI is beginning to do the same through <strong>multimodal learning</strong>.
+    At the same time, <strong>federated learning</strong> allows institutions to train powerful models collaboratively
+    while keeping sensitive patient data local. Together, these approaches are reshaping the next generation of clinical AI.
+  </p>
+
+  <h2>What is Multimodal Learning?</h2>
+  <p>
+    Multimodal learning refers to models that combine diverse inputs—such as imaging, structured EHRs, free-text notes, and genomic data—
+    into a unified representation for prediction or diagnosis.
+  </p>
+  <ul>
+    <li><strong>Imaging + text:</strong> Radiology images linked with radiology reports for improved diagnostic models.</li>
+    <li><strong>Genomics + EHR:</strong> Predicting disease risk by combining genetic variants with clinical history.</li>
+    <li><strong>Wearables + labs:</strong> Real-time patient monitoring enriched by periodic lab and clinical results.</li>
+  </ul>
+
+  <blockquote>
+    Multimodal AI aims to mimic the holistic reasoning of clinicians by integrating multiple sources of evidence.
+  </blockquote>
+
+  <h2>Benefits of Multimodal AI</h2>
+  <ul>
+    <li>Improved accuracy compared to single-source models.</li>
+    <li>Richer insights into disease mechanisms and progression.</li>
+    <li>Personalised care plans based on diverse patient factors.</li>
+  </ul>
+
+  <h2>Challenges of Multimodal AI</h2>
+  <ul>
+    <li>Data integration: Linking across systems, formats, and time.</li>
+    <li>Missing data: Not all modalities available for every patient.</li>
+    <li>Complexity: Models are harder to interpret and validate.</li>
+    <li>Resource intensive: Requires significant computational power and storage.</li>
+  </ul>
+
+  <h2>What is Federated Learning?</h2>
+  <p>
+    Federated learning is a training approach where models learn across multiple institutions
+    without exchanging raw patient data. Instead, each site trains locally and shares only model parameters or gradients,
+    which are aggregated centrally.
+  </p>
+  <ul>
+    <li><strong>Privacy-preserving:</strong> Patient data stays within each institution’s firewall.</li>
+    <li><strong>Collaboration at scale:</strong> Enables multi-center learning without violating data-sharing restrictions.</li>
+    <li><strong>Improved generalisability:</strong> Exposure to diverse patient populations enhances robustness.</li>
+  </ul>
+
+  <h2>Applications in Clinical AI</h2>
+  <ul>
+    <li>Federated learning for rare disease diagnosis across global registries.</li>
+    <li>Multimodal cancer prognosis models combining pathology slides, genomic data, and clinical history.</li>
+    <li>AI for sepsis prediction using continuous monitoring + lab tests + clinician notes.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Note:</strong> Federated learning still faces technical hurdles: communication costs, model drift across sites,
+    and ensuring fairness when data distributions differ.
+  </div>
+
+  <h2>Regulatory and Ethical Considerations</h2>
+  <p>
+    Regulators are increasingly attentive to models that aggregate knowledge across institutions.
+    Transparency in aggregation, data governance agreements, and security against model inversion attacks
+    are critical for compliance.
+  </p>
+
+  <h2>Conclusion</h2>
+  <p>
+    Multimodal and federated learning represent a leap forward in clinical AI: richer insights, broader collaboration,
+    and greater respect for patient privacy.
+    Together, they bring us closer to AI systems that mirror the complexity of real-world clinical reasoning
+    while protecting sensitive health data.
+  </p>
+  <p>
+    This concludes the advanced level of the curriculum.
+    Return to the <a href="clinical-ai-curriculum">Curriculum Overview</a>.
+  </p>
+
+  <div class="author-box">
+    <p><strong>Author:</strong>
+      <a href="https://www.linkedin.com/in/drahmadnazzal/" target="_blank" rel="noopener noreferrer">Ahmad Nazzal</a>
+    </p>
+    <p>
+      Physician-scientist (MD, PhD in neuroscience) specialising in AI for healthcare as a researcher and writer.
+    </p>
+  </div>
+
+</body>
+</html>
