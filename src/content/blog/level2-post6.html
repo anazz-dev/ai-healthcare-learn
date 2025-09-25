@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluating and Validating AI Tools in Medicine</title>
+  <meta name="description" content="Practical guidance for clinicians on assessing AI evidence: internal vs external validation, calibration, and prospective studies.">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #111827;
+      margin: 0;
+      padding: 2rem;
+      background: #f9fafb;
+    }
+    h1, h2, h3 {
+      color: #1f2937;
+      line-height: 1.3;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      margin-bottom: .75rem;
+    }
+    p, li {
+      margin-bottom: 1rem;
+    }
+    ul {
+      margin: 0 0 1rem 1.25rem;
+    }
+    blockquote {
+      border-left: 4px solid #d1d5db;
+      padding-left: 1rem;
+      color: #374151;
+      font-style: italic;
+      margin: 1.5rem 0;
+    }
+    .author-box {
+      max-width: 600px;
+      margin: 3rem auto 1rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #374151;
+    }
+    .author-box a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    .author-box a:hover {
+      text-decoration: underline;
+    }
+    a, a:visited {
+      color: #2563eb !important;
+      text-decoration: underline;
+    }
+    a:hover {
+      color: #1d4ed8 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Evaluating and Validating AI Tools in Medicine</h1>
+
+  <h2>Introduction</h2>
+  <p>
+    Not all AI tools that enter the clinic are created equal. Some are rigorously tested, others barely validated.
+    For clinicians and hospital leaders, knowing how to critically appraise an AI tool is a professional responsibility.
+    This post introduces the <strong>core principles of evaluation and validation</strong> for healthcare AI.
+  </p>
+
+  <h2>Internal vs External Validation</h2>
+  <ul>
+    <li><strong>Internal validation:</strong> The model is tested on a split of the same dataset it was trained on (e.g., train/test split). This checks performance consistency but may overestimate real-world reliability.</li>
+    <li><strong>External validation:</strong> The model is tested on a completely independent dataset, ideally from another hospital or country. This provides stronger evidence of generalisability.</li>
+  </ul>
+
+  <h2>Prospective vs Retrospective Studies</h2>
+  <p>
+    Many AI papers rely on retrospective validation—testing algorithms on stored data.
+    While useful for proof-of-concept, true clinical robustness requires <strong>prospective validation</strong>, where the model is applied in real time during patient care.
+  </p>
+
+  <h2>Performance Metrics That Matter</h2>
+  <ul>
+    <li><strong>Sensitivity & specificity:</strong> Critical for diagnostics.</li>
+    <li><strong>Area under ROC curve (AUC):</strong> Summarises overall discriminatory ability.</li>
+    <li><strong>Calibration:</strong> Do predicted probabilities match real-world outcomes?</li>
+    <li><strong>Decision curve analysis:</strong> Assesses whether using the model adds net clinical benefit.</li>
+  </ul>
+
+  <blockquote>
+    A model with high accuracy in a dataset but poor calibration in practice may cause more harm than good.
+  </blockquote>
+
+  <h2>Usability and Workflow Fit</h2>
+  <p>
+    Validation is not only about numbers. A tool that disrupts workflow may fail even if its metrics are strong.
+    Clinicians should ask:
+  </p>
+  <ul>
+    <li>Does the interface integrate with existing EHR systems?</li>
+    <li>Is the output timely and interpretable?</li>
+    <li>Does it add alert fatigue?</li>
+  </ul>
+
+  <h2>Case Example: Sepsis Prediction Models</h2>
+  <p>
+    Several hospitals deployed sepsis early-warning algorithms.
+    Some lacked prospective validation and overwhelmed staff with false alarms, leading to <em>alert fatigue</em>.
+    In contrast, carefully validated systems with clinician oversight improved early detection and outcomes.
+  </p>
+
+  <h2>Conclusion</h2>
+  <p>
+    Evaluating AI tools is about more than reading the abstract of a study.
+    Clinicians should look for external validation, prospective testing, proper metrics, calibration, and usability.
+    Only then can AI tools be trusted to support patient care safely.
+  </p>
+  <p>
+    Next in the curriculum: <a href="level2-post7">Natural-Language Processing and Clinical Documentation</a>.
+  </p>
+
+  <div class="author-box">
+    <p><strong>Author:</strong>
+      <a href="https://www.linkedin.com/in/drahmadnazzal/" target="_blank" rel="noopener noreferrer">
+        Ahmad Nazzal
+      </a>
+    </p>
+    <p>
+      Physician-scientist (MD, PhD in neuroscience) specializing in AI for healthcare as a researcher and writer.
+    </p>
+  </div>
+
+</body>
+</html>
