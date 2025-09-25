@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What is Clinical AI? Applications of Artificial Intelligence in Patient Care</title>
+  <meta name="description" content="Clinical AI is a subset of medical AI focused on diagnosis, prognosis, and treatment support in direct patient care. Learn its scope, domains, and importance for clinicians.">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #111827;
+      margin: 0;
+      padding: 2rem;
+      background: #f9fafb;
+    }
+    h1, h2 {
+      color: #1f2937;
+      line-height: 1.3;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    p, ul {
+      margin-bottom: 1rem;
+    }
+    ul {
+      padding-left: 1.25rem;
+    }
+    li {
+      margin-bottom: .5rem;
+    }
+    strong {
+      color: #111827;
+    }
+    .diagram {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+    }
+    .diagram p {
+      font-size: 0.9rem;
+      color: #6b7280;
+      text-align: center;
+    }
+    .author-box {
+      max-width: 600px;
+      margin: 3rem auto 1rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #374151;
+    }
+    .author-box a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    .author-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>What is Clinical AI? Applications of Artificial Intelligence in Patient Care</h1>
+
+  <h2>Introduction</h2>
+  <p>
+    In <a href="what-is-medical-ai.html">our first post</a>, we defined <strong>Medical AI</strong> as the umbrella term for all artificial intelligence applications in healthcare.
+    Within this broad field, <strong>Clinical AI</strong> refers specifically to AI tools designed to support direct patient care—diagnosis, prognosis, and treatment decision-making.
+    Understanding Clinical AI is essential for clinicians because these systems directly influence patient outcomes.
+  </p>
+
+  <h2>Defining Clinical AI</h2>
+  <p>
+    Clinical AI includes machine learning models, natural language processing systems, and decision-support algorithms that interact with patient data to guide care.
+    Unlike Administrative AI, which optimizes hospital operations, Clinical AI is <em>patient-facing</em>: its predictions or recommendations have immediate clinical implications.
+  </p>
+
+  <h2>Domains of Clinical AI</h2>
+  <ul>
+    <li><strong>Diagnostics.</strong> AI-assisted radiology, pathology, dermatology, and cardiology image interpretation.</li>
+    <li><strong>Prognostics.</strong> Risk prediction for ICU outcomes, disease progression, or hospital readmission.</li>
+    <li><strong>Therapeutics.</strong> Treatment selection, drug dosing optimization, robotic surgery guidance.</li>
+    <li><strong>Clinical operations at the bedside.</strong> Triage systems, sepsis alerts, patient deterioration warnings.</li>
+  </ul>
+
+  <!-- Diagram -->
+  <div class="diagram">
+    <svg viewBox="0 0 900 400" role="img" aria-label="Diagram showing Clinical AI as a subset of Medical AI, alongside Administrative AI and Research AI" style="width:100%;height:auto;display:block">
+      <defs>
+        <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#fafafa"/>
+          <stop offset="100%" stop-color="#f3f4f6"/>
+        </linearGradient>
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.15"/>
+        </filter>
+      </defs>
+
+      <!-- Medical AI -->
+      <g transform="translate(300,20)" filter="url(#shadow)">
+        <rect width="300" height="80" rx="12" fill="url(#grad)" stroke="#d1d5db"/>
+        <text x="150" y="50" text-anchor="middle" font-weight="700" font-size="18" fill="#111827">Medical AI</text>
+      </g>
+
+      <!-- Clinical AI -->
+      <g transform="translate(80,200)" filter="url(#shadow)">
+        <rect width="220" height="100" rx="12" fill="url(#grad)" stroke="#d1d5db"/>
+        <text x="110" y="55" text-anchor="middle" font-size="16" fill="#111827">Clinical AI</text>
+      </g>
+
+      <!-- Administrative AI -->
+      <g transform="translate(340,200)" filter="url(#shadow)">
+        <rect width="220" height="100" rx="12" fill="url(#grad)" stroke="#d1d5db"/>
+        <text x="110" y="55" text-anchor="middle" font-size="16" fill="#111827">Administrative AI</text>
+      </g>
+
+      <!-- Research AI -->
+      <g transform="translate(600,200)" filter="url(#shadow)">
+        <rect width="220" height="100" rx="12" fill="url(#grad)" stroke="#d1d5db"/>
+        <text x="110" y="55" text-anchor="middle" font-size="16" fill="#111827">Research AI</text>
+      </g>
+
+      <!-- Arrows -->
+      <line x1="450" y1="100" x2="190" y2="200" stroke="#9ca3af" stroke-width="2"></line>
+      <line x1="450" y1="100" x2="450" y2="200" stroke="#9ca3af" stroke-width="2"></line>
+      <line x1="450" y1="100" x2="710" y2="200" stroke="#9ca3af" stroke-width="2"></line>
+    </svg>
+    <p>Clinical AI is one of the three core domains of Medical AI, alongside Administrative AI and Research AI.</p>
+  </div>
+
+  <h2>Why Clinical AI Matters</h2>
+  <ul>
+    <li><strong>Direct patient impact.</strong> Clinical AI tools influence diagnoses, prognoses, and treatments.</li>
+    <li><strong>Efficiency & safety.</strong> Well-integrated systems reduce errors and enhance workflows.</li>
+    <li><strong>Professional responsibility.</strong> Clinicians must understand these tools to maintain oversight, especially under regulations like the EU AI Act.</li>
+  </ul>
+
+  <h2>Next in the Curriculum</h2>
+  <p>
+    The next post explores <a href="ai-literacy.html">AI Literacy in Healthcare</a>, outlining the competencies clinicians need to use AI responsibly and effectively.
+    If you haven’t yet, read <a href="what-is-medical-ai.html">What is Medical AI?</a> to understand the broader context.
+  </p>
+
+  <!-- Author Box -->
+  <div class="author-box">
+    <p><strong>Author:</strong>
+      <a href="https://www.linkedin.com/in/drahmadnazzal/" target="_blank" rel="noopener noreferrer">
+        Ahmad Nazzal
+      </a>
+    </p>
+    <p>
+      Physician-scientist (MD, PhD in neuroscience) specializing in AI for healthcare as a researcher and writer.
+    </p>
+  </div>
+
+</body>
+</html>

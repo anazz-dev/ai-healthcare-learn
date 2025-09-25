@@ -4,6 +4,12 @@ import Link from 'next/link';
 // In a real application, you would fetch this list dynamically
 const posts = [
   {
+  slug: 'clinical-ai-curriculum',
+  title: 'Clinical and Medical AI Curriculum for Healthcare Professionals',
+  excerpt: 'A structured curriculum guiding healthcare professionals from AI basics to advanced governance and practice.',
+  },
+
+  {
     slug: 'introduction-to-ai-in-diagnostics',
     title: 'An Introduction to AI in Diagnostics for Clinicians',
     excerpt: 'AI is rapidly becoming an integral part of modern medicine, particularly in diagnostics. Understand the fundamentals and why AI literacy is essential...',
@@ -25,7 +31,28 @@ const posts = [
   slug: 'what-is-clinical-ai',
   title: 'What is Clinical AI? A Primer for Healthcare Professionals',
   excerpt: 'Clinical AI refers to artificial intelligence systems that directly support patient care through diagnostics, prognostics, and treatment decisions — a critical subset of medical AI that clinicians need to understand.',
-  }   
+  },
+
+  {
+  slug: 'what-is-medical-ai',
+  title: 'What is Medical AI? Understanding the Scope of Artificial Intelligence in Healthcare',
+  excerpt: 'Medical AI is the umbrella concept for all applications of artificial intelligence in healthcare, spanning clinical, administrative, and research domains.',
+},
+
+{
+  slug: 'difine-clinical-ai',
+  title: 'What is Clinical AI? Applications of Artificial Intelligence in Patient Care',
+  excerpt: 'Clinical AI is the subset of medical AI focused on diagnosis, prognosis, and treatment support in patient care.',
+},
+
+{
+  slug: 'ai-literacy',
+  title: 'AI Literacy in Healthcare: Why Every Clinician Needs It',
+  excerpt: 'AI literacy is becoming a core clinical competency. Learn the essential skills clinicians need to use artificial intelligence responsibly in healthcare.',
+}
+
+
+
   
   // Add more posts here later
 ];
