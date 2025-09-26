@@ -196,7 +196,7 @@ export default function HomePage() {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our evidence-based curriculum is developed by medical professionals, 
-              validated by regulatory experts, and trusted by leading healthcare institutions.
+              and trusted by leading healthcare institutions.
             </p>
           </div>
 
@@ -380,7 +380,7 @@ export default function HomePage() {
               <div className="p-8 lg:p-12">
                 <div className="flex items-center space-x-3 mb-6">
                   <Badge className="bg-blue-100 text-blue-800">Premium Course</Badge>
-                  <Badge className="bg-red-100 text-red-800">Limited Time: 40% Off</Badge>
+                  <Badge className="bg-red-100 text-red-800">Free</Badge>
                 </div>
 
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">
@@ -413,9 +413,9 @@ export default function HomePage() {
                 </div>
 
                 <div className="flex items-center space-x-4 mb-8">
-                  <div className="text-3xl font-bold text-blue-600">€44.90</div>
+                  <div className="text-3xl font-bold text-blue-600">€0</div>
                   <div className="text-xl text-gray-500 line-through">€79.90</div>
-                  <Badge className="bg-red-100 text-red-800">Save 44%</Badge>
+                  <Badge className="bg-red-100 text-red-800">Save 100%</Badge>
                 </div>
 
                 <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3 mb-4">
@@ -425,9 +425,6 @@ export default function HomePage() {
                   </a>
                 </Button>
 
-                <p className="text-sm text-gray-500 text-center">
-                  30-day money-back guarantee • Lifetime access
-                </p>
               </div>
 
               <div className="bg-blue-50 p-8 lg:p-12">
@@ -504,15 +501,6 @@ export default function HomePage() {
             </div>
           </Card>
 
-          <div className="text-center mt-12">
-            <Button asChild variant="outline" size="lg" className="border-blue-200 text-blue-600 hover:bg-blue-50">
-              <Link href="/academy">
-                View All Premium Courses
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-            </Button>
-          </div>
-        </div>
       </section>
 
       {/* Social Proof & Testimonials */}
@@ -537,7 +525,7 @@ export default function HomePage() {
                 <Star className="w-4 h-4 text-gray-300" />
               </div>
               <p className="text-gray-700 mb-4 italic">
-                "I thoroughly enjoyed the course, however challenging MCQ questions with a bit more information and case study relevant could access knowledge better. Overall I recommend this for healthcare practitioners."
+                "I thoroughly enjoyed the course. Overall I recommend this for healthcare practitioners."
               </p>
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
