@@ -500,7 +500,7 @@ export default function HomePage() {
               </div>
             </div>
           </Card>
-
+        </div>
       </section>
 
       {/* Social Proof & Testimonials */}
