@@ -2,98 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Clinical AI Academy Resource Space — Open & Living Collection</title>
+  <title>Clinical AI Academy Resource Hub — Full Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-      color: #111827;
+    html, body {
       margin: 0;
-      padding: 2rem;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* no scrollbars, iframe fills screen */
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       background: #f9fafb;
     }
-    h1, h2, h3 {
-      color: #1f2937;
-      line-height: 1.3;
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+      display: block;
     }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
+    .fallback {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.85);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
     }
-    h2 {
-      font-size: 1.5rem;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
-    h3 {
-      font-size: 1.2rem;
-      margin-top: 1.5rem;
-      margin-bottom: 0.75rem;
-    }
-    p, ul, ol {
-      margin-bottom: 1rem;
-    }
-    a {
+    .fallback a {
       color: #2563eb;
       text-decoration: none;
     }
-    a:hover {
+    .fallback a:hover {
       text-decoration: underline;
-    }
-    blockquote {
-      margin: 1rem 0;
-      padding: 0.75rem 1rem;
-      border-left: 4px solid #2563eb;
-      background: #f3f4f6;
-      font-style: italic;
-      color: #374151;
     }
   </style>
 </head>
 <body>
+  <iframe
+    src="https://cautious-clam-98d.notion.site/ebd/280036d2696a805798e8d103a12387a0"
+    title="Clinical AI Academy Resource Hub"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+    allow="fullscreen; clipboard-read; clipboard-write">
+  </iframe>
 
-  <h1>Clinical AI Academy Resource Hub — Open & Living Collection</h1>
-
-  <p>We’re excited to announce the launch of the <strong>Clinical AI Academy Resource Space</strong> — a living collection of curated resources on
-  <em>AI in medicine, clinical AI, and medical AI</em>. This hub is designed to grow with the community,
-  offering open access to key papers, courses, talks, datasets, and tools. </p>
-
-  <p>🌍 The space is inclusive and open: whether you’re a clinician, researcher, student, engineer, or simply curious,
-  you’re welcome to explore and contribute.</p>
-
-  <p>🚀 Our goal is to build a shared library and a community for collaboration, journal clubs, and future research projects.
-  Contributions are welcome — you can suggest updates via
-  <a href="https://forms.gle/otWQW71jKgCFKFSG6" target="_blank" rel="noopener">this form</a>.</p>
-
-  <h2>Explore the Hub</h2>
-
-  <section aria-labelledby="ciaa-hub" style="max-width:1200px;margin:2rem auto;">
-    <h3 id="ciaa-hub">Clinical AI Academy Resource Hub (Live)</h3>
-    <div style="position:relative;width:100%;height:0;padding-bottom:70vh;max-height:90vh;border:1px solid #e5e7eb;border-radius:8px;background:#fff;overflow:hidden;">
-      <iframe
-        src="https://cautious-clam-98d.notion.site/ebd/280036d2696a805798e8d103a12387a0"
-        title="Clinical AI Academy Resource Hub"
-        style="position:absolute;inset:0;border:0;width:100%;height:100%;"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-        allow="fullscreen; clipboard-read; clipboard-write"
-      ></iframe>
-    </div>
-    <p style="font-size:.95rem;color:#374151;margin-top:.5rem;">
-      Can’t see the embedded page?
-      <a href="https://cautious-clam-98d.notion.site/ebd/280036d2696a805798e8d103a12387a0" target="_blank" rel="noopener">
-        Open it directly in Notion
-      </a>.
-    </p>
-  </section>
-
-  <h2>Join the Community</h2>
-  <p>We’ll also be hosting regular <strong>journal clubs and online talks</strong>. Register for updates and invitations here:
-  <a href="https://forms.gle/rUmQSK3aC8Dd1Cr88" target="_blank" rel="noopener">Join Journal Clubs & Talks</a>.</p>
-
-  <p>Together, we can build a trusted, open, and growing resource base for the future of AI in healthcare.</p>
-
+  <div class="fallback">
+    Can’t see the embedded page?
+    <a href="https://cautious-clam-98d.notion.site/ebd/280036d2696a805798e8d103a12387a0" target="_blank" rel="noopener">
+      Open it directly in Notion
+    </a>.
+  </div>
 </body>
 </html>
