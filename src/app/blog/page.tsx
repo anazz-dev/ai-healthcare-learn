@@ -4,8 +4,8 @@ import Link from 'next/link';
 // In a real application, you would fetch this list dynamically
 const posts = [
    {
-  slug: 'clinical-ai-resource-hub',
-  title: 'Clinical AI Resource Hub — Key Papers, Tools, and Learning Materials',
+  slug: 'clinical-ai-resource-space',
+  title: 'Clinical AI Resource Space — Key Papers, Tools, and Learning Materials',
   excerpt: 'An open, living collection of resources on AI in medicine — from key papers and datasets to talks, tools, and community events.',
 },
 
