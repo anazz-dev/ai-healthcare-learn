@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Menu } from "lucide-react" // Import Menu icon
+import { Menu } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -17,12 +17,11 @@ import {
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet" // Import Sheet components
-import { Button } from "@/components/ui/button" // Import Button
+} from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button"
 
 // Updated components array: Added My Progress under Learn
 const components: { title: string; href: string; description: string }[] = [
@@ -45,6 +44,8 @@ const navItems = [
   { href: "/", text: "Home" },
   { href: "/blog", text: "Blog" },
   { href: "/contact", text: "Contact" },
+  // NEW: Newsletter in mobile menu
+  { href: "https://clinicalaiacademy.substack.com/", text: "Newsletter", external: true },
 ];
 
 export default function Header() {
@@ -61,9 +62,10 @@ export default function Header() {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuLink href="/" className={cn(navigationMenuTriggerStyle(), "text-gray-900 dark:text-white")}>
-                    Home
-                  </NavigationMenuLink>
+                  Home
+                </NavigationMenuLink>
               </NavigationMenuItem>
+
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-gray-900 dark:text-white">Learn</NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -80,15 +82,29 @@ export default function Header() {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+
               <NavigationMenuItem>
                 <NavigationMenuLink href="/blog" className={cn(navigationMenuTriggerStyle(), "text-gray-900 dark:text-white")}>
-                    Blog
-                  </NavigationMenuLink>
+                  Blog
+                </NavigationMenuLink>
               </NavigationMenuItem>
+
               <NavigationMenuItem>
                 <NavigationMenuLink href="/contact" className={cn(navigationMenuTriggerStyle(), "text-gray-900 dark:text-white")}>
-                    Contact
-                  </NavigationMenuLink>
+                  Contact
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              {/* NEW: Newsletter (external) */}
+              <NavigationMenuItem>
+                <NavigationMenuLink
+                  href="https://clinicalaiacademy.substack.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(navigationMenuTriggerStyle(), "text-gray-900 dark:text-white")}
+                >
+                  Newsletter
+                </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
@@ -114,7 +130,9 @@ export default function Header() {
                     key={item.href}
                     href={item.href}
                     className="text-lg font-medium text-gray-900 dark:text-white hover:underline"
-                    onClick={() => setIsMobileMenuOpen(false)} // Close menu on click
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noopener noreferrer" : undefined}
                   >
                     {item.text}
                   </Link>
@@ -168,4 +186,3 @@ const ListItem = React.forwardRef<
   )
 })
 ListItem.displayName = "ListItem"
-
