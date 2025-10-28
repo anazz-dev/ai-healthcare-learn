@@ -4,10 +4,8 @@
 export const emailServiceConfig = {
   // Mailchimp Configuration (Free tier: 500 contacts, 1000 emails/month)
   // Sign up at: https://mailchimp.com/pricing/
-  mailchimp: {
-    apiKey: 'f3b8fd28fafb19bb9fb69b9b121b92d8-us3',
-    listId: '78651f8e5c',
-    enabled: true
+  mmailchimp: {
+    enabled: true // no API keys or IDs here!
   },
 
   // ConvertKit Configuration (Free tier: 1000 subscribers)

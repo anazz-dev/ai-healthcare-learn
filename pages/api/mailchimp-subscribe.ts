@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     // Get API key from environment variables
     const apiKey = process.env.MAILCHIMP_API_KEY;
-    const listId = process.env.MAILCHIMP_LIST_ID || '78651f8e5c';
+    const listId = process.env.MAILCHIMP_AUDIENCE_ID;
 
     if (!apiKey) {
       console.error('MAILCHIMP_API_KEY not found in environment variables');
