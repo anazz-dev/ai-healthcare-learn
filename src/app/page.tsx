@@ -22,11 +22,11 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Clinical AI Mastery | Clinical AI Academy',
+  title: 'Clinical AI Academy — Evidence, Safety & Regulation for Medical AI',
   description:
     'Master AI in healthcare. EU AI Act–compliant, CME/CPD-aligned training with practical tools, regulatory insights and case-based learning.',
   openGraph: {
-    title: 'Clinical AI Mastery | Clinical AI Academy',
+    title: 'Clinical AI Academy — Evidence, Safety & Regulation for Medical AI',
     description:
       'Master AI in healthcare. EU AI Act–compliant, CME/CPD-aligned training with practical tools, regulatory insights and case-based learning.',
     url: 'https://clinicalaiacademy.com',
@@ -34,7 +34,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'Clinical AI Mastery | Clinical AI Academy',
+    title: 'Clinical AI Academy — Evidence, Safety & Regulation for Medical AI',
     description:
       'Master AI in healthcare. EU AI Act–compliant, CME/CPD-aligned training with practical tools, regulatory insights and case-based learning.',
   },
@@ -75,7 +75,7 @@ export default function HomePage() {
                 <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
                   Clinical AI
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">
-                    Mastery
+                    Academy
                   </span>
                 </h1>
                 
