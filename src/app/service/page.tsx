@@ -1,199 +1,65 @@
-"use client"
+// src/app/service/page.tsx
 
-import * as React from "react"
-import Link from "next/link"
-import { Menu } from "lucide-react"
+export const metadata = {
+  title: "AI Output Review for Clinicians | Clinical AI Academy",
+  description:
+    "Clinician-to-clinician educational review of AI-generated clinical content. Non-binding. Book via Calendly.",
+};
 
-import { cn } from "@/lib/utils"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-import { Button } from "@/components/ui/button"
-
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Course Modules",
-    href: "/modules",
-    description: "Dive into structured lessons covering AI fundamentals to advanced topics.",
-  },
-  {
-    title: "My Progress",
-    href: "/progress",
-    description: "Track your learning journey and view completed modules and certificates.",
-  },
-]
-
-const navItems = [
-  { href: "/", text: "Home" },
-  { href: "/service", text: "Service" },
-  { href: "/blog", text: "Blog" },
-  { href: "/contact", text: "Contact" },
-  { href: "https://clinicalaiacademy.substack.com/", text: "Newsletter", external: true },
-]
-
-export default function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
-
+export default function ServicePage() {
   return (
-    <header className="bg-blue-600 text-white p-4 shadow-md sticky top-0 z-50">
-      <nav className="container mx-auto flex items-center justify-between gap-4">
-        {/* Brand */}
-        <Link
-          href="/"
-          className="text-lg md:text-xl font-bold whitespace-nowrap flex-none"
-        >
-          CLINICAL AI ACADEMY
-        </Link>
+    <main className="max-w-5xl mx-auto px-6 py-16">
+      <h1 className="text-4xl font-bold mb-6">
+        Clinician-to-clinician review of AI-generated clinical content
+      </h1>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:block">
-          <NavigationMenu>
-            <NavigationMenuList className="flex items-center gap-1">
-              {/* Home and Service Links */}
-              {navItems.slice(0, 2).map((item) => (
-                <NavigationMenuItem key={item.href}>
-                  <Link href={item.href} legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "bg-white text-blue-600 hover:bg-gray-100"
-                      )}
-                    >
-                      {item.text}
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-              ))}
+      <p className="text-lg text-gray-600 mb-8">
+        A focused 30-minute session to critically evaluate AI outputs used in
+        clinical workflows: what is sound, what is missing, and where safety
+        risks or hallucinations may occur.
+      </p>
 
-              {/* Learn Dropdown */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-white text-blue-600 hover:bg-gray-100">
-                  Learn
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[300px] lg:w-[400px]">
-                    {components.map((component) => (
-                      <ListItem
-                        key={component.title}
-                        title={component.title}
-                        href={component.href}
-                      >
-                        {component.description}
-                      </ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
+      <section className="mb-10">
+        <h2 className="text-2xl font-semibold mb-3">What this service is</h2>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>Educational, non-binding peer review for clinicians</li>
+          <li>Assessment of AI output quality, safety, and guideline alignment</li>
+          <li>Discussion of known failure modes and uncertainty</li>
+          <li>Prompt and workflow critique (optional)</li>
+        </ul>
+      </section>
 
-              {/* Remaining Links (Blog, Contact, Newsletter) */}
-              {navItems.slice(2).map((item) => (
-                <NavigationMenuItem key={item.href}>
-                  <Link href={item.href} legacyBehavior passHref>
-                    <NavigationMenuLink
-                      target={item.external ? "_blank" : undefined}
-                      rel={item.external ? "noopener noreferrer" : undefined}
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "bg-white text-blue-600 hover:bg-gray-100"
-                      )}
-                    >
-                      {item.text}
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
+      <section className="mb-10">
+        <h2 className="text-2xl font-semibold mb-3">What this is not</h2>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>No diagnosis or treatment recommendations</li>
+          <li>No second medical opinion</li>
+          <li>No physician–patient relationship</li>
+          <li>No recording or data retention</li>
+        </ul>
+      </section>
 
-        {/* Mobile Navigation */}
-        <div className="md:hidden flex-none">
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="hover:bg-blue-700">
-                <Menu className="h-6 w-6 text-white" />
-                <span className="sr-only">Toggle navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <SheetHeader>
-                <SheetTitle>Navigation</SheetTitle>
-              </SheetHeader>
-              <div className="flex flex-col gap-4 py-4">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    target={item.external ? "_blank" : undefined}
-                    rel={item.external ? "noopener noreferrer" : undefined}
-                  >
-                    {item.text}
-                  </Link>
-                ))}
-                <hr className="my-2" />
-                <Link
-                  href="/modules"
-                  className="text-lg font-medium text-gray-900 hover:text-blue-600"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Course Modules
-                </Link>
-                <Link
-                  href="/progress"
-                  className="text-lg font-medium text-gray-900 hover:text-blue-600"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  My Progress
-                </Link>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </nav>
-    </header>
-  )
+      <section className="mb-10">
+        <h2 className="text-2xl font-semibold mb-3">Format & pricing</h2>
+        <p>
+          30-minute live Zoom session · €100 · invoice (“Rechnung”) sent after
+          the meeting.
+        </p>
+      </section>
+
+      <a
+        href="https://calendly.com/contact-clinicalaiacademy/30min"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block mt-6 rounded-lg bg-blue-600 px-6 py-3 text-white font-semibold hover:bg-blue-700"
+      >
+        Book on Calendly
+      </a>
+
+      <p className="mt-8 text-sm text-gray-500">
+        Educational clinician support only. Final clinical responsibility
+        remains with the treating clinician or team.
+      </p>
+    </main>
+  );
 }
-
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, href, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          href={href || "#"}
-          ref={ref as any}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none text-gray-900">
-            {title}
-          </div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  )
-})
-ListItem.displayName = "ListItem"
