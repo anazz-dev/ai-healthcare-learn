@@ -23,53 +23,72 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 
-// Updated components array: Added My Progress under Learn
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Course Modules",
     href: "/modules",
-    description:
-      "Dive into structured lessons covering AI fundamentals to advanced topics.",
+    description: "Dive into structured lessons covering AI fundamentals to advanced topics.",
   },
   {
     title: "My Progress",
     href: "/progress",
-    description:
-      "Track your learning journey and view completed modules and certificates.",
+    description: "Track your learning journey and view completed modules and certificates.",
   },
 ]
 
-// Define navigation items for reuse (removed My Progress from main nav)
 const navItems = [
   { href: "/", text: "Home" },
+  { href: "/service", text: "Service" },
   { href: "/blog", text: "Blog" },
   { href: "/contact", text: "Contact" },
-  // NEW: Newsletter in mobile menu
   { href: "https://clinicalaiacademy.substack.com/", text: "Newsletter", external: true },
-];
+]
 
 export default function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
 
   return (
     <header className="bg-blue-600 text-white p-4 shadow-md sticky top-0 z-50">
-      <nav className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold mr-6">CLINICAL AI ACADEMY</Link>
+      <nav className="container mx-auto flex items-center justify-between">
+        {/* Brand */}
+        <Link
+          href="/"
+          className="text-lg md:text-xl font-bold whitespace-nowrap flex-none"
+        >
+          CLINICAL AI ACADEMY
+        </Link>
 
-        {/* Desktop Navigation (Hidden on small screens) */}
-        <div className="hidden md:flex items-center">
-          <NavigationMenu>
-            <NavigationMenuList>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center ml-auto">
+          {/* Added max-w-none to prevent the menu from clipping items */}
+          <NavigationMenu className="max-w-none">
+            <NavigationMenuList className="flex items-center gap-1 space-x-0">
+              
+              {/* Home */}
               <NavigationMenuItem>
-                <NavigationMenuLink href="/" className={cn(navigationMenuTriggerStyle(), "text-gray-900 dark:text-white")}>
-                  Home
-                </NavigationMenuLink>
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
+                    Home
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
 
+              {/* Service - Explicitly placed here to ensure it shows */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-gray-900 dark:text-white">Learn</NavigationMenuTrigger>
+                <Link href="/service" legacyBehavior passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
+                    Service
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+
+              {/* Learn Dropdown */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-white text-blue-600 hover:bg-gray-100">
+                  Learn
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[300px] lg:w-[400px] ">
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[300px] lg:w-[400px]">
                     {components.map((component) => (
                       <ListItem
                         key={component.title}
@@ -83,38 +102,46 @@ export default function Header() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
+              {/* Blog */}
               <NavigationMenuItem>
-                <NavigationMenuLink href="/blog" className={cn(navigationMenuTriggerStyle(), "text-gray-900 dark:text-white")}>
-                  Blog
-                </NavigationMenuLink>
+                <Link href="/blog" legacyBehavior passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
+                    Blog
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
 
+              {/* Contact */}
               <NavigationMenuItem>
-                <NavigationMenuLink href="/contact" className={cn(navigationMenuTriggerStyle(), "text-gray-900 dark:text-white")}>
-                  Contact
-                </NavigationMenuLink>
+                <Link href="/contact" legacyBehavior passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
+                    Contact
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
 
-              {/* NEW: Newsletter (external) */}
+              {/* Newsletter */}
               <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="https://clinicalaiacademy.substack.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(navigationMenuTriggerStyle(), "text-gray-900 dark:text-white")}
-                >
-                  Newsletter
-                </NavigationMenuLink>
+                <Link href="https://clinicalaiacademy.substack.com/" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}
+                  >
+                    Newsletter
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
+
             </NavigationMenuList>
           </NavigationMenu>
         </div>
 
-        {/* Mobile Navigation (Hamburger Button - Hidden on medium screens and up) */}
-        <div className="md:hidden">
+        {/* Mobile Navigation */}
+        <div className="md:hidden flex-none">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="hover:bg-blue-700">
                 <Menu className="h-6 w-6 text-white" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
@@ -123,13 +150,12 @@ export default function Header() {
               <SheetHeader>
                 <SheetTitle>Navigation</SheetTitle>
               </SheetHeader>
-              <div className="grid gap-4 py-4">
-                {/* Mobile Links */}
+              <div className="flex flex-col gap-4 py-4">
                 {navItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-lg font-medium text-gray-900 dark:text-white hover:underline"
+                    className="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                     target={item.external ? "_blank" : undefined}
                     rel={item.external ? "noopener noreferrer" : undefined}
@@ -137,17 +163,17 @@ export default function Header() {
                     {item.text}
                   </Link>
                 ))}
-                {/* Mobile Learn Links */}
+                <hr className="my-2" />
                 <Link
                   href="/modules"
-                  className="text-lg font-medium text-gray-900 dark:text-white hover:underline"
+                  className="text-lg font-medium text-gray-900 hover:text-blue-600"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Course Modules
                 </Link>
                 <Link
                   href="/progress"
-                  className="text-lg font-medium text-gray-900 dark:text-white hover:underline"
+                  className="text-lg font-medium text-gray-900 hover:text-blue-600"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   My Progress
@@ -164,23 +190,26 @@ export default function Header() {
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
+>(({ className, title, children, href, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
-          ref={ref}
+        <Link
+          href={href || "#"}
+          ref={ref as any}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none text-gray-900 dark:text-white">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground text-gray-600 dark:text-gray-400">
+          <div className="text-sm font-medium leading-none text-gray-900">
+            {title}
+          </div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   )
