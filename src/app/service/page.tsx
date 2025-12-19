@@ -14,36 +14,48 @@ export default function ServicePage() {
       </h1>
 
       <p className="text-lg text-gray-600 mb-8">
-        A focused 30-minute session to critically evaluate AI outputs used in
-        clinical workflows: what is sound, what is missing, and where safety
-        risks or hallucinations may occur.
+        This service exists because clinicians are increasingly expected to interpret,
+        contextualize, and take responsibility for AI-mediated clinical outputs—often
+        without formal training or institutional support.
+      </p>
+
+      <p className="text-lg text-gray-600 mb-8">
+        A focused 30-minute discussion between clinicians to critically
+        examine AI-generated outputs used in clinical workflows—what appears well-supported,
+        what is incomplete or uncertain,
+        and where safety risks or hallucinations may reasonably arise.
       </p>
 
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-3">What this service is</h2>
         <ul className="list-disc pl-6 space-y-2">
-          <li>Educational, non-binding peer review for clinicians</li>
-          <li>Assessment of AI output quality, safety, and guideline alignment</li>
-          <li>Discussion of known failure modes and uncertainty</li>
-          <li>Prompt and workflow critique (optional)</li>
+          <li>Educational, non-binding peer discussion between clinicians</li>
+          <li>Structured evaluation of AI-generated content with attention to quality, safety, and guideline consistency</li>
+          <li>Identification of known failure modes, uncertainty, and limitations</li>
+          <li>Optional discussion of prompts and workflow design from a clinical perspective</li>
         </ul>
       </section>
 
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-3">What this is not</h2>
         <ul className="list-disc pl-6 space-y-2">
-          <li>No diagnosis or treatment recommendations</li>
+          <li>No diagnosis, treatment recommendation, or clinical decision-making</li>
           <li>No second medical opinion</li>
           <li>No physician–patient relationship</li>
-          <li>No recording or data retention</li>
+          <li>No recording, storage, or data retention</li>
         </ul>
       </section>
 
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-3">Format & pricing</h2>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>30-minute live Zoom session</li>
+          <li>€100 per session</li>
+          <li>Invoice (“Rechnung”) issued after the meeting</li>
+        </ul>
         <p>
-          30-minute live Zoom session · €100 · invoice (“Rechnung”) sent after
-          the meeting.
+          The fee reflects time and preparation for a structured educational discussion;
+          it does not imply endorsement, certification, or clinical approval.
         </p>
       </section>
 
