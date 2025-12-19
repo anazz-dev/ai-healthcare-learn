@@ -38,7 +38,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 const navItems = [
   { href: "/", text: "Home" },
-  { href: "/service", text: "Service" },
+  { href: "/service", text: "Peer Check" },
   { href: "/blog", text: "Blog" },
   { href: "/contact", text: "Contact" },
   { href: "https://clinicalaiacademy.substack.com/", text: "Newsletter", external: true },
@@ -77,7 +77,7 @@ export default function Header() {
               <NavigationMenuItem>
                 <Link href="/service" legacyBehavior passHref>
                   <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
-                    Service
+                    Peer Check
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
