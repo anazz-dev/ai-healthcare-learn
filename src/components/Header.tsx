@@ -38,7 +38,6 @@ const components: { title: string; href: string; description: string }[] = [
 
 const navItems = [
   { href: "/", text: "Home" },
-  {/*{ href: "/service", text: "Peer Check" },*/},
   { href: "/blog", text: "Blog" },
   { href: "/contact", text: "Contact" },
   { href: "https://clinicalaiacademy.substack.com/", text: "Newsletter", external: true },
