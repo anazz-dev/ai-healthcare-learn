@@ -3,6 +3,12 @@ import Link from 'next/link';
 
 // In a real application, you would fetch this list dynamically
 const posts = [
+  {
+    slug: 'ai-job-replacement-model',
+    title: 'When Will AI Replace a Job? A Transparent, Task-Based Prediction Model',
+    excerpt: 'Task-based model that estimates when AI plausibly displaces the majority of a job’s tasks, explicitly separating technical feasibility from organizational adoption and acknowledging when replacement may never occur.',
+  },
+
    {
   slug: 'clinical-ai-resource-space',
   title: 'Clinical AI Resource Space — Key Papers, Tools, and Learning Materials',
