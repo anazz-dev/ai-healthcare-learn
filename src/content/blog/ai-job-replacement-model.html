@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Job Replacement Year Prediction Model</title>
+  <style>
+    :root{
+      --bg0:#070816;
+      --bg1:#05040d;
+      --glass: rgba(255,255,255,0.08);
+      --glass2: rgba(255,255,255,0.12);
+      --stroke: rgba(255,255,255,0.14);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
+      --muted2: rgba(255,255,255,0.50);
+      --accent: #7c5cff;
+      --accent2:#00e5ff;
+      --danger:#ff4d8d;
+      --shadow: 0 20px 80px rgba(0,0,0,0.55);
+      --radius: 22px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    html, body {
+      height:100%;
+      margin:0;
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(124,92,255,0.20), transparent 55%),
+                  radial-gradient(1100px 600px at 80% 20%, rgba(0,229,255,0.14), transparent 55%),
+                  radial-gradient(900px 600px at 60% 90%, rgba(255,77,141,0.12), transparent 60%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x:hidden;
+    }
+
+    /* animated grid overlay */
+    .grid {
+      pointer-events:none;
+      position:fixed; inset:0;
+      opacity:0.18;
+      background:
+        linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse at 50% 40%, rgba(0,0,0,1) 35%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 90%);
+      transform: translateZ(0);
+      animation: gridDrift 18s linear infinite;
+    }
+    @keyframes gridDrift {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 280px 180px, 280px 180px; }
+    }
+
+    canvas#stars{
+      position:fixed; inset:0;
+      width:100%; height:100%;
+      pointer-events:none;
+      opacity:0.55;
+      mix-blend-mode: screen;
+    }
+
+    .wrap{
+      position:relative;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 34px 18px 64px;
+    }
+
+    header{
+      display:flex;
+      gap:18px;
+      align-items:flex-end;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom: 18px;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width: 280px;
+    }
+
+    .title{
+      font-size: clamp(22px, 3.4vw, 36px);
+      letter-spacing: 0.4px;
+      font-weight: 760;
+      line-height:1.05;
+    }
+    .subtitle{
+      color: var(--muted);
+      font-size: 13.5px;
+      max-width: 740px;
+    }
+
+    .pill{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding: 10px 12px;
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .pill b{
+      font-family: var(--mono);
+      letter-spacing: 0.6px;
+      font-size: 12px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.0) 55%),
+                  linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 20px rgba(124,92,255,0.55), 0 0 26px rgba(0,229,255,0.35);
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 980px){
+      .layout{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow:hidden;
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(1200px 420px at 15% 0%, rgba(124,92,255,0.20), transparent 55%),
+                  radial-gradient(900px 420px at 90% 10%, rgba(0,229,255,0.16), transparent 55%);
+      opacity:0.8;
+      pointer-events:none;
+      filter: blur(0px);
+    }
+    .card > * { position:relative; }
+
+    .cardHead{
+      padding: 16px 16px 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .cardHead h2{
+      margin:0;
+      font-size: 15px;
+      letter-spacing: 0.4px;
+      font-weight: 720;
+      color: rgba(255,255,255,0.92);
+    }
+    .cardHead p{
+      margin:6px 0 0;
+      color: var(--muted);
+      font-size: 12.8px;
+      max-width: 720px;
+      line-height:1.35;
+    }
+
+    .cardBody{
+      padding: 14px 16px 16px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 680px){
+      .row{ grid-template-columns: 1fr; }
+    }
+
+    .field{
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.16);
+      border-radius: 16px;
+      padding: 12px 12px 10px;
+    }
+    .field label{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap: 10px;
+      font-size: 12.4px;
+      color: rgba(255,255,255,0.86);
+    }
+    .field label span{
+      color: var(--muted2);
+      font-family: var(--mono);
+      font-size: 11.5px;
+    }
+
+    input[type="text"], input[type="number"], select{
+      width:100%;
+      margin-top: 10px;
+      border-radius: 14px;
+      padding: 10px 11px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      outline:none;
+      font-size: 13.5px;
+      transition: border 0.15s ease, transform 0.15s ease;
+      box-sizing: border-box;
+    }
+    input[type="text"]:focus, input[type="number"]:focus, select:focus{
+      border-color: rgba(0,229,255,0.40);
+      transform: translateY(-1px);
+    }
+
+    .sliderWrap{ margin-top: 10px; }
+    input[type="range"]{
+      width:100%;
+      accent-color: var(--accent2);
+      cursor: grab;
+    }
+    input[type="range"]:active{ cursor: grabbing; }
+
+    .sliderMeta{
+      margin-top: 7px;
+      display:flex;
+      justify-content:space-between;
+      font-size: 11.5px;
+      color: var(--muted2);
+      font-family: var(--mono);
+    }
+
+    .btnRow{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+
+    button{
+      cursor:pointer;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 12.8px;
+      font-weight: 650;
+      letter-spacing: 0.2px;
+      transition: transform 0.15s ease, background 0.15s ease, border 0.15s ease;
+    }
+    button:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.11);
+      border-color: rgba(0,229,255,0.28);
+    }
+    button.primary{
+      border-color: rgba(0,229,255,0.35);
+      background: linear-gradient(90deg, rgba(124,92,255,0.30), rgba(0,229,255,0.22));
+      box-shadow: 0 18px 60px rgba(0,229,255,0.10);
+    }
+
+    .resultCard{
+      padding: 18px 16px 16px;
+    }
+    .bigYear{
+      font-size: 58px;
+      line-height: 1;
+      letter-spacing: 1px;
+      font-weight: 820;
+      margin: 12px 0 8px;
+      font-family: var(--mono);
+      background: linear-gradient(90deg, rgba(124,92,255,0.95), rgba(0,229,255,0.95), rgba(255,77,141,0.92));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+      filter: drop-shadow(0 0 20px rgba(124,92,255,0.20));
+      user-select:text;
+    }
+    .bigYear.never {
+      font-size: 42px;
+      color: rgba(255,255,255,0.4);
+      background: none;
+      -webkit-text-fill-color: rgba(255,255,255,0.4);
+      filter: none;
+    }
+
+    .resultMeta{
+      color: var(--muted);
+      font-size: 12.8px;
+      line-height:1.35;
+      margin: 0 0 12px;
+    }
+
+    .metric{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.14);
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.86);
+    }
+    .metric span{ color: var(--muted2); }
+
+    .tiny{
+      margin-top: 14px;
+      color: rgba(255,255,255,0.52);
+      font-size: 11.8px;
+      line-height:1.35;
+    }
+    .tiny code{ font-family: var(--mono); color: rgba(255,255,255,0.75); }
+
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,0.10);
+      margin: 12px 0;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.10);
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.80);
+      font-family: var(--mono);
+    }
+    .tag i{
+      width:8px;height:8px;border-radius:99px;display:inline-block;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 16px rgba(0,229,255,0.20);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid"></div>
+  <canvas id="stars"></canvas>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="title">AI Job Replacement Year Prediction Model</div>
+        <div class="subtitle">
+          A task-based + diffusion model: estimate a single year when AI-driven automation plausibly crosses a “replacement” threshold for a specific job (given your assumptions).
+        </div>
+      </div>
+      <div class="pill">
+        <div class="dot"></div>
+        <b>MODEL:</b>
+        <span style="font-size:12px;color:rgba(255,255,255,0.72);font-family:var(--mono);">
+          Task Feasibility × Bass Adoption × Readiness Delay
+        </span>
+      </div>
+    </header>
+
+    <div class="layout">
+      <section class="card">
+        <div class="cardHead">
+          <div>
+            <h2>Inputs</h2>
+            <p>
+              Choose a job, then adjust sliders to reflect its task mix (routine/data/physical/social/regulatory) and the adoption environment (ROI, ecosystem, integration, acceptance).
+            </p>
+          </div>
+          <span class="tag"><i></i><span id="liveStatus">LIVE</span></span>
+        </div>
+
+        <div class="cardBody">
+          <div class="row">
+            <div class="field">
+              <label for="jobName">Job label <span>free text</span></label>
+              <input id="jobName" type="text" value="General Office Clerk" />
+            </div>
+            <div class="field">
+              <label for="template">Template <span>preset parameters</span></label>
+              <select id="template">
+                <option value="custom">Custom</option>
+                <option value="office_clerk">General Office Clerk</option>
+                <option value="accountant">Accountant / Auditor</option>
+                <option value="customer_support">Customer Support Agent</option>
+                <option value="software_dev">Software Developer</option>
+                <option value="radiologist">Radiologist</option>
+                <option value="truck_driver">Truck Driver</option>
+                <option value="nurse">Registered Nurse</option>
+                <option value="electrician">Electrician</option>
+                <option value="teacher">Teacher</option>
+                <option value="research_scientist">Research Scientist</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:12px;">
+            <div class="field">
+              <label for="currentYear">Current year <span>baseline</span></label>
+              <input id="currentYear" type="number" min="1900" max="2500" step="1" />
+            </div>
+            <div class="field">
+              <label for="progressSpeed">AI progress speed <span>global</span></label>
+              <select id="progressSpeed">
+                <option value="slow">Slow</option>
+                <option value="medium" selected>Medium</option>
+                <option value="fast">Fast</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="row">
+            <div class="field">
+              <label for="routine">Routine & codifiable tasks <span id="v_routine">0.72</span></label>
+              <div class="sliderWrap"><input id="routine" type="range" min="0" max="1" step="0.01" value="0.72"></div>
+              <div class="sliderMeta"><span>low</span><span>high</span></div>
+            </div>
+
+            <div class="field">
+              <label for="data">Data availability & digitization <span id="v_data">0.75</span></label>
+              <div class="sliderWrap"><input id="data" type="range" min="0" max="1" step="0.01" value="0.75"></div>
+              <div class="sliderMeta"><span>sparse</span><span>abundant</span></div>
+            </div>
+
+            <div class="field">
+              <label for="physical">Physical manipulation & field work <span id="v_physical">0.18</span></label>
+              <div class="sliderWrap"><input id="physical" type="range" min="0" max="1" step="0.01" value="0.18"></div>
+              <div class="sliderMeta"><span>desk</span><span>hands-on</span></div>
+            </div>
+
+            <div class="field">
+              <label for="social">Social/creative judgment requirement <span id="v_social">0.26</span></label>
+              <div class="sliderWrap"><input id="social" type="range" min="0" max="1" step="0.01" value="0.26"></div>
+              <div class="sliderMeta"><span>low</span><span>high</span></div>
+            </div>
+
+            <div class="field">
+              <label for="regulation">Regulation & liability constraints <span id="v_regulation">0.32</span></label>
+              <div class="sliderWrap"><input id="regulation" type="range" min="0" max="1" step="0.01" value="0.32"></div>
+              <div class="sliderMeta"><span>light</span><span>heavy</span></div>
+            </div>
+
+            <div class="field">
+              <label for="roi">Wage/ROI pressure to automate <span id="v_roi">0.58</span></label>
+              <div class="sliderWrap"><input id="roi" type="range" min="0" max="1" step="0.01" value="0.58"></div>
+              <div class="sliderMeta"><span>low</span><span>high</span></div>
+            </div>
+
+            <div class="field">
+              <label for="ecosystem">Tooling ecosystem readiness <span id="v_ecosystem">0.66</span></label>
+              <div class="sliderWrap"><input id="ecosystem" type="range" min="0" max="1" step="0.01" value="0.66"></div>
+              <div class="sliderMeta"><span>immature</span><span>mature</span></div>
+            </div>
+
+            <div class="field">
+              <label for="integration">Integration friction (legacy/process) <span id="v_integration">0.42</span></label>
+              <div class="sliderWrap"><input id="integration" type="range" min="0" max="1" step="0.01" value="0.42"></div>
+              <div class="sliderMeta"><span>easy</span><span>hard</span></div>
+            </div>
+
+            <div class="field">
+              <label for="acceptance">Customer/public acceptance <span id="v_acceptance">0.55</span></label>
+              <div class="sliderWrap"><input id="acceptance" type="range" min="0" max="1" step="0.01" value="0.55"></div>
+              <div class="sliderMeta"><span>skeptical</span><span>comfortable</span></div>
+            </div>
+
+            <div class="field">
+              <label for="redesign">Work redesign needed <span id="v_redesign">0.46</span></label>
+              <div class="sliderWrap"><input id="redesign" type="range" min="0" max="1" step="0.01" value="0.46"></div>
+              <div class="sliderMeta"><span>minimal</span><span>major</span></div>
+            </div>
+          </div>
+
+          <div class="btnRow">
+            <button class="primary" id="btnCalc">Recalculate</button>
+            <button id="btnRandom">Random plausible job</button>
+            <button id="btnReset">Reset sliders</button>
+          </div>
+
+
+          <div class="tiny">
+            Note: This tool outputs a single year by design as a <em>conditional scenario</em>, not a forecast. Internally it computes
+            (1) a maximum automatable task share <code>P_max</code>, (2) a readiness delay reflecting technical, regulatory, and organizational
+            constraints, and (3) post-readiness adoption using a Bass diffusion model. “Replacement” is defined as the point where
+            <code>P_max × Adoption(t)</code> crosses a task-share threshold adjusted for physical, social, and regulatory human necessity.
+            <br><br>
+            This model should <strong>not</strong> be used for individual career advice, labor-market forecasting, policy impact assessment,
+            or claims of inevitability. Outputs are highly sensitive to assumptions and are intended for comparative reasoning and
+            transparency about what must be true for a given replacement claim to hold.
+          </div>
+        </div>
+      </section>
+
+      <aside class="card resultCard" aria-live="polite">
+        <div class="cardHead" style="padding:0 0 8px;">
+          <div>
+            <h2>Predicted replacement year</h2>
+            <p>Interpretable as the earliest year automation plausibly displaces the majority of job tasks under your assumptions.</p>
+          </div>
+        </div>
+
+        <div class="bigYear" id="yearOut">—</div>
+        <div class="resultMeta" id="explainOut">Set inputs, then recalculate.</div>
+
+        <div class="metric"><div>Max automatable task share <span>(P_max)</span></div><div id="mP">—</div></div>
+        <div class="metric"><div>Readiness year <span>(capability + constraints)</span></div><div id="mReady">—</div></div>
+        <div class="metric"><div>Replacement threshold <span>(task share)</span></div><div id="mThresh">—</div></div>
+        <div class="metric"><div>Adoption params <span>(p, q, speed)</span></div><div id="mBass">—</div></div>
+
+        <div class="tiny">
+          If P_max is lower than the threshold, the model will indicate that replacement is not feasible.
+        </div>
+      </aside>
+    </div>
+
+    <div class="tiny" style="margin-top:14px;">
+      Model lineage (high level): task-based automation frameworks and task reallocation/displacement [Acemoglu/Restrepo],
+      ML suitability varies by task and often requires redesign [Brynjolfsson et al],
+      technology adoption can be approximated via diffusion models [Bass].
+    </div>
+  </div>
+
+<script>
+/* ============================================================
+   AI Job Replacement Year Forecaster
+   Core math:
+     - P_max: logistic task-feasibility score (0..1)
+     - Readiness delay: constraints-weighted years until viable deployment
+     - Adoption: Bass diffusion A(t) post-readiness
+     - Automated task share: S(t) = P_max * A(t_eff)
+     - Replacement when S(t) >= threshold (0.6..0.9) adjusted by human-necessity factors
+   ============================================================ */
+
+(function(){
+  const $ = (id) => document.getElementById(id);
+
+  // --- defaults / templates (hand-tuned exemplars; edit freely) ---
+  const templates = {
+    office_clerk: {
+      jobName: "General Office Clerk",
+      routine: 0.74, data: 0.78, physical: 0.12, social: 0.22, regulation: 0.22,
+      roi: 0.62, ecosystem: 0.72, integration: 0.45, acceptance: 0.58, redesign: 0.44
+    },
+    accountant: {
+      jobName: "Accountant / Auditor",
+      routine: 0.62, data: 0.82, physical: 0.06, social: 0.34, regulation: 0.52,
+      roi: 0.58, ecosystem: 0.74, integration: 0.55, acceptance: 0.50, redesign: 0.55
+    },
+    customer_support: {
+      jobName: "Customer Support Agent",
+      routine: 0.55, data: 0.70, physical: 0.05, social: 0.62, regulation: 0.28,
+      roi: 0.66, ecosystem: 0.82, integration: 0.45, acceptance: 0.62, redesign: 0.50
+    },
+    software_dev: {
+      jobName: "Software Developer",
+      routine: 0.36, data: 0.58, physical: 0.04, social: 0.48, regulation: 0.22,
+      roi: 0.45, ecosystem: 0.86, integration: 0.56, acceptance: 0.55, redesign: 0.62
+    },
+    radiologist: {
+      jobName: "Radiologist",
+      routine: 0.42, data: 0.76, physical: 0.06, social: 0.44, regulation: 0.78,
+      roi: 0.48, ecosystem: 0.62, integration: 0.70, acceptance: 0.38, redesign: 0.68
+    },
+    truck_driver: {
+      jobName: "Truck Driver",
+      routine: 0.48, data: 0.42, physical: 0.72, social: 0.22, regulation: 0.62,
+      roi: 0.58, ecosystem: 0.46, integration: 0.62, acceptance: 0.34, redesign: 0.56
+    },
+    nurse: {
+      jobName: "Registered Nurse",
+      routine: 0.28, data: 0.52, physical: 0.62, social: 0.78, regulation: 0.76,
+      roi: 0.42, ecosystem: 0.48, integration: 0.62, acceptance: 0.36, redesign: 0.60
+    },
+    electrician: {
+      jobName: "Electrician",
+      routine: 0.26, data: 0.32, physical: 0.82, social: 0.36, regulation: 0.58,
+      roi: 0.40, ecosystem: 0.34, integration: 0.58, acceptance: 0.40, redesign: 0.44
+    },
+    teacher: {
+      jobName: "Teacher",
+      routine: 0.22, data: 0.44, physical: 0.18, social: 0.86, regulation: 0.52,
+      roi: 0.28, ecosystem: 0.52, integration: 0.44, acceptance: 0.42, redesign: 0.64
+    },
+    research_scientist: {
+      jobName: "Research Scientist",
+      routine: 0.18, data: 0.62, physical: 0.22, social: 0.54, regulation: 0.36,
+      roi: 0.24, ecosystem: 0.66, integration: 0.48, acceptance: 0.52, redesign: 0.72
+    }
+  };
+
+  // --- helpers ---
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  const sigmoid = (z) => 1 / (1 + Math.exp(-z));
+
+  function getSpeedFactor(speed){
+    // affects both readiness delay and adoption time scale
+    if(speed === "fast") return 0.80;
+    if(speed === "slow") return 1.20;
+    return 1.00; // medium
+  }
+
+  // --- Bass diffusion cumulative adoption (closed form) ---
+  // A(t) = (1 - exp(-(p+q)t)) / (1 + (q/p)exp(-(p+q)t))
+  function bassCumulative(t, p, q){
+    t = Math.max(0, t);
+    p = Math.max(1e-6, p);
+    q = Math.max(0, q);
+    const e = Math.exp(-(p + q) * t);
+    return (1 - e) / (1 + (q / p) * e);
+  }
+
+  // --- main model ---
+  function predictYear(params){
+    const {
+      currentYear, speed,
+      routine, data, physical, social, regulation,
+      roi, ecosystem, integration, acceptance, redesign
+    } = params;
+
+    const speedFactor = getSpeedFactor(speed);
+
+    // (1) Maximum automatable task share P_max (0..1).
+    const z =
+      (-0.20) +
+      (1.20 * routine) +
+      (1.10 * data) +
+      (0.60 * roi) +
+      (0.70 * ecosystem) +
+      (0.30 * acceptance) +
+      (-1.10 * physical) +
+      (-1.00 * social) +
+      (-0.80 * regulation) +
+      (-0.60 * integration);
+
+    const Pmax = sigmoid(z);
+
+    // (2) Readiness delay (years).
+    let delayYears =
+      1.0 +
+      12.0 * (1.0 - Pmax) +
+      6.0  * physical +
+      4.0  * social +
+      5.0  * regulation +
+      2.5  * integration;
+
+    delayYears = delayYears * speedFactor;
+    const readinessYear = currentYear + delayYears;
+
+    // (3) Adoption dynamics (Bass parameters).
+    let p =
+      0.030 +
+      0.070 * roi +
+      0.040 * ecosystem -
+      0.030 * integration -
+      0.025 * regulation -
+      0.020 * redesign;
+
+    p = clamp(p, 0.010, 0.150);
+
+    let q =
+      0.350 +
+      0.250 * acceptance +
+      0.150 * ecosystem -
+      0.200 * regulation -
+      0.120 * integration;
+
+    q = clamp(q, 0.10, 0.85);
+
+    // Additional friction scales time
+    let adoptionFriction =
+      1.0 -
+      0.50 * redesign -
+      0.40 * integration -
+      0.25 * regulation;
+
+    adoptionFriction = clamp(adoptionFriction, 0.20, 1.10);
+
+    // (4) Replacement threshold (task share).
+    const humanNecessity = clamp(0.60 * physical + 0.55 * social + 0.45 * regulation, 0, 1);
+    const threshold = clamp(0.60 + 0.30 * humanNecessity, 0.60, 0.90);
+
+    // CRITICAL FIX: If the max possible automation is less than the threshold, it never happens.
+    if(Pmax < threshold){
+        return {
+            year: null, // Indicates impossible
+            Pmax, readinessYear, threshold, p, q, timeScale: 0,
+            reached: false
+        };
+    }
+
+    // Solve for the earliest t >= 0 such that Pmax * A(t_eff) >= threshold.
+    const timeScale = (1.0 / speedFactor) * adoptionFriction;
+    const horizonYears = 250;
+    const step = 0.10;
+
+    function S(calendarT){
+      const tEff = calendarT * timeScale;
+      return Pmax * bassCumulative(tEff, p, q);
+    }
+
+    let tCross = null;
+    for(let t = 0; t <= horizonYears; t += step){
+      if(S(t) >= threshold){
+        tCross = t;
+        break;
+      }
+    }
+
+    if(tCross === null){
+      // Unreached within horizon
+      return {
+        year: Math.round(readinessYear + horizonYears),
+        Pmax, readinessYear, threshold, p, q, timeScale,
+        reached: false
+      };
+    }
+
+    // Refine crossing time with bisection
+    let lo = Math.max(0, tCross - step);
+    let hi = tCross;
+    for(let i = 0; i < 40; i++){
+      const mid = 0.5 * (lo + hi);
+      if(S(mid) >= threshold) hi = mid; else lo = mid;
+    }
+
+    const predictedYear = readinessYear + hi;
+
+    return {
+      year: Math.round(predictedYear),
+      Pmax, readinessYear, threshold, p, q, timeScale,
+      reached: true
+    };
+  }
+
+  // --- UI wiring ---
+  const sliderIds = ["routine","data","physical","social","regulation","roi","ecosystem","integration","acceptance","redesign"];
+  const valueSpans = {
+    routine:"v_routine", data:"v_data", physical:"v_physical", social:"v_social", regulation:"v_regulation",
+    roi:"v_roi", ecosystem:"v_ecosystem", integration:"v_integration", acceptance:"v_acceptance", redesign:"v_redesign"
+  };
+
+  function setCurrentYearDefault(){
+    const now = new Date();
+    $("currentYear").value = now.getFullYear();
+  }
+
+  function readParams(){
+    const currentYear = parseInt($("currentYear").value, 10);
+    const speed = $("progressSpeed").value;
+    const p = { currentYear, speed };
+    for(const id of sliderIds){
+      p[id] = parseFloat($(id).value);
+    }
+    return p;
+  }
+
+  function updateSliderLabels(){
+    for(const id of sliderIds){
+      $(valueSpans[id]).textContent = parseFloat($(id).value).toFixed(2);
+    }
+  }
+
+  function applyTemplate(key){
+    if(!templates[key]) return;
+    const t = templates[key];
+    $("jobName").value = t.jobName;
+    for(const id of sliderIds){
+      $(id).value = t[id];
+    }
+    updateSliderLabels();
+    $("template").value = key;
+  }
+
+  function calcAndRender(){
+    const job = $("jobName").value.trim() || "This job";
+    const result = predictYear(readParams());
+    const yearOut = $("yearOut");
+    const explainOut = $("explainOut");
+
+    if(result.year === null) {
+        // Impossible case
+        yearOut.textContent = "Never";
+        yearOut.classList.add("never");
+        explainOut.innerHTML = `${job}: Max feasibility (<b>${(result.Pmax*100).toFixed(1)}%</b>) is lower than the replacement threshold (<b>${(result.threshold*100).toFixed(1)}%</b>).`;
+    } else {
+        yearOut.textContent = result.year;
+        yearOut.classList.remove("never");
+
+        const reachedText = result.reached
+        ? "Threshold crossed within model horizon."
+        : `Threshold not reached within ${result.year - Math.round(result.readinessYear)} years of readiness.`;
+
+        explainOut.textContent = `${job}: readiness ≈ ${result.readinessYear.toFixed(1)}; output is the first year automated task share crosses the replacement threshold. ${reachedText}`;
+    }
+
+    $("mP").textContent = (result.Pmax * 100).toFixed(1) + "%";
+    $("mReady").textContent = result.readinessYear.toFixed(1);
+    $("mThresh").textContent = (result.threshold * 100).toFixed(1) + "%";
+    $("mBass").textContent = `p=${result.p.toFixed(3)}, q=${result.q.toFixed(3)}`;
+
+    $("liveStatus").textContent = "UPDATED";
+    setTimeout(()=> $("liveStatus").textContent = "LIVE", 650);
+  }
+
+  function reset(){
+    applyTemplate("office_clerk");
+    $("progressSpeed").value = "medium";
+    calcAndRender();
+  }
+
+  function randomPlausible(){
+    const keys = Object.keys(templates);
+    const k = keys[Math.floor(Math.random() * keys.length)];
+    applyTemplate(k);
+    const speeds = ["slow","medium","fast"];
+    $("progressSpeed").value = speeds[Math.floor(Math.random() * speeds.length)];
+    calcAndRender();
+  }
+
+  // --- Stars canvas (Fixed for High DPI) ---
+  function initStars(){
+    const canvas = $("stars");
+    const ctx = canvas.getContext("2d");
+    let w, h, stars;
+
+    function resize(){
+      // High DPI scaling logic
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+
+      // Scale context so drawing coords match CSS pixels
+      ctx.scale(dpr, dpr);
+
+      w = rect.width;
+      h = rect.height;
+
+      stars = new Array(240).fill(0).map(()=>({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        z: 0.2 + Math.random()*0.9,
+        r: 0.5 + Math.random()*1.7
+      }));
+    }
+
+    function tick(t){
+      // Clear using logical width/height
+      ctx.clearRect(0,0,w,h);
+      ctx.globalCompositeOperation = "lighter";
+
+      for(const s of stars){
+        s.x += 0.06 * s.z;
+        s.y += 0.02 * s.z;
+        if(s.x > w) s.x = 0;
+        if(s.y > h) s.y = 0;
+
+        const alpha = 0.10 + 0.35 * s.z + 0.08*Math.sin((t/900) + s.x*0.002);
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(180, 220, 255, ${alpha})`;
+        ctx.fill();
+      }
+      ctx.globalCompositeOperation = "source-over";
+      requestAnimationFrame(tick);
+    }
+
+    window.addEventListener("resize", resize, {passive:true});
+    resize();
+    requestAnimationFrame(tick);
+  }
+
+  // init
+  setCurrentYearDefault();
+  initStars();
+  updateSliderLabels();
+  applyTemplate("office_clerk");
+  calcAndRender();
+
+  // listeners
+  $("btnCalc").addEventListener("click", calcAndRender);
+  $("btnReset").addEventListener("click", reset);
+  $("btnRandom").addEventListener("click", randomPlausible);
+
+  $("template").addEventListener("change", (e)=>{
+    const v = e.target.value;
+    if(v === "custom") return;
+    applyTemplate(v);
+    calcAndRender();
+  });
+
+  $("jobName").addEventListener("input", ()=>{ $("template").value = "custom"; });
+  $("progressSpeed").addEventListener("change", ()=>{ $("template").value = "custom"; calcAndRender(); });
+  $("currentYear").addEventListener("input", ()=>{ $("template").value = "custom"; calcAndRender(); });
+
+  for(const id of sliderIds){
+    $(id).addEventListener("input", ()=>{
+      $(valueSpans[id]).textContent = parseFloat($(id).value).toFixed(2);
+      $("template").value = "custom";
+      calcAndRender();
+    });
+  }
+})();
+</script>
+</body>
+</html>
