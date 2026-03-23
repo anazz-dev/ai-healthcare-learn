@@ -1,0 +1,147 @@
+<h2>Slide 1 – LLMs Are Already in Your Workplace</h2>
+<p>Whether your institution has approved them or not, large language models (LLMs) — tools like ChatGPT, Claude, Gemini, and Microsoft Copilot — are already being used by healthcare professionals every day.</p>
+<p>They're being used to draft clinic letters, summarise research papers, answer clinical questions, and generate documentation.</p>
+<p>This module is not about whether you <em>should</em> use them. It's about using them safely, understanding where they fail, and knowing what your institution needs to have in place to govern their use.</p>
+
+<h2>Slide 2 – What Is a Large Language Model?</h2>
+<p>An LLM is a type of AI trained on enormous amounts of text — essentially a large portion of the internet, books, scientific papers, and other written material.</p>
+<p>It learns to predict the next word in a sequence, based on everything it has read.<br/>The result is a system that can generate fluent, coherent, plausible-sounding text on almost any topic.</p>
+<p>📖 <em>Analogy:</em> Imagine a very well-read colleague who has read millions of medical textbooks, journals, and patient records — but who has never seen a patient, never held a stethoscope, and has no accountability for what they say.</p>
+<p>That colleague might sound confident and knowledgeable. But they can also be confidently wrong.</p>
+
+<h2>Slide 3 – Hallucinations: The Single Most Important Risk</h2>
+<p>The most dangerous property of LLMs for clinical use is <strong>hallucination</strong>.</p>
+<p>Hallucination is when an LLM generates text that is factually wrong but stated with complete confidence.</p>
+<p>Examples in healthcare:</p>
+<ul>
+    <li>Citing a clinical guideline that does not exist</li>
+    <li>Stating an incorrect drug dose</li>
+    <li>Inventing a lab reference range</li>
+    <li>Confusing two drugs with similar names</li>
+</ul>
+<p>⚠️ <em>Why it happens:</em> LLMs are optimised to produce fluent text, not accurate text. They don't "know" when they don't know something. They will generate a plausible-sounding answer even when no correct answer is possible from the available information.</p>
+<p>🚩 <em>Key takeaway:</em> Never use an LLM output without independent verification for anything that directly affects a clinical decision.</p>
+
+<h2>Slide 4 – Other Ways LLMs Can Fail in Healthcare</h2>
+<p>Beyond hallucination, LLMs can fail in several other ways:</p>
+<ul>
+    <li><strong>Outdated knowledge:</strong> Most LLMs have a training cutoff date. They don't know about clinical trials published after that date, updated guidelines, or new drug approvals.</li>
+    <li><strong>Bias:</strong> LLMs trained on internet text absorb the biases present in that text — including racial stereotypes, gender assumptions, and over-representation of certain populations in medical literature.</li>
+    <li><strong>Lack of clinical context:</strong> An LLM answering a question has no access to the patient's full clinical history, current medications, or physical examination findings unless you explicitly provide them.</li>
+    <li><strong>Inconsistency:</strong> Ask the same question twice and you may get different answers. LLMs are probabilistic — they don't always produce the same output.</li>
+    <li><strong>Confidentiality risks:</strong> If you paste patient data into a commercial LLM, you may be violating data protection law and your institution's privacy policies.</li>
+</ul>
+
+<h2>Slide 5 – Prompt Engineering: Getting Better Outputs</h2>
+<p>How you frame your question (your "prompt") significantly affects the quality of the LLM's output.</p>
+<p><strong>Principles of effective prompting in clinical contexts:</strong></p>
+<ul>
+    <li><strong>Be specific:</strong> Instead of "What should I do for a patient with chest pain?", ask "What are the key features that distinguish STEMI from NSTEMI on ECG in an adult patient?"</li>
+    <li><strong>Provide context:</strong> "I am writing a discharge summary for a 72-year-old woman with COPD, heart failure, and recent PE. What key information should I include in a discharge summary for this clinical scenario?"</li>
+    <li><strong>Ask it to reason step by step:</strong> Adding "Think through this step by step" often produces more accurate and auditable outputs.</li>
+    <li><strong>Ask for sources:</strong> "List the key guidelines or references for this recommendation." (Then verify those references independently — LLMs hallucinate citations.)</li>
+    <li><strong>Specify the format:</strong> "Summarise this in three bullet points for a patient handout" produces very different output to a free-form request.</li>
+</ul>
+
+<h2>Slide 6 – Safe Use Cases vs. High-Risk Use Cases</h2>
+<p>Not all LLM use is equally risky. Match the tool to the task:</p>
+<p><strong>Lower-risk use cases (with verification):</strong></p>
+<ul>
+    <li>Drafting patient-facing communications that will be reviewed by a clinician</li>
+    <li>Summarising a research paper you are reading yourself</li>
+    <li>Generating a template for a protocol or policy document (to be reviewed by experts)</li>
+    <li>Helping structure a teaching case presentation</li>
+    <li>Explaining a concept to a patient in plain language (always review before sharing)</li>
+</ul>
+<p><strong>Higher-risk use cases (avoid or apply strict oversight):</strong></p>
+<ul>
+    <li>Generating drug dosing recommendations</li>
+    <li>Providing a differential diagnosis that is acted upon without independent clinical reasoning</li>
+    <li>Summarising patient records (risk of misattribution of clinical information)</li>
+    <li>Producing content that will be presented as authoritative without expert review</li>
+</ul>
+<p>💡 <em>Principle:</em> The higher the stakes if the LLM is wrong, the more verification and oversight you need.</p>
+
+<h2>Slide 7 – Privacy and Data Protection</h2>
+<p>Using a commercial LLM with patient data is, in most jurisdictions, a serious data protection violation.</p>
+<p><strong>Why:</strong></p>
+<ul>
+    <li>Commercial LLM providers may use submitted queries to train future models</li>
+    <li>Patient data is protected health information (PHI in the US, special category data under GDPR in Europe)</li>
+    <li>Submitting PHI to an external server without a Business Associate Agreement (or Data Processing Agreement) breaches HIPAA, GDPR, and equivalent regulations</li>
+</ul>
+<p><strong>What you can do:</strong></p>
+<ul>
+    <li>De-identify data before using an LLM for educational or summarisation purposes</li>
+    <li>Use only institution-approved tools that have compliant data processing agreements in place</li>
+    <li>Never paste real patient names, dates of birth, NHS/hospital numbers, or diagnoses into a public LLM</li>
+</ul>
+<p>✅ <em>Example of safe phrasing:</em> Instead of "Mrs [Name], 67, diagnosed with pancreatic adenocarcinoma...", use "A 67-year-old woman diagnosed with pancreatic adenocarcinoma..."</p>
+
+<h2>Slide 8 – What Institutional LLM Policy Should Cover</h2>
+<p>Your institution should have (or be developing) a policy on LLM use. Key elements:</p>
+<ul>
+    <li><strong>Approved tools:</strong> Which LLM tools are approved for use, and under what conditions?</li>
+    <li><strong>Prohibited uses:</strong> Which clinical tasks are too high-risk for LLM assistance?</li>
+    <li><strong>Data handling:</strong> What patient data (if any) may be entered into which tools?</li>
+    <li><strong>Attribution:</strong> When AI generates text in a clinical document, must it be disclosed?</li>
+    <li><strong>Verification requirement:</strong> What level of independent review is required before AI-generated clinical content is acted upon?</li>
+    <li><strong>Training:</strong> Are staff being trained to use these tools appropriately?</li>
+    <li><strong>Incident reporting:</strong> How should staff report when an LLM produces harmful or incorrect output?</li>
+</ul>
+<p>If your institution doesn't have this policy, it's an urgent gap — because your staff are already using these tools.</p>
+
+<h2>Slide 9 – The Verification Habit</h2>
+<p>The single most important habit when using LLMs in clinical practice is <strong>always verifying the output</strong>.</p>
+<p>Treat every LLM response the way you would treat a medical student's answer:</p>
+<ul>
+    <li>It might be right</li>
+    <li>It might be partially right with a subtle error</li>
+    <li>It might be completely wrong but sound plausible</li>
+</ul>
+<p>The LLM does not know what it doesn't know. But you do — or you can find out.</p>
+<p><strong>Verification checklist:</strong></p>
+<ul>
+    <li>✅ Does this match what I know from training?</li>
+    <li>✅ Does this align with current guidelines?</li>
+    <li>✅ Are the references real and accessible?</li>
+    <li>✅ Would I be comfortable defending this if challenged?</li>
+    <li>✅ If wrong, what is the worst-case outcome for the patient?</li>
+</ul>
+
+<h2>Slide 10 – Summary: The Responsible LLM User's Framework</h2>
+<p>LLMs are powerful tools — not oracles. Use them as a first draft, not a final answer.</p>
+<p><strong>Remember:</strong></p>
+<ul>
+    <li>Hallucination is real and happens without warning</li>
+    <li>Outdated information may be presented as current</li>
+    <li>Patient data must never enter commercial LLMs without institutional approval</li>
+    <li>Prompt carefully: specificity and context improve outputs</li>
+    <li>Verify everything before acting on clinical content</li>
+    <li>Match the tool to the task — higher stakes require higher oversight</li>
+</ul>
+<p>Used with appropriate scepticism and institutional guardrails, LLMs can genuinely augment clinical productivity. Used carelessly, they represent a new patient safety risk.</p>
+<p>Your professional judgement is the essential safeguard.</p>
+
+<div style="margin-top: 2rem; padding: 1.25rem; background: #f0f7ff; border-left: 4px solid #2563eb; border-radius: 8px;">
+    <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #1e40af;">🎬 Bonus Material</h3>
+    <p style="margin: 0 0 1rem 0; font-size: 0.95rem; color: #374151;">Want to go deeper? Watch this Clinical AI Academy Journal Club session with AI researcher Daniel Wolf, who explains how multimodal LLMs are trained, why they struggle with medical imaging, and what bias, hallucination, and data security mean for clinical use.</p>
+    <a href="https://youtu.be/PziUDsbw5tk" target="_blank" style="display: flex; gap: 1rem; align-items: flex-start; text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #d1d5db; border-radius: 8px; overflow: hidden;">
+        <div style="position: relative; flex-shrink: 0; width: 180px;">
+            <img src="https://img.youtube.com/vi/PziUDsbw5tk/maxresdefault.jpg" alt="Multimodal LLMs in Radiology – Clinical AI Academy Journal Club with Daniel Wolf" style="width: 180px; height: 101px; object-fit: cover; display: block;" />
+            <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3);">
+                <div style="width: 40px; height: 40px; background: #ff0000; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <span style="color: white; font-size: 1rem; margin-left: 3px;">&#9654;</span>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 0.75rem; flex: 1;">
+            <span style="font-size: 0.75rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em;">▶ Clinical AI Academy Journal Club</span>
+            <p style="margin: 0.25rem 0; font-weight: 600; font-size: 0.95rem; color: #111827;">Multimodal LLMs in Radiology: How They Work, Where They Fail</p>
+            <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">Daniel Wolf, AI Researcher – University of Ulm, Germany. Covers LLM training, image-text limitations, spatial reasoning failures, bias in training data, data security, and hallucination in clinical AI.</p>
+        </div>
+    </a>
+</div>
+
+<!-- Quiz Placeholder -->
+<div id="quiz-placeholder"></div>

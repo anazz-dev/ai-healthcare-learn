@@ -1,0 +1,119 @@
+<h2>Slide 1 – Why Evaluating AI Tools Is a Clinical Skill</h2>
+<p>Every week, a new AI product promises to transform patient care.<br/>But not every claim holds up under scrutiny.</p>
+<p>As a healthcare professional, evaluating AI tools is now part of your clinical responsibility — just like reading a drug trial or interpreting a lab result.<br/>This module gives you the framework to do it confidently.</p>
+
+<h2>Slide 2 – The Difference Between Accuracy and Usefulness</h2>
+<p>A vendor might say: "Our AI has 95% accuracy."<br/>That sounds impressive. But ask yourself:</p>
+<ul>
+    <li>Accuracy at what task, tested on which patients?</li>
+    <li>Compared to what baseline?</li>
+    <li>In a controlled research setting or in a real ward?</li>
+</ul>
+<p>A chest X-ray AI trained only on young adults may have 95% accuracy in the lab — and fail badly in your ICU full of elderly patients with co-morbidities.</p>
+<p>🌦️ <em>Analogy:</em> A weather forecast claiming "90% accuracy" means nothing if it was only tested on sunny days.</p>
+
+<h2>Slide 3 – Key Performance Metrics You Need to Know</h2>
+<p>Four metrics matter most when evaluating AI diagnostic tools:</p>
+<ul>
+    <li><strong>Sensitivity (Recall):</strong> How often does the AI correctly identify a real positive case?<br/>→ High sensitivity = few missed cases (good for screening)</li>
+    <li><strong>Specificity:</strong> How often does the AI correctly identify a negative case?<br/>→ High specificity = few false alarms (good when false positives cause harm)</li>
+    <li><strong>AUROC (Area Under the ROC Curve):</strong> A single number (0–1) summarising performance across all thresholds.<br/>→ 0.5 = no better than chance; 0.9 = excellent</li>
+    <li><strong>PPV / NPV (Predictive Values):</strong> The probability a positive or negative result is truly correct in <em>your</em> patient population.<br/>→ These change with disease prevalence — always check.</li>
+</ul>
+
+<h2>Slide 4 – Internal vs. External Validation: Why It Matters</h2>
+<p><strong>Internal validation:</strong> The AI is tested on data from the same source it was trained on.<br/>→ This is the bare minimum — it does not prove generalisability.</p>
+<p><strong>External validation:</strong> The AI is tested on completely separate data from a different hospital, population, or time period.<br/>→ This is what actually matters for real-world use.</p>
+<p><strong>Prospective validation:</strong> The AI is tested in real clinical use — the gold standard.</p>
+<p>🚩 <em>Red flag:</em> If a vendor only shows internal validation results, do not assume the tool will work in your setting.</p>
+
+<h2>Slide 5 – The FDA Clearance Landscape (US)</h2>
+<p>In the United States, AI tools that support clinical decisions are regulated as Software as a Medical Device (SaMD).<br/>The FDA has three main clearance pathways:</p>
+<ul>
+    <li><strong>510(k):</strong> The most common. Proves the device is "substantially equivalent" to an already-approved predicate device. It does not require new clinical trials.</li>
+    <li><strong>De Novo:</strong> Used for novel low-to-moderate risk devices with no predicate. Requires more evidence but creates a new regulatory category.</li>
+    <li><strong>PMA (Premarket Approval):</strong> For high-risk devices. Requires rigorous clinical trials — the highest bar.</li>
+</ul>
+<p>⚠️ <em>Key point:</em> FDA clearance means the device met a regulatory standard — it does not guarantee clinical superiority or that it will work in your hospital.</p>
+
+<h2>Slide 6 – CE Marking and the EU MDR (European Context)</h2>
+<p>In Europe, AI medical devices are regulated under the <strong>Medical Device Regulation (EU MDR 2017/745)</strong>.<br/><strong>CE marking</strong> signals that a device meets EU safety and performance requirements.</p>
+<p>Key aspects relevant to AI:</p>
+<ul>
+    <li>Software is classified by risk (Class I, IIa, IIb, III)</li>
+    <li>Higher-risk classes require notified body review, not just self-declaration</li>
+    <li>Post-market surveillance and real-world performance monitoring are required</li>
+    <li>Clinical evidence must demonstrate actual clinical benefit, not just technical performance</li>
+</ul>
+<p>👀 <em>Watch for:</em> Some AI tools carry CE marking for older Directives (MDD) — ask whether they've been re-certified under the stricter MDR.</p>
+
+<h2>Slide 7 – Red Flags in Vendor Claims</h2>
+<p>Before adopting any AI tool, watch out for these warning signs:</p>
+<ul>
+    <li>🚩 "Our AI was validated in a landmark study" — Was it peer-reviewed? Was it funded by the vendor?</li>
+    <li>🚩 "97% accuracy" — Accuracy on what dataset? Which patient population? What was the comparison?</li>
+    <li>🚩 "FDA cleared" without specifying the indication — Clearance is indication-specific. A cleared retinal screening tool is not cleared for diabetic kidney disease.</li>
+    <li>🚩 No published external validation — If no independent institution has validated the tool, be cautious.</li>
+    <li>🚩 Opaque training data — If the vendor cannot tell you what data the model was trained on, that's a problem.</li>
+    <li>🚩 No failure mode information — Every AI fails sometimes. If the vendor can't tell you <em>when</em> and <em>how</em> it fails, you cannot use it safely.</li>
+</ul>
+
+<h2>Slide 8 – The 10 Questions Every Clinician Should Ask</h2>
+<p>Before accepting any AI tool into your practice, ask:</p>
+<ul>
+    <li>What specific clinical task does this AI perform?</li>
+    <li>What data was it trained on — patient type, size, source, dates?</li>
+    <li>Has it been externally validated at institutions like mine?</li>
+    <li>What metrics were reported, and what do they mean in my patient population?</li>
+    <li>Is it regulatory-cleared (FDA / CE)? For what exact indication?</li>
+    <li>How does it handle edge cases or uncertain inputs?</li>
+    <li>What happens when it fails? Will I know?</li>
+    <li>How is it monitored after deployment?</li>
+    <li>What training and support does the vendor provide?</li>
+    <li>Who is responsible if it makes an error that affects patient care?</li>
+</ul>
+
+<h2>Slide 9 – Appraising an AI Research Paper</h2>
+<p>When reading a study about an AI tool, check:</p>
+<ul>
+    <li><strong>Population:</strong> Does it match your patients in age, ethnicity, co-morbidities, and care setting?</li>
+    <li><strong>Labels:</strong> Who annotated the training data? Were they experts? Was there disagreement between annotators?</li>
+    <li><strong>Comparator:</strong> Is the AI being compared to a fair baseline — e.g., clinicians working with the same data, not with full clinical context?</li>
+    <li><strong>Independence:</strong> Was the test set truly held out and not used in any training or tuning?</li>
+    <li><strong>Conflict of interest:</strong> Who funded the study? Is the lead author an employee of the vendor?</li>
+</ul>
+
+<h2>Slide 10 – Summary: Your AI Evaluation Checklist</h2>
+<p>Every time you encounter a new AI tool, run it through this mental checklist:</p>
+<ul>
+    <li>✅ Do I understand what it does and doesn't do?</li>
+    <li>✅ Has it been validated externally, in patients like mine?</li>
+    <li>✅ Are the reported metrics meaningful in my clinical context?</li>
+    <li>✅ Is it regulated appropriately for this indication?</li>
+    <li>✅ Do I know how it fails — and what to do when it does?</li>
+    <li>✅ Is there a system for monitoring its performance over time?</li>
+</ul>
+<p>If you can't answer these questions confidently, the tool is not ready for clinical use — regardless of how impressive the brochure looks.</p>
+
+<div style="margin-top: 2rem; padding: 1.25rem; background: #f0f7ff; border-left: 4px solid #2563eb; border-radius: 8px;">
+    <h3 style="margin: 0 0 0.5rem 0; font-size: 1rem; color: #1e40af;">🎬 Bonus Material</h3>
+    <p style="margin: 0 0 1rem 0; font-size: 0.95rem; color: #374151;">Most medical AI models are evaluated with metrics that do not correspond to clinical decision-making. Watch this Clinical AI Academy Journal Club session for a critical breakdown of which performance measures actually matter — and why commonly used ones can be misleading or unsafe.</p>
+    <a href="https://youtu.be/-EYBd7bkm6A" target="_blank" style="display: flex; gap: 1rem; align-items: flex-start; text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #d1d5db; border-radius: 8px; overflow: hidden;">
+        <div style="position: relative; flex-shrink: 0; width: 180px;">
+            <img src="https://img.youtube.com/vi/-EYBd7bkm6A/maxresdefault.jpg" alt="Evaluating Medical AI Models – Clinical AI Academy Journal Club" style="width: 180px; height: 101px; object-fit: cover; display: block;" />
+            <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3);">
+                <div style="width: 40px; height: 40px; background: #ff0000; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <span style="color: white; font-size: 1rem; margin-left: 3px;">&#9654;</span>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 0.75rem; flex: 1;">
+            <span style="font-size: 0.75rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em;">▶ Clinical AI Academy Journal Club</span>
+            <p style="margin: 0.25rem 0; font-weight: 600; font-size: 0.95rem; color: #111827;">Why AUC and Accuracy Can Be Misleading in Medical AI</p>
+            <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">A critical review of Van Calster et al. (Lancet Digital Health) — covering which metrics suit clinical decisions, how poor metric choice produces overconfident models, and what to use instead.</p>
+        </div>
+    </a>
+</div>
+
+<!-- Quiz Placeholder -->
+<div id="quiz-placeholder"></div>

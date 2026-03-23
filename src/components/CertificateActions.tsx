@@ -1,153 +1,208 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Download, Share2 } from 'lucide-react';
+import { Download } from 'lucide-react';
 
-/* ───────────────────────── props ──────────────────────────────── */
 interface CertificateActionsProps {
-  name: string;                // learner’s display name
+  name: string;
 }
 
-/* ─────────────────────── component ────────────────────────────── */
 export default function CertificateActions({ name }: CertificateActionsProps) {
-  /* refs + client-only state */
-  const certRef            = useRef<HTMLDivElement>(null);
+  const certRef = useRef<HTMLDivElement>(null);
   const [certificateId, setCertificateId] = useState('');
-  const [awardDate,     setAwardDate]     = useState('');
-  const [shareUrl,      setShareUrl]      = useState('');
+  const [awardDate, setAwardDate] = useState('');
 
-  /* initialise once on the client */
   useEffect(() => {
-    // random 8-char ID
     setCertificateId(Math.random().toString(36).slice(2, 10).toUpperCase());
-
-    // date in the browser’s locale (avoids hydration mismatch)
     setAwardDate(
       new Date().toLocaleDateString(undefined, {
-        year:  'numeric',
+        year: 'numeric',
         month: 'long',
-        day:   'numeric',
+        day: 'numeric',
       }),
-    );
-
-    // LinkedIn share URL
-    setShareUrl(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-        window.location.href,
-      )}`,
     );
   }, []);
 
-  /* print / save-PDF (native browser) */
   const handlePrint = () => window.print();
 
-  /* ─────────────────────── markup ─────────────────────────────── */
   return (
     <>
-      {/* ① import cursive font + print-only CSS */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
 
-        /* ① fit a single A4 portrait page, no browser margins */
-        @page {
-          size: A4 portrait;
-          margin: 0;
-        }
-
-        /* ② hide everything except the certificate itself */
         @media print {
-          body * {
-            visibility: hidden !important;
+          body * { visibility: hidden !important; }
+          #certificate-card, #certificate-card * { visibility: visible !important; }
+          #certificate-card {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
           }
-          .print-area,
-          .print-area * {
-            visibility: visible !important;
-          }
-
-          /* ③ guarantee the card is the exact page size */
-          .print-area {
-            width: 210mm;
-            height: 297mm;
-            /* remove our box-shadow & border so nothing overflows */
-            border: 0;
-            box-shadow: none;
-            margin: 0;
-            padding: 25mm 20mm;    /* inner “margins” that are part of the design */
-            position: absolute;
-            left: 0;
-            top: 0;
-          }
+          .no-print { display: none !important; }
         }
       `}</style>
 
-
-      {/* ② certificate card */}
+      {/* Certificate card */}
       <div
+        id="certificate-card"
         ref={certRef}
-        className="print-area mx-auto max-w-3xl rounded-md border-4 border-blue-700
-                   bg-white p-10 text-center shadow-2xl"
-        style={{ fontFamily: 'Georgia, serif' }}
+        style={{
+          background: 'linear-gradient(135deg, #fefefe 0%, #f8f6f0 100%)',
+          border: '2px solid #b8960c',
+          borderRadius: '8px',
+          padding: '48px 56px',
+          maxWidth: '860px',
+          margin: '0 auto',
+          fontFamily: "'Inter', sans-serif",
+          boxShadow: '0 4px 24px rgba(0,0,0,0.10)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
       >
-        <h1 className="text-4xl font-bold uppercase tracking-widest text-blue-800">
-          Clinical AI Academy
-        </h1>
-        <p className="mt-2 text-lg italic text-gray-600">Certificate&nbsp;of&nbsp;Completion</p>
+        {/* Gold corner accents */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: 60, height: 60, borderTop: '5px solid #b8960c', borderLeft: '5px solid #b8960c', borderRadius: '8px 0 0 0' }} />
+        <div style={{ position: 'absolute', top: 0, right: 0, width: 60, height: 60, borderTop: '5px solid #b8960c', borderRight: '5px solid #b8960c', borderRadius: '0 8px 0 0' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, width: 60, height: 60, borderBottom: '5px solid #b8960c', borderLeft: '5px solid #b8960c', borderRadius: '0 0 0 8px' }} />
+        <div style={{ position: 'absolute', bottom: 0, right: 0, width: 60, height: 60, borderBottom: '5px solid #b8960c', borderRight: '5px solid #b8960c', borderRadius: '0 0 8px 0' }} />
 
-        <p className="mt-6 text-sm text-gray-500">This is to certify that</p>
-        <h2 className="my-4 inline-block border-b-2 border-dotted border-gray-300 px-4
-                       text-3xl font-semibold text-gray-900">
-          {name}
-        </h2>
-        <p className="mb-6 text-md text-gray-700">has successfully completed the&nbsp;course</p>
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '11px', fontWeight: 600, letterSpacing: '3px', textTransform: 'uppercase', color: '#b8960c', margin: '0 0 8px' }}>
+            Clinical AI Academy
+          </p>
+          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '32px', fontWeight: 700, color: '#1a1a2e', margin: '0 0 4px' }}>
+            Certificate of Completion
+          </h1>
+          <div style={{ width: '80px', height: '2px', background: 'linear-gradient(90deg, transparent, #b8960c, transparent)', margin: '12px auto' }} />
+        </div>
 
-        <h3 className="mb-4 text-xl font-bold text-blue-700">
-          AI&nbsp;Literacy&nbsp;for&nbsp;Healthcare&nbsp;Professionals
-        </h3>
+        {/* Recipient */}
+        <div style={{ textAlign: 'center', margin: '20px 0' }}>
+          <p style={{ fontSize: '13px', color: '#555', margin: '0 0 6px', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            This is to certify that
+          </p>
+          <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '36px', fontWeight: 700, color: '#1a1a2e', margin: '0 0 6px' }}>
+            {name}
+          </p>
+          <p style={{ fontSize: '13px', color: '#555', margin: 0 }}>
+            has successfully completed all eight modules of the course
+          </p>
+        </div>
 
-        <p className="mx-auto max-w-md text-sm leading-relaxed text-gray-600">
-          A CME/CPD-aligned programme covering AI fundamentals, clinical use-cases, ethics and safety
-          — totalling over&nbsp;<strong>4&nbsp;hours</strong> of accredited education.
-        </p>
+        {/* Course title */}
+        <div style={{ textAlign: 'center', margin: '16px 0 24px' }}>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', fontWeight: 700, color: '#1a1a2e', margin: '0 0 6px' }}>
+            AI Literacy for Healthcare Professionals
+          </h2>
+          <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>
+            Clinical AI Academy · AI for Healthcare Series · 8 modules · approx. 8 hours CPD
+          </p>
+        </div>
 
-        <div className="mt-8 text-sm italic text-gray-500">Awarded on {awardDate}</div>
+        <div style={{ width: '100%', height: '1px', background: 'linear-gradient(90deg, transparent, #d4af37, transparent)', margin: '16px 0' }} />
 
-        {/* signature & ID */}
-        <div className="mt-10 flex flex-wrap items-end justify-between text-xs text-gray-600">
-          <div className="text-left">
-            <p
-              className="mb-1 text-lg leading-none text-blue-900"
-              style={{ fontFamily: "'Alex Brush', cursive" }}
-            >
-              Ahmad&nbsp;Nazzal
-            </p>
-            <div className="mx-auto mb-1 w-40 border-t border-gray-400" />
-            <p className="font-semibold">Dr.&nbsp;Ahmad&nbsp;Nazzal</p>
-            <p>Course&nbsp;Director</p>
-          </div>
-
-          <div className="text-right">
-            <p className="text-gray-500">Certificate&nbsp;ID:</p>
-            <p className="font-mono text-sm text-blue-700">{certificateId}</p>
+        {/* Competencies achieved */}
+        <div style={{ margin: '16px 0' }}>
+          <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#b8960c', margin: '0 0 10px', textAlign: 'center' }}>
+            Competencies Achieved
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 24px' }}>
+            {[
+              'AI fundamentals and machine-learning principles',
+              'How AI models learn, fail, and generalise',
+              'Clinical AI performance and real-world evidence appraisal',
+              'Ethics, bias, explainability, and post-deployment oversight',
+              'Evaluating and validating AI tools using clinical metrics',
+              'AI governance, regulation, and institutional policy (FDA SaMD / EU MDR)',
+              'Safe and responsible use of large language models (LLMs) in clinical settings',
+              'AI implementation, change management, and workforce integration',
+            ].map((item, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '6px', fontSize: '11px', color: '#333' }}>
+                <span style={{ color: '#b8960c', fontWeight: 700, marginTop: '1px', flexShrink: 0 }}>✓</span>
+                <span>{item}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        <p className="mt-6 text-[10px] italic text-gray-400">
-          Verified by Clinical&nbsp;AI&nbsp;Academy • AI for Healthcare Series
-        </p>
+        <div style={{ width: '100%', height: '1px', background: 'linear-gradient(90deg, transparent, #d4af37, transparent)', margin: '16px 0' }} />
+
+        {/* EU AI Act alignment box */}
+        <div style={{
+          background: 'linear-gradient(135deg, #f0f4ff, #e8f0fe)',
+          border: '1px solid #c7d7f7',
+          borderLeft: '4px solid #2563eb',
+          borderRadius: '6px',
+          padding: '14px 18px',
+          margin: '16px 0',
+        }}>
+          <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: '#1d4ed8', margin: '0 0 6px' }}>
+            EU AI Act — AI Literacy Alignment (Article 4)
+          </p>
+          <p style={{ fontSize: '11px', color: '#1e3a6e', margin: '0 0 6px', lineHeight: 1.6 }}>
+            This programme is designed to address the AI literacy obligations set out in Article 4 of Regulation (EU) 2024/1689 (the EU Artificial Intelligence Act), which requires deployers of AI systems in high-risk domains — including healthcare — to ensure that their personnel possess a sufficient level of AI literacy, taking into account their technical knowledge, experience, education, and the context of deployment.
+          </p>
+          <p style={{ fontSize: '11px', color: '#1e3a6e', margin: 0, lineHeight: 1.6 }}>
+            Completion of this course demonstrates that the holder has acquired foundational and applied AI literacy competencies relevant to clinical practice, including critical evaluation of AI tools, understanding of regulatory frameworks (FDA SaMD, EU MDR, EU AI Act), responsible use of generative AI, and governance principles for safe AI deployment in healthcare settings.
+          </p>
+        </div>
+
+        {/* Award date and signature */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '20px' }}>
+          <div>
+            <p style={{ fontSize: '11px', color: '#888', margin: '0 0 2px', textTransform: 'uppercase', letterSpacing: '1px' }}>Awarded on</p>
+            <p style={{ fontSize: '14px', fontWeight: 600, color: '#1a1a2e', margin: 0 }}>{awardDate}</p>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <p style={{
+              fontFamily: "'Great Vibes', cursive",
+              fontSize: '22px',
+              color: '#1a1a2e',
+              borderBottom: '1px solid #bbb',
+              paddingBottom: '2px',
+              margin: '0 0 4px',
+              lineHeight: 1.2,
+            }}>
+              Ahmad Nazzal
+            </p>
+            <p style={{ fontSize: '10px', color: '#666', margin: '0', letterSpacing: '0.5px' }}>Ahmad Nazzal MD, PhD · Course Director</p>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div style={{ textAlign: 'center', marginTop: '20px', paddingTop: '12px', borderTop: '1px solid #e5e0d0' }}>
+          <p style={{ fontSize: '10px', color: '#aaa', margin: 0, letterSpacing: '0.5px' }}>
+            Certificate ID: <strong style={{ color: '#888' }}>{certificateId}</strong> · Verified by Clinical AI Academy · clinicalai.academy
+          </p>
+        </div>
       </div>
 
-      {/* ③ action buttons (hidden when printing) */}
-      <div className="mt-6 flex justify-center gap-4 print:hidden">
+      {/* Action buttons */}
+      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginTop: '24px' }}>
         <button
           onClick={handlePrint}
-          className="inline-flex items-center gap-2 rounded bg-green-600
-                     px-4 py-2 text-white hover:bg-green-700"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '10px 24px',
+            background: '#1a1a2e',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '6px',
+            fontSize: '14px',
+            fontWeight: 600,
+            cursor: 'pointer',
+          }}
         >
-          <Download className="h-4 w-4" />
-          Print&nbsp;/&nbsp;Save&nbsp;PDF
+          <Download size={16} />
+          Download / Print PDF
         </button>
-
-  
       </div>
     </>
   );

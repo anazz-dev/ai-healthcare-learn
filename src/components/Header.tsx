@@ -59,27 +59,17 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center ml-auto">
-          {/* Added max-w-none to prevent the menu from clipping items */}
           <NavigationMenu className="max-w-none">
             <NavigationMenuList className="flex items-center gap-1 space-x-0">
-              
+
               {/* Home */}
               <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
+                <NavigationMenuLink asChild>
+                  <Link href="/" className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
                     Home
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
-
-              {/* Service - Explicitly placed here to ensure it shows */}
-              {/*} <NavigationMenuItem>
-                <Link href="/service" legacyBehavior passHref>
-                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
-                    Peer Check
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>*/}
 
               {/* Learn Dropdown */}
               <NavigationMenuItem>
@@ -103,33 +93,34 @@ export default function Header() {
 
               {/* Blog */}
               <NavigationMenuItem>
-                <Link href="/blog" legacyBehavior passHref>
-                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
+                <NavigationMenuLink asChild>
+                  <Link href="/blog" className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
                     Blog
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
 
               {/* Contact */}
               <NavigationMenuItem>
-                <Link href="/contact" legacyBehavior passHref>
-                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
+                <NavigationMenuLink asChild>
+                  <Link href="/contact" className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}>
                     Contact
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
 
               {/* Newsletter */}
               <NavigationMenuItem>
-                <Link href="https://clinicalaiacademy.substack.com/" legacyBehavior passHref>
-                  <NavigationMenuLink
+                <NavigationMenuLink asChild>
+                  <Link
+                    href="https://clinicalaiacademy.substack.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(navigationMenuTriggerStyle(), "bg-white text-blue-600 hover:bg-gray-100")}
                   >
                     Newsletter
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
 
             </NavigationMenuList>

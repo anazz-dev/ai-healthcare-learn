@@ -1,0 +1,128 @@
+<h2>Slide 1 – Why Regulation and Governance Matter to You</h2>
+<p>You may not think of yourself as a regulator. But AI governance is not just a job for lawyers and compliance officers.</p>
+<p>Every time you use, recommend, or raise a concern about an AI tool, you are participating in governance.</p>
+<p>Understanding the regulatory landscape helps you:</p>
+<ul>
+    <li>Ask the right questions when a new AI tool is proposed</li>
+    <li>Know when to raise a concern and to whom</li>
+    <li>Protect patients and protect yourself</li>
+</ul>
+
+<h2>Slide 2 – What Is "Software as a Medical Device"?</h2>
+<p>The term <strong>SaMD (Software as a Medical Device)</strong> refers to software that performs a medical function independently of hardware.</p>
+<p>An AI that analyses ECGs and flags arrhythmias is SaMD.<br/>A general hospital administration system is not.</p>
+<p>The key test: does the software directly influence a clinical decision?<br/>If yes, it almost certainly qualifies as a medical device and requires regulatory oversight.</p>
+
+<h2>Slide 3 – The FDA's Framework for AI/ML-Based SaMD</h2>
+<p>The US FDA has been at the forefront of regulating AI in healthcare.</p>
+<p>Key regulatory pathways (from Module 5 recap):</p>
+<ul>
+    <li><strong>510(k):</strong> Substantial equivalence to a predicate device</li>
+    <li><strong>De Novo:</strong> Novel device without predicate</li>
+    <li><strong>PMA:</strong> Highest-risk devices requiring clinical trial evidence</li>
+</ul>
+<p>What's new with AI:</p>
+<ul>
+    <li>The FDA has released a framework for AI/ML-based SaMD, acknowledging that AI tools can change over time (unlike traditional software)</li>
+    <li>The concept of <strong>Predetermined Change Control Plans (PCCPs)</strong> allows manufacturers to pre-specify how the AI may be updated without requiring a new clearance for every update</li>
+    <li>The FDA's Digital Health Center of Excellence is developing new guidance specifically for AI tools</li>
+</ul>
+<p>⚠️ <em>Key point for clinicians:</em> Always check that the AI version you are using is the same version that received clearance — AI tools can be updated without your knowledge.</p>
+
+<h2>Slide 4 – The EU AI Act: A New Layer for Healthcare AI</h2>
+<p>The <strong>EU Artificial Intelligence Act (2024)</strong> introduces a risk-based framework for AI across all sectors, including healthcare.</p>
+<p><strong>High-risk AI systems</strong> include those used in:</p>
+<ul>
+    <li>Health and safety of individuals</li>
+    <li>Medical devices and clinical decision support</li>
+</ul>
+<p>For high-risk AI, the EU AI Act requires:</p>
+<ul>
+    <li>Robust risk management systems</li>
+    <li>Training data governance and documentation</li>
+    <li>Transparency and disclosure to users</li>
+    <li>Human oversight mechanisms</li>
+    <li>Accuracy, robustness, and cybersecurity standards</li>
+</ul>
+<p>🔗 <em>Interaction with the MDR:</em> A healthcare AI covered by the MDR must comply with <em>both</em> the MDR and the EU AI Act requirements. The MDR governs the device's safety and performance; the EU AI Act adds requirements around transparency, bias, and human oversight.</p>
+
+<h2>Slide 5 – The EU MDR in Practice</h2>
+<p>The EU <strong>Medical Device Regulation (MDR 2017/745)</strong> governs medical devices including AI-powered diagnostic software.</p>
+<p>For software, risk classification depends on the intended use:</p>
+<ul>
+    <li><strong>Class I:</strong> Low risk (e.g., a fitness tracking app)</li>
+    <li><strong>Class IIa:</strong> Moderate risk (e.g., software that supports diagnosis but a clinician still decides)</li>
+    <li><strong>Class IIb:</strong> Higher risk (e.g., software used for diagnosis or monitoring of vital physiological parameters)</li>
+    <li><strong>Class III:</strong> Highest risk (e.g., software intended to make life-or-death decisions)</li>
+</ul>
+<p>Under the MDR, clinical evidence must demonstrate:</p>
+<ul>
+    <li>Clinical safety (no unacceptable risks)</li>
+    <li>Clinical performance (the tool actually works for its intended purpose)</li>
+    <li>Benefit-risk balance</li>
+</ul>
+<p>💡 <em>Practical implication:</em> If a vendor claims CE marking, ask which classification, under which Directive (old MDD or new MDR), and when it was last reviewed.</p>
+
+<h2>Slide 6 – Hospital AI Governance Committees</h2>
+<p>Many health systems are establishing <strong>AI governance committees</strong> (also called AI ethics committees or clinical AI oversight boards).</p>
+<p>These committees typically:</p>
+<ul>
+    <li>Review and approve AI tools before clinical deployment</li>
+    <li>Set standards for what evidence is required before adoption</li>
+    <li>Monitor AI tools post-deployment for safety and performance</li>
+    <li>Respond to incidents or safety signals related to AI</li>
+    <li>Ensure equity — that AI tools work fairly across all patient groups</li>
+</ul>
+<p>👤 <em>Your role:</em> Know whether your institution has such a committee. If a vendor approaches your department, you should be directing them to this process — not piloting a tool independently.</p>
+
+<h2>Slide 7 – Audit Trails and Accountability</h2>
+<p>When an AI system influences a clinical decision, there must be a record.</p>
+<p><strong>Audit trails</strong> in AI systems typically capture:</p>
+<ul>
+    <li>When the AI was used (date, time, patient encounter)</li>
+    <li>Which version of the AI was running</li>
+    <li>What the AI recommended or output</li>
+    <li>Whether the clinician accepted or overrode the recommendation</li>
+</ul>
+<p>Why this matters:</p>
+<ul>
+    <li><strong>For safety:</strong> If a patient is harmed, you need to know whether the AI was involved and what it said</li>
+    <li><strong>For learning:</strong> Patterns of AI use and override can reveal performance issues</li>
+    <li><strong>For accountability:</strong> Regulators and courts may examine AI logs in complaints or litigation</li>
+</ul>
+<p>🚩 <em>Key principle:</em> If there is no audit trail, the AI should not be used in high-stakes clinical decisions.</p>
+
+<h2>Slide 8 – What Institutional AI Policy Should Cover</h2>
+<p>A robust institutional AI policy should address:</p>
+<ul>
+    <li><strong>Procurement:</strong> What approval process must a new AI tool go through before use?</li>
+    <li><strong>Clinical validation:</strong> What evidence is required before deployment in your setting?</li>
+    <li><strong>Transparency:</strong> Must clinicians be told when AI influenced a recommendation?</li>
+    <li><strong>Patient consent:</strong> Are patients informed when AI is used in their care? Can they opt out?</li>
+    <li><strong>Monitoring:</strong> Who is responsible for tracking AI performance after go-live?</li>
+    <li><strong>Incident reporting:</strong> How should staff report concerns about an AI tool's behaviour?</li>
+    <li><strong>Decommissioning:</strong> When and how is an underperforming AI tool taken out of service?</li>
+</ul>
+<p>If your institution doesn't have a policy that covers these points, that's an important gap to flag.</p>
+
+<h2>Slide 9 – The Clinician's Role in the Regulatory Ecosystem</h2>
+<p>Regulators and governance committees depend on clinicians to:</p>
+<ul>
+    <li><strong>Report safety concerns:</strong> If an AI tool behaves unexpectedly or appears to contribute to a near-miss or adverse event, report it — to your hospital governance team, and potentially to national regulators (FDA MedWatch in the US, MHRA Yellow Card in the UK).</li>
+    <li><strong>Provide expert input:</strong> Regulatory agencies consult healthcare professionals when drafting AI guidance. If you have the opportunity to contribute to consultations, do so.</li>
+    <li><strong>Model good practice:</strong> Every time you interrogate an AI tool before using it, discuss its limitations with colleagues, or document your reasoning when overriding an AI recommendation, you are contributing to a culture of responsible AI use.</li>
+</ul>
+
+<h2>Slide 10 – Summary: The Governance Landscape at a Glance</h2>
+<p>No single body covers everything. Governance is a layered system — and you are its last line of defence at the point of care.</p>
+<ul>
+    <li><strong>Global – WHO AI Ethics Guidelines:</strong> Principles, not law</li>
+    <li><strong>US – FDA SaMD Framework:</strong> Safety clearance and post-market</li>
+    <li><strong>EU – EU AI Act + MDR:</strong> Risk classification, transparency, evidence</li>
+    <li><strong>UK – MHRA / AI and Digital Regulations:</strong> Device approval and monitoring</li>
+    <li><strong>Institutional – AI Governance Committee:</strong> Local approval and oversight</li>
+    <li><strong>Clinical – You:</strong> Point-of-care accountability</li>
+</ul>
+
+<!-- Quiz Placeholder -->
+<div id="quiz-placeholder"></div>

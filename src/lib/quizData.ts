@@ -75,7 +75,7 @@ export const quizData: QuizData = {
         options: [
           { id: "a", text: "The model trains too fast" },
           { id: "b", text: "The model memorised the training data and fails on new data" },
-          { id: "c", text: "The model doesn’t have enough layers" },
+          { id: "c", text: "The model doesn't have enough layers" },
           { id: "d", text: "The data was over-annotated" },
         ],
         correctAnswerId: "b",
@@ -97,7 +97,7 @@ export const quizData: QuizData = {
         id: "m2q3",
         text: "Why might an AI underperform on patients with dark skin?",
         options: [
-          { id: "a", text: "The model didn’t see enough dark-skin examples during training" },
+          { id: "a", text: "The model didn't see enough dark-skin examples during training" },
           { id: "b", text: "The model overfit the lighting patterns" },
           { id: "c", text: "Skin tone disrupts feature maps" },
           { id: "d", text: "The algorithm was biased against melanin" },
@@ -119,12 +119,12 @@ export const quizData: QuizData = {
       },
       {
         id: "m2q5",
-        text: "What’s the best way to assess an AI tool?",
+        text: "What's the best way to assess an AI tool?",
         options: [
           { id: "a", text: "Check who funded it" },
-          { id: "b", text: "Ask if it’s FDA-cleared" },
+          { id: "b", text: "Ask if it's FDA-cleared" },
           { id: "c", text: "Ask how it was trained and tested" },
-          { id: "d", text: "See if it uses ‘deep learning’ in the name" },
+          { id: "d", text: "See if it uses 'deep learning' in the name" },
         ],
         correctAnswerId: "c",
         feedback: "Correct! Understanding the training data, validation methods, and performance on relevant patient populations is the most critical step in assessing an AI tool's trustworthiness.",
@@ -136,7 +136,7 @@ export const quizData: QuizData = {
     questions: [
       {
         id: "m3q1",
-        text: "Why did CheXNet’s performance drop at another hospital?",
+        text: "Why did CheXNet's performance drop at another hospital?",
         options: [
           { id: "a", text: "Poor hardware" },
           { id: "b", text: "Dataset shift / different scanners & labels" },
@@ -192,7 +192,7 @@ export const quizData: QuizData = {
           { id: "d", text: "AI decides and alerts patients directly" },
         ],
         correctAnswerId: "c",
-        feedback: "Correct! Current best practice suggests using AI as an assistive tool for clinicians (Clinician + AI), combined with ongoing monitoring and auditing, rather than full replacement or ignoring its input.",
+        feedback: "Correct! Current best practice suggests using AI as an assistive tool for clinicians (Clinician + AI), combined with ongoing monitoring and auditing, rather than full automation.",
       },
     ],
   },
@@ -201,7 +201,7 @@ export const quizData: QuizData = {
     questions: [
       {
         id: "m4q1",
-        text: "What is one of the WHO’s six ethical principles for AI in health?",
+        text: "What is one of the WHO's six ethical principles for AI in health?",
         options: [
           { id: "a", text: "Maximise automation" },
           { id: "b", text: "Promote transparency and explainability" },
@@ -216,7 +216,7 @@ export const quizData: QuizData = {
         text: "What did Obermeyer et al. (2019) reveal about bias in AI?",
         options: [
           { id: "a", text: "AI always improves equity" },
-          { id: "b", text: "Risk scores underestimated Black patients’ needs" },
+          { id: "b", text: "Risk scores underestimated Black patients' needs" },
           { id: "c", text: "Saliency maps fix bias" },
           { id: "d", text: "All AI tools passed bias audits" },
         ],
@@ -252,7 +252,7 @@ export const quizData: QuizData = {
         text: "Why is post-deployment monitoring important?",
         options: [
           { id: "a", text: "To sell new versions of software" },
-          { id: "b", text: "It isn’t necessary" },
+          { id: "b", text: "It isn't necessary" },
           { id: "c", text: "Models may degrade as practice or data changes" },
           { id: "d", text: "To make audits easier" },
         ],
@@ -261,5 +261,264 @@ export const quizData: QuizData = {
       },
     ],
   },
+  "module-5": {
+    title: "Module 5 Quiz: Evaluating & Validating AI Tools",
+    questions: [
+      {
+        id: "m5q1",
+        text: "A vendor reports their AI has '95% accuracy'. What is the most important follow-up question?",
+        options: [
+          { id: "a", text: "Which programming language was used?" },
+          { id: "b", text: "Accuracy on which dataset and compared to what baseline?" },
+          { id: "c", text: "How many servers does it run on?" },
+          { id: "d", text: "Is it cloud-based or on-premise?" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! Accuracy is meaningless without knowing the dataset, patient population, and comparator. A high accuracy figure on a carefully selected internal dataset may not reflect real-world performance at all.",
+      },
+      {
+        id: "m5q2",
+        text: "What is the key difference between internal and external validation?",
+        options: [
+          { id: "a", text: "Internal validation uses more data" },
+          { id: "b", text: "External validation tests the model on completely separate data from a different source" },
+          { id: "c", text: "Internal validation is always more accurate" },
+          { id: "d", text: "External validation is only done in research settings" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! External validation is the true test of generalisability. If a model has only been validated internally, you cannot assume it will work in your patient population.",
+      },
+      {
+        id: "m5q3",
+        text: "A high sensitivity test is most useful when:",
+        options: [
+          { id: "a", text: "False positives are very costly" },
+          { id: "b", text: "Missing a true case would be dangerous (e.g., screening)" },
+          { id: "c", text: "The disease is very common" },
+          { id: "d", text: "Speed of diagnosis is the priority" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! High sensitivity means fewer missed cases, which is critical in screening contexts where missing a true positive (e.g., cancer) could be catastrophic. The trade-off is more false positives.",
+      },
+      {
+        id: "m5q4",
+        text: "What does FDA 510(k) clearance actually guarantee?",
+        options: [
+          { id: "a", text: "The AI is superior to existing clinical tools" },
+          { id: "b", text: "The AI has been tested in a randomised controlled trial" },
+          { id: "c", text: "The AI is substantially equivalent to a predicate device" },
+          { id: "d", text: "The AI will work in any hospital setting" },
+        ],
+        correctAnswerId: "c",
+        feedback: "Correct! 510(k) clearance means the device is 'substantially equivalent' to an already-approved device — it does not require new clinical trial evidence or guarantee clinical superiority.",
+      },
+      {
+        id: "m5q5",
+        text: "Which of the following is the biggest red flag when evaluating an AI tool?",
+        options: [
+          { id: "a", text: "The vendor is a start-up" },
+          { id: "b", text: "The tool uses deep learning" },
+          { id: "c", text: "No published external validation data is available" },
+          { id: "d", text: "The interface looks complex" },
+        ],
+        correctAnswerId: "c",
+        feedback: "Correct! If independent institutions haven't validated the tool on separate patient populations, you have no evidence it will generalise beyond the vendor's own dataset. This is the most critical piece of missing information.",
+      },
+    ],
+  },
+  "module-6": {
+    title: "Module 6 Quiz: AI Governance, Regulation & Institutional Policy",
+    questions: [
+      {
+        id: "m6q1",
+        text: "What defines a Software as a Medical Device (SaMD)?",
+        options: [
+          { id: "a", text: "Any software used in a hospital" },
+          { id: "b", text: "Software that performs a medical function independently of hardware" },
+          { id: "c", text: "Software connected to a medical device" },
+          { id: "d", text: "Any app downloaded by a clinician" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! SaMD is software that performs a medical function on its own — like an AI that analyses ECGs and flags arrhythmias. Hospital administration software or general productivity tools do not qualify.",
+      },
+      {
+        id: "m6q2",
+        text: "What is a Predetermined Change Control Plan (PCCP) in the FDA framework?",
+        options: [
+          { id: "a", text: "A plan to change hospital equipment" },
+          { id: "b", text: "A pre-approved framework for how an AI may be updated without new clearance" },
+          { id: "c", text: "A requirement to retrain all staff when an AI updates" },
+          { id: "d", text: "A plan for decommissioning AI tools" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! PCCPs allow AI manufacturers to pre-specify types of model updates that don't require a new 510(k) submission — acknowledging that AI tools evolve over time, unlike traditional static software.",
+      },
+      {
+        id: "m6q3",
+        text: "Under the EU AI Act, clinical decision support AI is classified as:",
+        options: [
+          { id: "a", text: "Minimal risk" },
+          { id: "b", text: "High risk" },
+          { id: "c", text: "Prohibited" },
+          { id: "d", text: "Low risk if CE marked" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! The EU AI Act classifies AI used in health and safety applications — including clinical decision support — as high-risk, requiring robust risk management, transparency, and human oversight.",
+      },
+      {
+        id: "m6q4",
+        text: "What is the primary purpose of an audit trail in an AI system?",
+        options: [
+          { id: "a", text: "To improve AI accuracy over time" },
+          { id: "b", text: "To record when and how AI was used, and what it recommended" },
+          { id: "c", text: "To allow the AI to learn from clinician decisions" },
+          { id: "d", text: "To reduce documentation burden" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! Audit trails capture when the AI was used, which version was running, what it recommended, and whether the clinician accepted or overrode it. This is essential for accountability, incident investigation, and ongoing governance.",
+      },
+      {
+        id: "m6q5",
+        text: "If a patient is harmed by a clinical decision influenced by an AI tool, who bears responsibility?",
+        options: [
+          { id: "a", text: "The AI developer only" },
+          { id: "b", text: "The hospital IT department" },
+          { id: "c", text: "The clinician who made the final decision" },
+          { id: "d", text: "No one, because AI is autonomous" },
+        ],
+        correctAnswerId: "c",
+        feedback: "Correct! Under current legal and ethical frameworks, the clinician who made the final clinical decision retains professional responsibility — AI does not transfer accountability away from the treating professional.",
+      },
+    ],
+  },
+  "module-7": {
+    title: "Module 7 Quiz: LLMs in Clinical Practice",
+    questions: [
+      {
+        id: "m7q1",
+        text: "What is 'hallucination' in the context of a large language model?",
+        options: [
+          { id: "a", text: "When the model is overloaded and responds slowly" },
+          { id: "b", text: "When the model generates factually incorrect information stated with confidence" },
+          { id: "c", text: "When the model refuses to answer a question" },
+          { id: "d", text: "When the model produces grammatically incorrect text" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! Hallucination occurs when an LLM generates fluent, confident-sounding text that is factually wrong. It is especially dangerous in clinical contexts because the error may not be obvious.",
+      },
+      {
+        id: "m7q2",
+        text: "Why does an LLM hallucinate?",
+        options: [
+          { id: "a", text: "Because it has too little computing power" },
+          { id: "b", text: "Because it is optimised to generate fluent text, not verified facts" },
+          { id: "c", text: "Because it is programmed to test the user" },
+          { id: "d", text: "Because medical knowledge is too complex for it" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! LLMs are trained to predict the next most plausible word — they generate coherent, contextually appropriate text. They have no internal mechanism for knowing when they don't know something, so they produce confident-sounding errors.",
+      },
+      {
+        id: "m7q3",
+        text: "Which of the following is a safer LLM use case in a clinical setting?",
+        options: [
+          { id: "a", text: "Generating drug dosing for a patient without verification" },
+          { id: "b", text: "Providing a differential diagnosis that is acted upon immediately" },
+          { id: "c", text: "Drafting a patient information letter that a clinician will review before sending" },
+          { id: "d", text: "Summarising patient notes without reviewing the output" },
+        ],
+        correctAnswerId: "c",
+        feedback: "Correct! Drafting patient communications for human review is lower-risk because the clinician verifies the output before it reaches the patient. Direct clinical decisions based on unverified LLM output are much higher risk.",
+      },
+      {
+        id: "m7q4",
+        text: "What is the main data protection risk of pasting patient details into a commercial LLM?",
+        options: [
+          { id: "a", text: "The LLM may become confused by the clinical terminology" },
+          { id: "b", text: "The patient data may be used to train the model and is transmitted to external servers" },
+          { id: "c", text: "The response may be too long to read" },
+          { id: "d", text: "The LLM may contact the patient directly" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! Submitting patient data to a commercial LLM typically violates HIPAA, GDPR, and equivalent regulations because the data is transmitted to external servers and may be used for model training without appropriate agreements in place.",
+      },
+      {
+        id: "m7q5",
+        text: "What is the most important habit when using an LLM for clinical purposes?",
+        options: [
+          { id: "a", text: "Always use it in incognito mode" },
+          { id: "b", text: "Rephrase your question if the first answer seems long" },
+          { id: "c", text: "Independently verify all clinical information before acting on it" },
+          { id: "d", text: "Ask the LLM to confirm its own accuracy" },
+        ],
+        correctAnswerId: "c",
+        feedback: "Correct! Independent verification is essential. LLMs cannot reliably self-report their accuracy or flag their own errors. Always treat LLM output as a first draft requiring clinical review, not a definitive answer.",
+      },
+    ],
+  },
+  "module-8": {
+    title: "Module 8 Quiz: AI Implementation & Change Management",
+    questions: [
+      {
+        id: "m8q1",
+        text: "Why is workflow redesign essential when deploying an AI tool?",
+        options: [
+          { id: "a", text: "To make the AI run faster" },
+          { id: "b", text: "Because AI outputs must be received by the right person at the right time to be actionable" },
+          { id: "c", text: "To reduce the number of staff needed" },
+          { id: "d", text: "Because regulators require it" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! Adding an AI tool to a workflow without redesigning it often leads to alert fatigue, wrong recipients, or irrelevant timing. The AI's output must be integrated into the clinical process where it can actually influence the right decision.",
+      },
+      {
+        id: "m8q2",
+        text: "What is 'automation bias' in the context of clinical AI?",
+        options: [
+          { id: "a", text: "The AI has a political bias built in" },
+          { id: "b", text: "Clinicians reflexively ignore AI recommendations" },
+          { id: "c", text: "Clinicians follow AI recommendations without sufficient critical evaluation" },
+          { id: "d", text: "The AI performs better on automated tasks" },
+        ],
+        correctAnswerId: "c",
+        feedback: "Correct! Automation bias occurs when clinicians defer to AI recommendations without applying their own clinical judgment — even when the AI is wrong. It is a significant patient safety risk and requires awareness and good training to counteract.",
+      },
+      {
+        id: "m8q3",
+        text: "Which signal should trigger a formal review of a deployed AI tool?",
+        options: [
+          { id: "a", text: "The vendor releases a new marketing brochure" },
+          { id: "b", text: "A serious adverse event or near miss attributable to AI behaviour" },
+          { id: "c", text: "A new version of the AI is released by the vendor" },
+          { id: "d", text: "The override rate drops below 50%" },
+        ],
+        correctAnswerId: "b",
+        feedback: "Correct! A serious adverse event or near miss is the clearest signal that requires immediate formal review. The governance committee — not an individual clinician — should lead this review and decide whether deployment should continue.",
+      },
+      {
+        id: "m8q4",
+        text: "When should post-deployment monitoring begin?",
+        options: [
+          { id: "a", text: "Six months after go-live" },
+          { id: "b", text: "Only if there is a complaint" },
+          { id: "c", text: "From day one of clinical deployment, with pre-specified metrics and thresholds" },
+          { id: "d", text: "When the vendor's contract comes up for renewal" },
+        ],
+        correctAnswerId: "c",
+        feedback: "Correct! Monitoring should be planned before go-live and active from day one. Pre-specifying the metrics and thresholds that would trigger a review ensures that decisions are objective and not reactive.",
+      },
+      {
+        id: "m8q5",
+        text: "Which stakeholder group is most commonly overlooked in AI implementation planning?",
+        options: [
+          { id: "a", text: "Hospital executives" },
+          { id: "b", text: "The AI vendor" },
+          { id: "c", text: "Frontline clinical staff who will use the tool day-to-day" },
+          { id: "d", text: "The IT department" },
+        ],
+        correctAnswerId: "c",
+        feedback: "Correct! Implementations frequently focus on senior leadership buy-in and technical integration while neglecting the frontline staff who will actually use the tool. Their workflow insight, concerns, and day-to-day experience are irreplaceable for a successful deployment.",
+      },
+    ],
+  },
 };
-

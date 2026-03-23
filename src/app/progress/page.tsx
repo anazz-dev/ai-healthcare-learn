@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import {
   Button
 } from '@/components/ui/button';
@@ -15,195 +15,249 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { ArrowRight } from 'lucide-react';
 
-import {
-  CheckCircle,
-  Clock,
-  Award,
-  Download,
-  Share2,
-  Users,
-  BookOpen,
-  ExternalLink,
-  ArrowRight
-} from 'lucide-react';
+const ALL_MODULES = [
+  { id: 'module-1', title: "What AI Really Is (And Isn't): A Clinician's First Look" },
+  { id: 'module-2', title: 'How AI Learns (and Why It Sometimes Gets It Wrong)' },
+  { id: 'module-3', title: 'How AI Performs in Clinical Practice: Real Cases, Real Limits' },
+  { id: 'module-4', title: 'Trustworthy AI: Ethics, Risk, and Regulation in Clinical Practice' },
+  { id: 'module-5', title: 'Evaluating & Validating AI Tools in Clinical Practice' },
+  { id: 'module-6', title: 'AI Governance, Regulation & Institutional Policy' },
+  { id: 'module-7', title: 'Working with Large Language Models (LLMs) in Clinical Practice' },
+  { id: 'module-8', title: 'AI Implementation & Change Management in Healthcare' },
+];
 
-import UnifiedEmailForm from '@/components/UnifiedEmailForm';
+const TOTAL_MODULES = ALL_MODULES.length;
 
-const ProgressPage = () => {
-  const [showCertificateForm, setShowCertificateForm]   = useState(false);
-  const [certificateGenerated, setCertificateGenerated] = useState(false);
+interface CertificateFormData {
+  name: string;
+  email: string;
+}
 
-  const [userProgress] = useState({
-    completedModules: 4,
-    totalModules: 4,
-    skillsAssessmentCompleted: true,
-    overallProgress: 100
-  });
+function ProgressPageContent() {
+  const searchParams = useSearchParams();
+  const paymentCancelled = searchParams.get('payment') === 'cancelled';
 
-  const router = useRouter(); // (used only if you want to route internally)
+  const [completionStatus, setCompletionStatus] = useState<Record<string, boolean>>({});
+  const [formData, setFormData] = useState<CertificateFormData>({ name: '', email: '' });
+  const [formError, setFormError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
-  /* ───────────────────────────────────────────── */
-  /* 1 ▸ handle e-mail form submit                 */
-  /* ───────────────────────────────────────────── */
-  const handleCertificateRequest = (data: { name: string; email: string }) => {
-    generateCertificate(data.name.trim());
-    setCertificateGenerated(true);
-    setShowCertificateForm(false);
+  useEffect(() => {
+    const storedProgress = localStorage.getItem('aiHealthcareProgress');
+    if (storedProgress) {
+      try {
+        const progress = JSON.parse(storedProgress);
+        if (typeof progress === 'object' && progress !== null) {
+          setCompletionStatus(progress);
+        }
+      } catch (error) {
+        console.error('Failed to parse progress from localStorage:', error);
+      }
+    }
+  }, []);
+
+  const completedCount = ALL_MODULES.filter(m => completionStatus[m.id]).length;
+  const overallProgress = Math.round((completedCount / TOTAL_MODULES) * 100);
+  const allModulesComplete = completedCount === TOTAL_MODULES;
+
+  const handleCheckout = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormError('');
+
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+
+    if (!trimmedName || !trimmedEmail) {
+      setFormError('Please enter both your full name and email address.');
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      setFormError('Please enter a valid email address.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: trimmedName, email: trimmedEmail }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.url) {
+        setFormError(data.error || 'Failed to start payment. Please try again.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      window.location.href = data.url;
+    } catch {
+      setFormError('A network error occurred. Please check your connection and try again.');
+      setIsSubmitting(false);
+    }
   };
 
-  /* ───────────────────────────────────────────── */
-  /* 2 ▸ build /certificate/<slug> URL             */
-  /* ───────────────────────────────────────────── */
-  const generateCertificate = (name: string) => {
-    const slug = encodeURIComponent(name.toLowerCase().replace(/\s+/g, '-'));
-    const url  = `/certificate/${slug}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
-  /* ───────────────────────────────────────────── */
-  /* 3 ▸ component render                          */
-  /* ───────────────────────────────────────────── */
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Your Learning Progress
-          </h1>
-          <p className="text-xl text-gray-600">
-            Track your journey in Clinical AI literacy
-          </p>
+    <div>
+      <h1>Your Learning Progress</h1>
+      <p>Track your journey in Clinical AI literacy</p>
+
+      {paymentCancelled && (
+        <div style={{ background: '#fff3cd', border: '1px solid #ffc107', padding: '1rem', borderRadius: '4px', marginBottom: '1rem' }}>
+          <strong>Payment cancelled.</strong> You can try again whenever you are ready.
         </div>
+      )}
 
-        {/* ──────────────── Progress Overview ──────────────── */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Award className="w-6 h-6 text-yellow-500" />
-              <span>Course Progress</span>
-            </CardTitle>
-            <CardDescription>
-              Your progress through the AI Literacy for Healthcare Professionals course
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-6">
-              {/* overall bar */}
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-gray-700">Overall Progress</span>
-                  <span className="text-sm text-gray-500">
-                    {userProgress.overallProgress}%
-                  </span>
-                </div>
-                <Progress value={userProgress.overallProgress} className="h-3" />
+      {/* ──────────────── Progress Overview ──────────────── */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Course Progress</CardTitle>
+          <CardDescription>Your progress through the AI Literacy for Healthcare Professionals course</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div>
+            <span>Overall Progress</span>
+            <span>{overallProgress}%</span>
+          </div>
+          <Progress value={overallProgress} />
+
+          <div style={{ marginTop: '1.5rem' }}>
+            <h3>Modules ({completedCount}/{TOTAL_MODULES} completed)</h3>
+            {ALL_MODULES.map((module, index) => (
+              <div key={module.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>
+                <span>{index + 1}. {module.title}</span>
+                {completionStatus[module.id] ? (
+                  <Badge>Complete</Badge>
+                ) : (
+                  <Badge variant="outline">Incomplete</Badge>
+                )}
               </div>
+            ))}
+          </div>
 
-              {/* modules & assessments lists */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* completed modules */}
-                <div className="space-y-4">
-                  <h3 className="font-semibold text-gray-900">Completed Modules</h3>
-                  {[
-                    'Introduction to AI in Healthcare',
-                    'AI Applications in Clinical Practice',
-                    'Ethics and Safety in Medical AI',
-                    'Implementation and Future Trends'
-                  ].map((module, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <CheckCircle className="w-5 h-5 text-green-500" />
-                      <span className="text-gray-700">{module}</span>
-                      <Badge variant="secondary">Complete</Badge>
-                    </div>
-                  ))}
-                </div>
-
-                {/* assessments */}
-                <div className="space-y-4">
-                  <h3 className="font-semibold text-gray-900">Assessments</h3>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700">Clinical AI Skills Check</span>
-                    <Badge variant="secondary">Completed</Badge>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700">Module Quizzes (4/4)</span>
-                    <Badge variant="secondary">100%</Badge>
-                  </div>
-                </div>
-              </div>
+          <div style={{ marginTop: '1.5rem' }}>
+            <h3>Assessments</h3>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span>Module Quizzes ({completedCount}/{TOTAL_MODULES})</span>
+              <span>{overallProgress}%</span>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </CardContent>
+      </Card>
 
-        {/* ──────────────── Certificate Section ──────────────── */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Award className="w-6 h-6 text-blue-500" />
-              <span>Professional Certificate</span>
-            </CardTitle>
-            <CardDescription>
-              Download your verified certificate of completion
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {/* initial CTA */}
-            {!showCertificateForm && !certificateGenerated && (
-              <div className="text-center py-8">
-                <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="w-10 h-10 text-blue-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Congratulations!
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  You've completed the course. Generate your certificate now.
-                </p>
-                <Button
-                  onClick={() => setShowCertificateForm(true)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
-                >
-                  <Award className="w-5 h-5 mr-2" />
-                  Generate Certificate
+      {/* ──────────────── Certificate Section ──────────────── */}
+      <Card style={{ marginTop: '2rem' }}>
+        <CardHeader>
+          <CardTitle>Professional Certificate</CardTitle>
+          <CardDescription>
+            {allModulesComplete
+              ? 'Complete the steps below to receive your verified certificate of completion ($49 USD)'
+              : `Complete all ${TOTAL_MODULES} modules to unlock your certificate`}
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {!allModulesComplete && (
+            <div>
+              <p>
+                You have completed {completedCount} of {TOTAL_MODULES} modules.
+                Finish the remaining {TOTAL_MODULES - completedCount} module{TOTAL_MODULES - completedCount !== 1 ? 's' : ''} to unlock your certificate.
+              </p>
+              <Link href="/modules">
+                <Button variant="outline">
+                  Continue Learning <ArrowRight style={{ marginLeft: '0.5rem' }} />
                 </Button>
-              </div>
-            )}
+              </Link>
+            </div>
+          )}
 
-            {/* form */}
-            {showCertificateForm && (
-              <div className="max-w-md mx-auto">
-                <UnifiedEmailForm
-                  purpose="certificate"
-                  onSubmit={handleCertificateRequest}
-                  showExtendedFields={true}
+          {allModulesComplete && !showForm && (
+            <div>
+              <h3>Congratulations — all 8 modules complete!</h3>
+              <p>Receive your verified certificate of completion for just <strong>$49 USD</strong>.</p>
+              <Button
+                onClick={() => setShowForm(true)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+              >
+                Get My Certificate — $49
+              </Button>
+            </div>
+          )}
+
+          {allModulesComplete && showForm && (
+            <form onSubmit={handleCheckout} style={{ maxWidth: '400px' }}>
+              <h3>Enter your details</h3>
+              <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem' }}>
+                Your name will appear on the certificate exactly as you enter it. You will be redirected to Stripe to complete the secure $49 payment.
+              </p>
+              <div style={{ marginBottom: '1rem' }}>
+                <label htmlFor="cert-name" style={{ display: 'block', fontWeight: 600, marginBottom: '0.25rem' }}>
+                  Full Name (as it should appear on certificate)
+                </label>
+                <input
+                  id="cert-name"
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                  placeholder="Dr. Jane Smith"
+                  style={{ width: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '4px' }}
                 />
               </div>
-            )}
-
-            {/* success message */}
-            {certificateGenerated && (
-              <div className="text-center py-8">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-10 h-10 text-green-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Certificate Generated!
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  Your certificate opened in a new tab at its own shareable URL.
-                  Copy that link (or use LinkedIn’s share dialog on that page).
-                  If a pop-up blocker intervened, allow pop-ups for this site and try again.
-                </p>
+              <div style={{ marginBottom: '1rem' }}>
+                <label htmlFor="cert-email" style={{ display: 'block', fontWeight: 600, marginBottom: '0.25rem' }}>
+                  Email Address (for payment receipt)
+                </label>
+                <input
+                  id="cert-email"
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  placeholder="jane@hospital.org"
+                  style={{ width: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '4px' }}
+                />
               </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
+              {formError && (
+                <p style={{ color: 'red', marginBottom: '1rem', fontSize: '0.9rem' }}>{formError}</p>
+              )}
+              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
+                >
+                  {isSubmitting ? 'Redirecting to payment…' : 'Pay $49 & Get Certificate'}
+                </Button>
+                <button
+                  type="button"
+                  onClick={() => { setShowForm(false); setFormError(''); }}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#666', textDecoration: 'underline' }}
+                >
+                  Cancel
+                </button>
+              </div>
+              <p style={{ marginTop: '0.75rem', fontSize: '0.8rem', color: '#888' }}>
+                🔒 Secure payment via Stripe. We do not store your card details.
+              </p>
+            </form>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
-};
+}
 
-export default ProgressPage;
+export default function ProgressPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: '2rem' }}>Loading progress...</div>}>
+      <ProgressPageContent />
+    </Suspense>
+  );
+}

@@ -1,0 +1,124 @@
+<h2>Slide 1 – From Pilot to Practice: The Hardest Part of AI</h2>
+<p>Most AI failures in healthcare don't happen because the algorithm is wrong.<br/>They happen because the implementation is wrong.</p>
+<p>A technically excellent AI tool can fail to improve — or even worsen — patient care if the people, processes, and systems around it aren't ready.</p>
+<p>This module focuses on the human and organisational dimension of AI: how to implement it well, lead through the change, and know when something has gone wrong.</p>
+
+<h2>Slide 2 – The AI Deployment Lifecycle</h2>
+<p>Deploying an AI tool in a clinical setting is not a single event — it's a process with distinct phases:</p>
+<ul>
+    <li><strong>1. Problem definition:</strong> Is there a genuine unmet clinical need? Is AI the right solution?</li>
+    <li><strong>2. Procurement and evaluation:</strong> Does this tool have adequate evidence? Does it work for our patient population? (See Module 5)</li>
+    <li><strong>3. Governance approval:</strong> Does it meet regulatory and institutional requirements? (See Module 6)</li>
+    <li><strong>4. Technical integration:</strong> Can it be connected to our EHR, imaging system, or workflow?</li>
+    <li><strong>5. Pilot phase:</strong> Test in a controlled environment with a small group of users and robust monitoring.</li>
+    <li><strong>6. Full deployment:</strong> Roll out with training, support, and monitoring in place.</li>
+    <li><strong>7. Post-deployment monitoring:</strong> Ongoing performance tracking, incident response, and scheduled review.</li>
+</ul>
+<p>💡 <em>Key insight:</em> Most organisations underinvest in phases 5–7. A tool that works at launch can degrade over time as patient populations, clinical practices, and data patterns change.</p>
+
+<h2>Slide 3 – Why Workflow Redesign Is Non-Negotiable</h2>
+<p>You cannot add an AI tool to an existing workflow without changing the workflow.</p>
+<p>Every AI tool produces an output — a recommendation, a flag, a score, an alert. Someone has to receive that output, at the right time, in the right format, with enough context to act on it.</p>
+<p>Common workflow failures:</p>
+<ul>
+    <li><strong>Alert fatigue:</strong> An AI that fires too many alerts gets ignored — even when it's right</li>
+    <li><strong>Wrong recipient:</strong> The alert goes to a busy registrar who lacks the authority to act on it</li>
+    <li><strong>Wrong timing:</strong> The recommendation arrives after the decision has already been made</li>
+    <li><strong>Poor integration:</strong> The clinician has to leave their usual workflow to check the AI tool separately, so they don't bother</li>
+</ul>
+<p>📋 <em>Before deploying any AI tool, map the current workflow and redesign it to accommodate the tool's output at the right moment, for the right person.</em></p>
+
+<h2>Slide 4 – Stakeholder Engagement: Who Needs to Be Involved?</h2>
+<p>AI implementation affects more people than just the end users. A successful deployment requires:</p>
+<ul>
+    <li><strong>Clinical staff:</strong> The doctors, nurses, and allied health professionals who will use the tool. Their workflow understanding is irreplaceable. Their buy-in is essential.</li>
+    <li><strong>IT and informatics:</strong> Who will integrate the AI into the EHR? Who will maintain it? Who handles data pipelines?</li>
+    <li><strong>Information governance and legal:</strong> Is the data use compliant? Are contracts with the vendor appropriate?</li>
+    <li><strong>Patients and the public:</strong> Are patients informed that AI is being used in their care? Do they have an opportunity to ask questions or opt out?</li>
+    <li><strong>Executives and finance:</strong> Is there a business case? Who owns the AI programme long term?</li>
+    <li><strong>The vendor:</strong> They need to understand your environment — don't let them deploy and disappear.</li>
+</ul>
+<p>🚩 <em>A common mistake:</em> Only consulting the clinical champion who championed the tool, without involving the frontline staff who will actually use it.</p>
+
+<h2>Slide 5 – Training and Education for Staff</h2>
+<p>Training is not a one-hour briefing. It is an ongoing process.</p>
+<p>Effective AI training for clinical staff should cover:</p>
+<ul>
+    <li><strong>What the tool does and doesn't do:</strong> Its intended use, its limitations, and what it was validated on</li>
+    <li><strong>How to interact with it:</strong> Where outputs appear, how to interpret them, how to override</li>
+    <li><strong>When to trust it and when to question it:</strong> Building appropriate (not blind) reliance</li>
+    <li><strong>What to do when something seems wrong:</strong> The incident reporting pathway</li>
+    <li><strong>Their professional responsibility:</strong> The AI does not replace their clinical judgement</li>
+</ul>
+<p>🩺 <em>Analogy:</em> You wouldn't give a junior doctor a new device and say "figure it out." Training and supervised practice are essential.</p>
+<p>Training should be refreshed when:</p>
+<ul>
+    <li>A new version of the AI is deployed</li>
+    <li>Performance monitoring reveals a change in AI behaviour</li>
+    <li>New evidence emerges about the tool's limitations</li>
+</ul>
+
+<h2>Slide 6 – The Override Culture Problem</h2>
+<p>In AI implementation, there is a risk in both directions:</p>
+<ul>
+    <li><strong>Automation bias:</strong> Clinicians follow the AI recommendation without sufficient critical evaluation, even when their own clinical judgement would suggest otherwise.</li>
+    <li><strong>Automation aversion:</strong> Clinicians reflexively ignore AI recommendations because they distrust technology, even when the evidence supports using it.</li>
+</ul>
+<p>Both extremes lead to worse outcomes.</p>
+<p>The goal is <strong>calibrated trust</strong>: engaging with AI recommendations critically, accepting them when they add value, overriding them with documented reasoning when clinical judgement differs.</p>
+<p>💡 <em>Practical tip:</em> Track override rates as part of post-deployment monitoring. Very low rates suggest possible automation bias. Very high rates suggest the tool may not be fit for purpose in your setting.</p>
+
+<h2>Slide 7 – Post-Deployment Monitoring</h2>
+<p>Deploying an AI tool is the beginning of the responsibility, not the end.</p>
+<p>What to monitor after go-live:</p>
+<ul>
+    <li><strong>Performance metrics:</strong> Is the AI performing at the same level as in the validation study? Is sensitivity, specificity, or AUROC changing over time?</li>
+    <li><strong>Usage patterns:</strong> Is it being used as intended? Are certain user groups not engaging with it?</li>
+    <li><strong>Override rate and reasons:</strong> How often is it overridden? By whom? For what reasons?</li>
+    <li><strong>Adverse events and near misses:</strong> Has the AI contributed to any incidents or near misses? Is there an incident reporting mechanism in place?</li>
+    <li><strong>Dataset drift:</strong> Is the patient population or clinical practice changing in ways that might degrade AI performance?</li>
+    <li><strong>User feedback:</strong> What are frontline staff saying about the tool? Their day-to-day experience is a leading indicator of problems.</li>
+</ul>
+
+<h2>Slide 8 – When to Pause or Stop an AI Deployment</h2>
+<p>Not all AI deployments succeed. Knowing when to halt a deployment is just as important as knowing how to launch one.</p>
+<p><strong>Signals that should trigger a formal review:</strong></p>
+<ul>
+    <li>🔴 A serious adverse event or near miss attributable to AI behaviour</li>
+    <li>🔴 A sudden or unexplained drop in performance metrics</li>
+    <li>🔴 Evidence that the AI is performing differently for different patient subgroups (e.g., worse for elderly patients or specific ethnic groups)</li>
+    <li>🔴 Consistent patterns of unexpected override behaviour that suggest clinicians have lost confidence in the tool</li>
+    <li>🔴 Discovery of a significant gap between the population the AI was validated on and your actual patient population</li>
+</ul>
+<p>👤 <em>Who decides:</em> This should be a governance committee decision — not an individual clinician's. Having a clear decommissioning policy before you deploy makes it easier to act decisively when needed.</p>
+
+<h2>Slide 9 – Case Example: What Good Implementation Looks Like</h2>
+<p>A regional hospital deploys an AI tool to detect acute kidney injury (AKI) early using EHR data.</p>
+<p><strong>What they did right:</strong></p>
+<ul>
+    <li>Ran a six-month pilot in two wards with dedicated monitoring</li>
+    <li>Involved nursing staff in workflow redesign — alerts went to the bedside nurse, not just the doctor</li>
+    <li>Tracked alert fatigue by monitoring how many alerts were actioned vs. dismissed</li>
+    <li>Built a feedback form into the system for staff to flag concerns</li>
+    <li>Set performance thresholds: if sensitivity dropped below 80%, a formal review would be triggered</li>
+    <li>Communicated to patients that an AI tool was being used to support their care</li>
+</ul>
+<p><strong>Outcome:</strong> Alert volumes were initially too high. The governance committee adjusted the threshold, reducing false positives by 40% while maintaining sensitivity. The tool went on to improve AKI detection rates by 22%.</p>
+<p>✅ <em>This didn't happen by accident — it happened because of good process.</em></p>
+
+<h2>Slide 10 – Summary: The Clinician Leader's Implementation Checklist</h2>
+<p>Whether you're leading an AI implementation or participating in one, use this framework:</p>
+<ul>
+    <li>✅ <strong>Problem first:</strong> Is there a real clinical problem that AI can genuinely help with?</li>
+    <li>✅ <strong>Evidence assessed:</strong> Has the tool been validated externally in a population like ours?</li>
+    <li>✅ <strong>Governance approved:</strong> Has it gone through the appropriate institutional review?</li>
+    <li>✅ <strong>Workflow mapped:</strong> Have we redesigned the workflow, not just added a layer to it?</li>
+    <li>✅ <strong>Stakeholders engaged:</strong> Have frontline staff, IT, governance, and patients been involved?</li>
+    <li>✅ <strong>Training planned:</strong> Is there a training programme — not just a briefing?</li>
+    <li>✅ <strong>Monitoring in place:</strong> Do we have metrics, thresholds, and a review cycle?</li>
+    <li>✅ <strong>Exit plan ready:</strong> Do we know when and how we would decommission this tool if needed?</li>
+</ul>
+<p>AI in healthcare works when people, process, and technology are aligned. As a clinician, you are the bridge between the algorithm and the patient. That responsibility doesn't end when the tool goes live — it begins there.</p>
+
+<!-- Quiz Placeholder -->
+<div id="quiz-placeholder"></div>
