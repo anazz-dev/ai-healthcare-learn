@@ -19,7 +19,7 @@ const PrivacyPolicyPage: React.FC = () => {
           <strong>E-Mail:</strong> contact@clinicalaiacademy.com
         </p>
         <p className="text-sm text-gray-500 mt-2">
-          Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: [Your Full Name], [Address as above]
+          Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: Dr. Ahmad Nazzal, address as above
         </p>
       </div>
 
@@ -31,7 +31,7 @@ const PrivacyPolicyPage: React.FC = () => {
         <p>
           Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal data in accordance with the General Data Protection Regulation (GDPR) and other applicable privacy laws.
         </p>
-        
+
         <h2 className="text-2xl font-semibold mt-6 mb-3">Information We Collect</h2>
         <p>
           We collect the following types of personal information:
@@ -155,8 +155,7 @@ const PrivacyPolicyPage: React.FC = () => {
           For questions about this Privacy Policy or to exercise your rights, contact us at:
         </p>
         <ul className="list-disc ml-6 space-y-2">
-          <li>Email: privacy@clinicalaiacademy.com</li>
-          <li>General Contact: contact@clinicalaiacademy.com</li>
+          <li>Contact: contact@clinicalaiacademy.com</li>
         </ul>
 
         <p className="text-sm text-gray-500 mt-6">
