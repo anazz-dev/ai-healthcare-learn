@@ -3,20 +3,43 @@ import React from 'react';
 const PrivacyPolicyPage: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
+
+      <h1 className="text-3xl font-bold mb-6">Impressum & Privacy Policy</h1>
+
+      {/* IMPRESSUM */}
+      <div className="space-y-4 mb-10">
+        <h2 className="text-2xl font-semibold mb-3">Impressum</h2>
+        <p className="text-sm text-gray-500">Angaben gemäß § 5 TMG</p>
+        <p>
+          [Dr. Ahmad Nazzal]<br />
+          [Nightingalestrasse]<br />
+          [69115] Heidelberg, Germany
+        </p>
+        <p>
+          <strong>E-Mail:</strong> contact@clinicalaiacademy.com
+        </p>
+        <p className="text-sm text-gray-500 mt-2">
+          Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: [Your Full Name], [Address as above]
+        </p>
+      </div>
+
+      <hr className="my-8 border-gray-200" />
+
+      {/* PRIVACY POLICY */}
+      <h2 className="text-3xl font-bold mb-6">Privacy Policy</h2>
       <div className="space-y-4">
         <p>
           Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal data in accordance with the General Data Protection Regulation (GDPR) and other applicable privacy laws.
         </p>
-
+        
         <h2 className="text-2xl font-semibold mt-6 mb-3">Information We Collect</h2>
         <p>
           We collect the following types of personal information:
         </p>
         <ul className="list-disc ml-6 space-y-2">
           <li><strong>Contact Information:</strong> Name and email address when you submit forms, take assessments, or request certificates</li>
-          <li><strong>Assessment Data:</strong> Your responses to skills assessments, quiz results, scores, and performance categories</li>
-          <li><strong>Learning Progress:</strong> Module completion status, course progress, and certificate generation requests</li>
+          <li><strong>Assessment Data:</strong> We don't collect your responses to skills assessments, quiz results, scores, and performance categories</li>
+          <li><strong>Learning Progress:</strong> Module completion status, course progress, and certificate generation requests are cachced on your browser </li>
           <li><strong>Technical Data:</strong> Browser type, device information, and usage analytics through privacy-focused, cookie-free analytics</li>
         </ul>
 
