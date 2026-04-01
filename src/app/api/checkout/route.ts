@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
               name: 'Clinical AI Literacy – Certificate of Completion',
               description: 'Verified certificate for completing all 8 modules of the Clinical AI Literacy for Healthcare Professionals course.',
             },
-            unit_amount: 4900,
+            unit_amount: 14900,
           },
           quantity: 1,
         },
