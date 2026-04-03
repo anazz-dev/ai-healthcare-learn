@@ -34,6 +34,45 @@ const PrivacyPolicyPage: React.FC = () => {
         </p>
       </div>
 
+      {/* TERMS OF USE */}
+      <div className="space-y-4 mb-10">
+        <h2 className="text-2xl font-semibold mb-3">Terms of Use</h2>
+        <p>
+          By accessing and using Clinical AI Academy, you agree to the following terms. All content on
+          this platform — including courses, assessments, articles, and certificates — is provided for
+          educational and informational purposes only.
+        </p>
+        <p>
+          The Certificate of Completion issued upon finishing the course recognises your engagement with
+          the educational material and does not constitute a formally accredited CME/CPD credit, medical
+          qualification, or professional certification.
+        </p>
+        <p>
+          Clinical AI Academy retains all intellectual property rights over the content, design, and
+          materials published on this platform. You may not reproduce, redistribute, or repurpose any
+          content without prior written permission.
+        </p>
+        <p>
+          Clinical AI Academy, its founder, and its volunteers accept no liability for any clinical
+          decisions, outcomes, or actions taken based on the content provided. Use of this platform is
+          at your own risk and discretion.
+        </p>
+      </div>
+
+      {/* CME/CPD CLARIFICATION */}
+      <div className="space-y-4 mb-10">
+        <h2 className="text-2xl font-semibold mb-3">CME/CPD Accreditation Notice</h2>
+        <p>
+          Our curriculum is designed in alignment with established CME/CPD learning objectives and
+          competency frameworks, but Clinical AI Academy is not a formally accredited CME/CPD provider.
+          Completion of our courses does not award official CME/CPD credits.
+        </p>
+        <p>
+          Healthcare professionals seeking formal credits should check with their local accrediting body
+          regarding eligibility for self-directed learning recognition.
+        </p>
+      </div>
+
       <hr className="my-8 border-gray-200" />
 
       {/* PRIVACY POLICY */}
@@ -49,7 +88,7 @@ const PrivacyPolicyPage: React.FC = () => {
         </p>
         <ul className="list-disc ml-6 space-y-2">
           <li><strong>Contact Information:</strong> Name and email address when you submit forms, take assessments, or request certificates</li>
-          <li><strong>Assessment Data:</strong> We don't collect your responses to skills assessments, quiz results, scores, and performance categories</li>
+          <li><strong>Assessment Data:</strong> Your responses to skills assessments and quizzes are processed locally in your browser to generate your personalised results. We do not store or collect your individual answers on our servers. Only aggregated, anonymised usage data may be collected to improve the platform.</li>
           <li><strong>Learning Progress:</strong> Module completion status, course progress, and certificate generation requests are cachced on your browser </li>
           <li><strong>Technical Data:</strong> Browser type, device information, and usage analytics through privacy-focused, cookie-free analytics</li>
         </ul>
