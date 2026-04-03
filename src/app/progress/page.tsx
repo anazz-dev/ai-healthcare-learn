@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import {
   Card,
   CardContent,
@@ -14,6 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import UnifiedEmailForm from '@/components/UnifiedEmailForm';
 
 const ALL_MODULES = [
   { id: 'module-1', title: "What AI Really Is (And Isn't): A Clinician's First Look" },
@@ -28,20 +28,10 @@ const ALL_MODULES = [
 
 const TOTAL_MODULES = ALL_MODULES.length;
 
-interface CertificateFormData {
-  name: string;
-  email: string;
-}
-
-function ProgressPageContent() {
-  const searchParams = useSearchParams();
-  const paymentCancelled = searchParams.get('payment') === 'cancelled';
-
+export default function ProgressPage() {
   const [completionStatus, setCompletionStatus] = useState<Record<string, boolean>>({});
-  const [formData, setFormData] = useState<CertificateFormData>({ name: '', email: '' });
-  const [formError, setFormError] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [showCertForm, setShowCertForm] = useState(false);
+  const [certOpened, setCertOpened] = useState(false);
 
   useEffect(() => {
     const storedProgress = localStorage.getItem('aiHealthcareProgress');
@@ -61,57 +51,19 @@ function ProgressPageContent() {
   const overallProgress = Math.round((completedCount / TOTAL_MODULES) * 100);
   const allModulesComplete = completedCount === TOTAL_MODULES;
 
-  const handleCheckout = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormError('');
-
-    const trimmedName = formData.name.trim();
-    const trimmedEmail = formData.email.trim();
-
-    if (!trimmedName || !trimmedEmail) {
-      setFormError('Please enter both your full name and email address.');
-      return;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
-      setFormError('Please enter a valid email address.');
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: trimmedName, email: trimmedEmail }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok || !data.url) {
-        setFormError(data.error || 'Failed to start payment. Please try again.');
-        setIsSubmitting(false);
-        return;
-      }
-
-      window.location.href = data.url;
-    } catch {
-      setFormError('A network error occurred. Please check your connection and try again.');
-      setIsSubmitting(false);
-    }
+  const handleCertificateSubmit = (data: { name: string; email: string }) => {
+    const slug = encodeURIComponent(
+      data.name.trim().toLowerCase().replace(/\s+/g, '-')
+    );
+    window.open(`/certificate/${slug}`, '_blank', 'noopener,noreferrer');
+    setCertOpened(true);
+    setShowCertForm(false);
   };
 
   return (
     <div>
       <h1>Your Learning Progress</h1>
       <p>Track your journey in Clinical AI literacy</p>
-
-      {paymentCancelled && (
-        <div style={{ background: '#fff3cd', border: '1px solid #ffc107', padding: '1rem', borderRadius: '4px', marginBottom: '1rem' }}>
-          <strong>Payment cancelled.</strong> You can try again whenever you are ready.
-        </div>
-      )}
 
       {/* ── Progress overview ── */}
       <Card>
@@ -167,7 +119,7 @@ function ProgressPageContent() {
           <CardTitle>Professional Certificate</CardTitle>
           <CardDescription>
             {allModulesComplete
-              ? 'Complete the steps below to receive your verified certificate of completion ($149 USD)'
+              ? 'Your certificate is ready — enter your details below to generate it'
               : `Complete all ${TOTAL_MODULES} modules to unlock your certificate`}
           </CardDescription>
         </CardHeader>
@@ -190,89 +142,72 @@ function ProgressPageContent() {
           )}
 
           {/* All complete — initial CTA */}
-          {allModulesComplete && !showForm && (
+          {allModulesComplete && !showCertForm && !certOpened && (
             <div>
               <h3>Congratulations — all 8 modules complete!</h3>
-              <p>Receive your verified certificate of completion for <strong>$149 USD</strong>.</p>
+              <p>
+                Generate your free verified certificate of completion. Enter your
+                details and it will open instantly in a new tab.
+              </p>
               <Button
-                onClick={() => setShowForm(true)}
+                onClick={() => setShowCertForm(true)}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
               >
-                Get My Certificate — $149
+                Get My Certificate
               </Button>
             </div>
           )}
 
-          {/* Payment form */}
-          {allModulesComplete && showForm && (
-            <form onSubmit={handleCheckout} style={{ maxWidth: '400px' }}>
-              <h3>Enter your details</h3>
-              <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem' }}>
+          {/* Email / consent form */}
+          {allModulesComplete && showCertForm && (
+            <div style={{ maxWidth: '480px' }}>
+              <p style={{ fontSize: '0.9rem', color: '#555', marginBottom: '1.25rem' }}>
                 Your name will appear on the certificate exactly as you enter it.
-                You will be redirected to Stripe to complete the secure $149 payment.
+                We'll also add you to our mailing list — you can opt out at any time.
               </p>
-              <div style={{ marginBottom: '1rem' }}>
-                <label htmlFor="cert-name" style={{ display: 'block', fontWeight: 600, marginBottom: '0.25rem' }}>
-                  Full Name (as it should appear on certificate)
-                </label>
-                <input
-                  id="cert-name"
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                  placeholder="Dr. Jane Smith"
-                  style={{ width: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '4px' }}
-                />
-              </div>
-              <div style={{ marginBottom: '1rem' }}>
-                <label htmlFor="cert-email" style={{ display: 'block', fontWeight: 600, marginBottom: '0.25rem' }}>
-                  Email Address (for payment receipt)
-                </label>
-                <input
-                  id="cert-email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                  placeholder="jane@hospital.org"
-                  style={{ width: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '4px' }}
-                />
-              </div>
-              {formError && (
-                <p style={{ color: 'red', marginBottom: '1rem', fontSize: '0.9rem' }}>{formError}</p>
-              )}
-              <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
-                >
-                  {isSubmitting ? 'Redirecting to payment…' : 'Pay $149 & Get Certificate'}
-                </Button>
+              <UnifiedEmailForm
+                purpose="certificate"
+                onSubmit={handleCertificateSubmit}
+                title="Generate Your Certificate"
+                description="Enter your details below. Your certificate will open in a new tab immediately after submission."
+                buttonText="Generate My Certificate"
+              />
+              <button
+                type="button"
+                onClick={() => setShowCertForm(false)}
+                style={{
+                  marginTop: '0.75rem',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: '#666',
+                  textDecoration: 'underline',
+                  fontSize: '0.85rem',
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+
+          {/* Certificate already opened */}
+          {certOpened && (
+            <div>
+              <p>
+                <strong>Your certificate has opened in a new tab.</strong>{' '}
+                If a pop-up blocker prevented it, allow pop-ups for this site and{' '}
                 <button
-                  type="button"
-                  onClick={() => { setShowForm(false); setFormError(''); }}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#666', textDecoration: 'underline' }}
+                  onClick={() => { setCertOpened(false); setShowCertForm(true); }}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#2563eb', textDecoration: 'underline', padding: 0 }}
                 >
-                  Cancel
+                  try again
                 </button>
-              </div>
-              <p style={{ marginTop: '0.75rem', fontSize: '0.8rem', color: '#888' }}>
-                🔒 Secure payment via Stripe. We do not store your card details.
+                .
               </p>
-            </form>
+            </div>
           )}
         </CardContent>
       </Card>
     </div>
-  );
-}
-
-export default function ProgressPage() {
-  return (
-    <Suspense fallback={<div style={{ padding: '2rem' }}>Loading progress...</div>}>
-      <ProgressPageContent />
-    </Suspense>
   );
 }
