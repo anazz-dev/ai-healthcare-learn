@@ -11,7 +11,6 @@ const PrivacyPolicyPage: React.FC = () => {
         <h2 className="text-2xl font-semibold mb-3">Impressum</h2>
         <p>
           Dr. Ahmad Nazzal<br />
-          Nightingalestrasse 1<br />
           69115 Heidelberg, Germany
         </p>
         <p>
@@ -19,7 +18,7 @@ const PrivacyPolicyPage: React.FC = () => {
         </p>
         <p className="mt-2">
           Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:<br />
-          Dr. Ahmad Nazzal, Nightingalestrasse 1, 69115 Heidelberg
+          Dr. Ahmad Nazzal, 69115 Heidelberg
         </p>
       </div>
 
