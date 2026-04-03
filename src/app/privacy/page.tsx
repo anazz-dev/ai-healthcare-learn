@@ -9,17 +9,28 @@ const PrivacyPolicyPage: React.FC = () => {
       {/* IMPRESSUM */}
       <div className="space-y-4 mb-10">
         <h2 className="text-2xl font-semibold mb-3">Impressum</h2>
-        <p className="text-sm text-gray-500">Angaben gemäß § 5 TMG</p>
         <p>
-          [Dr. Ahmad Nazzal]<br />
-          [Nightingalestrasse]<br />
-          [69115] Heidelberg, Germany
+          Dr. Ahmad Nazzal<br />
+          Nightingalestrasse 1<br />
+          69115 Heidelberg, Germany
         </p>
         <p>
           <strong>E-Mail:</strong> contact@clinicalaiacademy.com
         </p>
-        <p className="text-sm text-gray-500 mt-2">
-          Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: Dr. Ahmad Nazzal, address as above
+        <p className="mt-2">
+          Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:<br />
+          Dr. Ahmad Nazzal, Nightingalestrasse 1, 69115 Heidelberg
+        </p>
+      </div>
+
+      {/* DISCLAIMER */}
+      <div className="space-y-4 mb-10">
+        <h2 className="text-2xl font-semibold mb-3">Haftungshinweis / Disclaimer</h2>
+        <p>
+          All content provided by Clinical AI Academy is for educational and informational purposes only
+          and does not constitute medical, clinical, or professional advice. It is not intended to replace
+          independent clinical judgment, patient assessment, or the guidance of a qualified healthcare
+          professional.
         </p>
       </div>
 
@@ -149,42 +160,6 @@ const PrivacyPolicyPage: React.FC = () => {
         <p>
           We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date. Your continued use of our services constitutes acceptance of any changes.
         </p>
-
-        {/* REFUND POLICY */}
-        <div className="mt-8 p-6 bg-gray-50 border border-gray-200 border-l-4 border-l-gray-800 rounded-r-lg">
-          <h2 className="text-2xl font-semibold mb-3">Refund Policy</h2>
-          <p>
-            <strong>All course content on Clinical AI Academy is completely free to access.</strong> Every
-            module, quiz, and learning resource can be completed at no cost, with no account required and
-            no time limit.
-          </p>
-          <p className="mt-3">
-            The only paid item is the <strong>verified Certificate of Completion ($149 USD)</strong> — a
-            digital credential issued after all 8 modules have been successfully completed. Because the
-            certificate is a digital product that is generated and delivered immediately upon payment, and
-            because the full course content is freely accessible before any purchase decision is made,{' '}
-            <strong>we do not offer refunds once a certificate has been issued.</strong>
-          </p>
-          <p className="mt-3">By proceeding with a certificate purchase you confirm that:</p>
-          <ul className="list-disc ml-6 space-y-2 mt-2">
-            <li>You have completed all 8 course modules</li>
-            <li>You understand the certificate is a digital product delivered immediately</li>
-            <li>You acknowledge that no refund will be issued after the certificate is generated</li>
-          </ul>
-          <p className="mt-3">
-            If you experience a technical issue that prevents your certificate from being generated or
-            delivered correctly, please contact us at{' '}
-            <a href="mailto:contact@clinicalaiacademy.com" className="text-blue-600 underline">
-              contact@clinicalaiacademy.com
-            </a>{' '}
-            within 7 days of purchase and we will resolve it promptly.
-          </p>
-          <p className="text-sm text-gray-500 mt-3">
-            This policy is consistent with EU consumer rights regulations for digital content (Directive
-            2011/83/EU), under which the right of withdrawal does not apply to digital content that has
-            already been delivered with the consumer's prior express consent.
-          </p>
-        </div>
 
         <h2 className="text-2xl font-semibold mt-6 mb-3">Contact Us</h2>
         <p>
