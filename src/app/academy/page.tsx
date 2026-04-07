@@ -50,7 +50,7 @@ const courses: Course[] = [
     platform: 'internal',
     url: '/modules',
     level: 'Beginner',
-    accreditation: 'CME/CPD Aligned',
+    accreditation: 'Regulatory Relevant',
     features: [
       'Interactive modules with real-world examples',
       'Downloadable resources and guides',

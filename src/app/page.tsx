@@ -24,11 +24,11 @@ import {
 export const metadata = {
   title: 'Clinical AI Academy — Evidence, Safety & Regulation for Medical AI',
   description:
-    'Master AI in healthcare. EU AI Act–compliant, CME/CPD-aligned training with practical tools, regulatory insights and case-based learning.',
+    'Master AI in healthcare. EU AI Act–relevant, regulatory insights and case-based learning.',
   openGraph: {
     title: 'Clinical AI Academy — Evidence, Safety & Regulation for Medical AI',
     description:
-      'Master AI in healthcare. EU AI Act–compliant, CME/CPD-aligned training with practical tools, regulatory insights and case-based learning.',
+      'Master AI in healthcare. EU AI Act–relevant, regulatory insights and case-based learning.',
     url: 'https://clinicalaiacademy.com',
     type: 'website',
   },
@@ -36,7 +36,7 @@ export const metadata = {
     card: 'summary',
     title: 'Clinical AI Academy — Evidence, Safety & Regulation for Medical AI',
     description:
-      'Master AI in healthcare. EU AI Act–compliant, CME/CPD-aligned training with practical tools, regulatory insights and case-based learning.',
+      'Master AI in healthcare. EU AI Act–relevant, regulatory insights and case-based learning.',
   },
 };
 
@@ -63,11 +63,11 @@ export default function HomePage() {
               <div className="flex items-center space-x-3">
                 <Badge className="bg-white/10 text-white border-white/20 px-4 py-2">
                   <Shield className="w-4 h-4 mr-2" />
-                  EU AI Act Compliant Training
+                  EU AI Act Relevant Training
                 </Badge>
                 <Badge className="bg-green-500/20 text-green-200 border-green-400/30 px-4 py-2">
                   <Award className="w-4 h-4 mr-2" />
-                  CME/CPD Aligned
+                  Regulatory Relevant
                 </Badge>
               </div>
 
@@ -80,7 +80,7 @@ export default function HomePage() {
                 </h1>
                 
                 <p className="text-xl lg:text-2xl text-blue-100 leading-relaxed max-w-2xl">
-                  The platform for healthcare professionals to master artificial intelligence. 
+                  The platform for healthcare professionals to study artificial intelligence. 
                   From fundamentals to regulatory compliance and clinical implementation.
                 </p>
 
@@ -188,11 +188,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Trusted by Healthcare Leaders Worldwide
+              For Healthcare Leaders Worldwide
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our evidence-based curriculum is developed by medical professionals, 
-              and trusted by leading healthcare institutions.
+              Our evidence-based curriculum is developed by medical professionals.
             </p>
           </div>
 
@@ -208,10 +207,10 @@ export default function HomePage() {
 
             <Card className="text-center p-8 border-2 hover:border-green-200 transition-colors">
               <Shield className="w-12 h-12 text-green-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Regulatory Compliant</h3>
+              <h3 className="text-xl font-semibold mb-3">Regulatory Relevant</h3>
               <p className="text-gray-600">
                 Aligned with EU AI Act requirements, FDA guidelines, and international 
-                medical education standards for continuing professional development.
+                medical education standards.
               </p>
             </Card>
 
@@ -307,7 +306,7 @@ export default function HomePage() {
                     <p className="text-blue-600 font-medium">Free • 4-6 hours • Certificate</p>
                   </div>
                 </div>
-                <Badge className="bg-blue-100 text-blue-800">CME/CPD Aligned</Badge>
+                <Badge className="bg-blue-100 text-blue-800">Regulatory Relevant</Badge>
               </div>
 
               <p className="text-gray-600 mb-6 text-lg">

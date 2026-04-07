@@ -93,7 +93,12 @@ export default function ProgressPage() {
                   borderBottom: '1px solid #eee',
                 }}
               >
-                <span>{index + 1}. {module.title}</span>
+                <Link
+                  href={`/modules/${module.id}`}
+                  style={{ color: '#2563eb', textDecoration: 'underline' }}
+                >
+                  {index + 1}. {module.title}
+                </Link>
                 {completionStatus[module.id] ? (
                   <Badge>Complete</Badge>
                 ) : (
@@ -165,6 +170,7 @@ export default function ProgressPage() {
                 Your name will appear on the certificate exactly as you enter it.
                 We'll also add you to our mailing list — you can opt out at any time.
               </p>
+
               <UnifiedEmailForm
                 purpose="certificate"
                 onSubmit={handleCertificateSubmit}
@@ -172,6 +178,7 @@ export default function ProgressPage() {
                 description="Enter your details below. Your certificate will open in a new tab immediately after submission."
                 buttonText="Generate My Certificate"
               />
+
               <button
                 type="button"
                 onClick={() => setShowCertForm(false)}

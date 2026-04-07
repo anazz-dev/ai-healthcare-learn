@@ -100,7 +100,7 @@ export default function ModulesPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
         {[
           { value: '8', label: 'Modules' },
-          { value: 'CME', label: 'Aligned' },
+          { value: 'Regulatory', label: 'Relevant' },
           { value: 'Self-paced', label: 'Online' },
           { value: 'Certificate', label: 'On Completion' },
         ].map((stat) => (
@@ -189,6 +189,9 @@ export default function ModulesPage() {
         >
           View My Progress
         </Link>
+         <p className="text-blue-100 mb-5 text-sm max-w-xl mx-auto">
+          This course is not CME/CPD accredited. 
+        </p>
       </div>
 
     </div>
