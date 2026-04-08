@@ -6,22 +6,6 @@ const PrivacyPolicyPage: React.FC = () => {
 
       <h1 className="text-3xl font-bold mb-6">Impressum & Privacy Policy</h1>
 
-      {/* IMPRESSUM */}
-      <div className="space-y-4 mb-10">
-        <h2 className="text-2xl font-semibold mb-3">Impressum</h2>
-        <p>
-          Dr. Ahmad Nazzal<br />
-          69115 Heidelberg, Germany
-        </p>
-        <p>
-          <strong>E-Mail:</strong> contact@clinicalaiacademy.com
-        </p>
-        <p className="mt-2">
-          Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:<br />
-          Dr. Ahmad Nazzal, 69115 Heidelberg
-        </p>
-      </div>
-
       {/* DISCLAIMER */}
       <div className="space-y-4 mb-10">
         <h2 className="text-2xl font-semibold mb-3">Haftungshinweis / Disclaimer</h2>
@@ -206,6 +190,22 @@ const PrivacyPolicyPage: React.FC = () => {
         <ul className="list-disc ml-6 space-y-2">
           <li>Contact: contact@clinicalaiacademy.com</li>
         </ul>
+
+        {/* IMPRESSUM */}
+      <div className="space-y-4 mb-10">
+        <h2 className="text-2xl font-semibold mb-3">Impressum</h2>
+        <p>
+          Dr. Ahmad Nazzal<br />
+          69115 Heidelberg, Darwinstrasse 6, Germany 
+        </p>
+        <p>
+          <strong>E-Mail:</strong> contact@clinicalaiacademy.com
+        </p>
+        <p className="mt-2">
+          Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:<br />
+          Dr. Ahmad Nazzal, 69115 Heidelberg, Darwinstrasse 6, Germany
+        </p>
+      </div>
 
         <p className="text-sm text-gray-500 mt-6">
           <strong>Effective Date:</strong> {new Date().toLocaleDateString()}
