@@ -43,25 +43,24 @@ const courses: Course[] = [
   {
     id: 'ai-literacy',
     title: 'AI Literacy for Healthcare Professionals',
-    description: 'Learn the fundamentals of AI in healthcare with this comprehensive course covering everything from basic concepts to regulatory compliance.',
+    description: 'A free, self-paced course covering AI fundamentals, clinical applications, evaluation, and regulatory frameworks for healthcare professionals.',
     type: 'free',
-    duration: '4-6 hours',
-    modules: 4,
+    duration: '8-12 hours',
+    modules: 8,
     platform: 'internal',
     url: '/modules',
     level: 'Beginner',
-    accreditation: 'Regulatory Relevant',
     features: [
-      'Interactive modules with real-world examples',
-      'Evidence-based',
-      'Self-paced learning',
-      'Mobile-friendly content',
+      'Eight modules, self-paced',
+      'Real clinical cases and published studies',
+      'Covers EU AI Act, FDA, and CE frameworks',
+      'No coding or technical background needed',
     ]
   },
   {
     id: 'ai-readiness-index',
     title: 'Clinical AI Skills Check',
-    description: 'Evaluate your clinical AI knowledge and skills with our comprehensive assessment tool.',
+    description: 'A short self-assessment to see where your clinical AI knowledge stands.',
     type: 'free',
     duration: '5 minutes',
     modules: 1,
@@ -69,12 +68,10 @@ const courses: Course[] = [
     url: '/readiness-index',
     level: 'Beginner',
     features: [
-      'Personalized literacy score',
-      'Detailed recommendations report',
+      'Personalised score',
+      'Recommendations based on your answers',
       'Specialty-specific guidance',
-      'Implementation roadmap',
-      'Regulatory compliance insights',
-      'Email delivery of results'
+      'Results sent by email'
     ]
   },
 ];
@@ -156,7 +153,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
       <CardContent>
         <div className="space-y-4">
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2">What you'll learn:</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">What it covers:</h4>
             <ul className="space-y-1">
               {course.features.slice(0, 4).map((feature, index) => (
                 <li key={index} className="flex items-start text-sm text-gray-600">
@@ -166,7 +163,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
               ))}
               {course.features.length > 4 && (
                 <li className="text-sm text-gray-500 italic">
-                  +{course.features.length - 4} more features...
+                  +{course.features.length - 4} more...
                 </li>
               )}
             </ul>
@@ -214,7 +211,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => {
                   </a>
                 ) : (
                   <Link href={course.url!}>
-                    {isPremium ? 'Enroll Now' : isFree ? 'Start Free' : 'Learn More'}
+                    {isPremium ? 'Enroll Now' : isFree ? 'Start' : 'Learn More'}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
                 )}
@@ -248,11 +245,10 @@ export default function AcademyPage() {
             Clinical AI Academy
           </h1>
           <p className="text-xl md:text-2xl mb-8 opacity-90">
-            Your trusted source for professional AI education in healthcare
+            Free AI literacy for healthcare professionals
           </p>
           <p className="text-lg opacity-80 max-w-3xl mx-auto">
-            From foundational concepts to advanced implementation strategies, 
-            our courses are designed by healthcare professionals for healthcare professionals.
+            A self-paced course and a short skills check — written by a clinician, for clinicians.
           </p>
         </div>
       </section>
@@ -261,23 +257,23 @@ export default function AcademyPage() {
       <section className="grid md:grid-cols-3 gap-8">
         <Card className="text-center p-6">
           <Target className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">Clinically Relevant</h3>
+          <h3 className="text-xl font-semibold mb-2">Clinically Grounded</h3>
           <p className="text-gray-600">
-            Every course is designed with real clinical applications and evidence-based practices.
+            Built around real clinical cases and published studies.
           </p>
         </Card>
         <Card className="text-center p-6">
           <Shield className="w-12 h-12 text-green-600 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">Regulatory Compliant</h3>
+          <h3 className="text-xl font-semibold mb-2">Covers Regulation</h3>
           <p className="text-gray-600">
-            Aligned with EU AI Act, FDA guidelines, and professional medical standards.
+            Explains the EU AI Act, FDA guidance, and CE marking as they apply to clinical AI.
           </p>
         </Card>
         <Card className="text-center p-6">
           <Zap className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">Immediately Applicable</h3>
+          <h3 className="text-xl font-semibold mb-2">Practical</h3>
           <p className="text-gray-600">
-            Practical skills and knowledge you can implement in your practice right away.
+            Frameworks and questions you can actually use when evaluating AI tools at work.
           </p>
         </Card>
       </section>
@@ -286,10 +282,10 @@ export default function AcademyPage() {
       <section>
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Start Your AI Journey - Free
+            Start here
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Begin with our foundational courses designed to build your AI literacy and assess your readiness for implementation.
+            Two places to start: the full course, or a quick skills check to see where you stand.
           </p>
         </div>
         
@@ -302,4 +298,3 @@ export default function AcademyPage() {
     </div>
   );
 }
-

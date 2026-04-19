@@ -22,21 +22,21 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Clinical AI Academy — Evidence, Safety & Regulation for Medical AI',
+  title: 'Clinical AI Academy — AI Literacy for Healthcare Professionals',
   description:
-    'Master AI in healthcare. EU AI Act–relevant, regulatory insights and case-based learning.',
+    'An open-access project on AI in healthcare — course, newsletter, YouTube, and blog. Written by a clinician, for clinicians.',
   openGraph: {
-    title: 'Clinical AI Academy — Evidence, Safety & Regulation for Medical AI',
+    title: 'Clinical AI Academy — AI Literacy for Healthcare Professionals',
     description:
-      'Master AI in healthcare. EU AI Act–relevant, regulatory insights and case-based learning.',
+      'An open-access project on AI in healthcare — course, newsletter, YouTube, and blog. Written by a clinician, for clinicians.',
     url: 'https://clinicalaiacademy.com',
     type: 'website',
   },
   twitter: {
     card: 'summary',
-    title: 'Clinical AI Academy — Evidence, Safety & Regulation for Medical AI',
+    title: 'Clinical AI Academy — AI Literacy for Healthcare Professionals',
     description:
-      'Master AI in healthcare. EU AI Act–relevant, regulatory insights and case-based learning.',
+      'An open-access project on AI in healthcare — course, newsletter, YouTube, and blog. Written by a clinician, for clinicians.',
   },
 };
 
@@ -63,11 +63,11 @@ export default function HomePage() {
               <div className="flex items-center space-x-3">
                 <Badge className="bg-white/10 text-white border-white/20 px-4 py-2">
                   <Shield className="w-4 h-4 mr-2" />
-                  EU AI Act Relevant Training
+                  Covers the EU AI Act
                 </Badge>
                 <Badge className="bg-green-500/20 text-green-200 border-green-400/30 px-4 py-2">
-                  <Award className="w-4 h-4 mr-2" />
-                  Regulatory Relevant
+                  <BookOpen className="w-4 h-4 mr-2" />
+                  Open Access
                 </Badge>
               </div>
 
@@ -80,17 +80,26 @@ export default function HomePage() {
                 </h1>
                 
                 <p className="text-xl lg:text-2xl text-blue-100 leading-relaxed max-w-2xl">
-                  The platform for healthcare professionals to study artificial intelligence. 
-                  From fundamentals to regulatory compliance and clinical implementation.
+                  Learn AI in healthcare — from fundamentals to regulation and clinical practice. Written by a clinician, for clinicians.
                 </p>
 
-                <div className="flex items-center space-x-6 text-blue-200">
+              <div className="flex items-center space-x-6 text-blue-200">
                   <div className="flex items-center space-x-2">
-                    <Award className="w-5 h-5 text-blue-400" />
-                    <span className="font-semibold">Expert-Designed</span>
-                  </div>
+                  <BookOpen className="w-5 h-5 text-blue-400" />
+                  <span className="font-semibold">
+                    <Link href="/modules" className="hover:text-white transition-colors">Course</Link>
+                    {' · '}
+                    <a href="https://clinicalaiacademy.substack.com/" className="hover:text-white transition-colors">Newsletter</a>
+                    {' · '}
+                    <a href="https://www.youtube.com/@clinicalaiacademy" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">YouTube</a>
+                    {' · '}
+                    <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+                  </span>
+                </div>
                 </div>
               </div>
+
+           
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
@@ -99,7 +108,7 @@ export default function HomePage() {
                   className="bg-white text-blue-900 hover:bg-blue-50 font-semibold px-8 py-4 text-lg group"
                 >
                   <Link href="/readiness-index">
-                    Start Free Skills Check
+                    Try the Skills Check
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
@@ -109,8 +118,8 @@ export default function HomePage() {
                   variant="outline" 
                   className="border-white/30 text-white hover:bg-white/10 hover:text-white font-semibold px-8 py-4 text-lg bg-transparent"
                 >
-                  <Link href="/academy">
-                    Explore Courses
+                  <Link href="/modules">
+                    Browse the Course
                     <GraduationCap className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>
@@ -124,11 +133,11 @@ export default function HomePage() {
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold">100%</div>
-                  <div className="text-sm text-blue-200">Compliance Focused</div>
+                  <div className="text-sm text-blue-200">Evidence-Based</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold">24/7</div>
-                  <div className="text-sm text-blue-200">Access</div>
+                  <div className="text-sm text-blue-200">Any Device</div>
                 </div>
               </div>
             </div>
@@ -139,7 +148,7 @@ export default function HomePage() {
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
                     <h3 className="text-xl font-semibold">AI Literacy Score</h3>
-                    <Badge className="bg-green-500 text-white">Complete</Badge>
+                    <Badge className="bg-green-500 text-white">Example</Badge>
                   </div>
                   
                   <div className="space-y-4">
@@ -174,7 +183,7 @@ export default function HomePage() {
 
                   <div className="text-center pt-4 border-t border-white/20">
                     <div className="text-3xl font-bold text-green-400 mb-1">AI Literate</div>
-                    <div className="text-sm text-blue-200">Overall Score: 78/100</div>
+                    <div className="text-sm text-blue-200">Example score: 78/100</div>
                   </div>
                 </div>
               </div>
@@ -188,29 +197,27 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              For Healthcare Leaders Worldwide
+              For Healthcare Professionals
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our evidence-based curriculum is developed by medical professionals.
+              Written by a clinician, grounded in published research and real clinical cases.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <Card className="text-center p-8 border-2 hover:border-blue-200 transition-colors">
               <Stethoscope className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Clinically Validated</h3>
+              <h3 className="text-xl font-semibold mb-3">Clinically Grounded</h3>
               <p className="text-gray-600">
-                Every course module is reviewed by practicing physicians and validated 
-                against real-world clinical applications and outcomes.
+                Built around real clinical cases, landmark studies, and the practical realities of working with AI at the bedside.
               </p>
             </Card>
 
             <Card className="text-center p-8 border-2 hover:border-green-200 transition-colors">
               <Shield className="w-12 h-12 text-green-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-3">Regulatory Relevant</h3>
+              <h3 className="text-xl font-semibold mb-3">Covers Regulation</h3>
               <p className="text-gray-600">
-                Aligned with EU AI Act requirements, FDA guidelines, and international 
-                medical education standards.
+                Explains the EU AI Act, FDA guidance, and CE marking — what they mean for clinicians using AI tools in practice.
               </p>
             </Card>
 
@@ -218,13 +225,10 @@ export default function HomePage() {
               <Brain className="w-12 h-12 text-purple-600 mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-3">Evidence-Based</h3>
               <p className="text-gray-600">
-                Built on peer-reviewed research, clinical studies, and best practices 
-                from successful AI implementations in healthcare settings.
+                Draws on peer-reviewed research, published studies, and documented cases of AI in healthcare — both successes and failures.
               </p>
             </Card>
           </div>
-
-          {/* Remove Credentials section - delete this entire block */}
         </div>
       </section>
 
@@ -233,14 +237,13 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <Badge className="bg-green-100 text-green-800 px-4 py-2 mb-6">
-              Free Access
+              Open Access
             </Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Start Your AI Journey Today
+              Two Ways to Start
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Begin with our comprehensive free offerings designed to build foundational 
-              AI literacy and assess your organization's readiness for implementation.
+              Take a quick skills check to see where you stand, or dive straight into the course.
             </p>
           </div>
 
@@ -255,25 +258,24 @@ export default function HomePage() {
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900">Clinical AI Skills Check</h3>
                     <div className="flex items-center space-x-4 text-sm text-gray-600">
-                      <span>Free • 5 minutes</span>
-                      <Badge className="bg-green-100 text-green-800">Most Popular</Badge>
+                      <span>5 minutes</span>
+                      <Badge className="bg-green-100 text-green-800">Quick start</Badge>
                     </div>
                   </div>
                 </div>
 
                 <p className="text-gray-600 mb-6 text-lg">
-                  Quick 10-question assessment evaluating your AI knowledge and skills 
-                  across fundamentals, applications, implementation, and ethics.
+                  A short 10-question self-assessment covering AI fundamentals, clinical applications, implementation, and ethics.
                 </p>
 
                 <div className="space-y-3 mb-8">
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-600" />
-                    <span className="text-gray-700">Personalized skills score (0-100)</span>
+                    <span className="text-gray-700">Personalised score (0–100)</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-600" />
-                    <span className="text-gray-700">Detailed recommendations report</span>
+                    <span className="text-gray-700">Recommendations based on your answers</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-600" />
@@ -281,13 +283,13 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-600" />
-                    <span className="text-gray-700">Implementation roadmap</span>
+                    <span className="text-gray-700">Results sent by email</span>
                   </div>
                 </div>
 
                 <Button asChild className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-lg py-3">
                   <Link href="/readiness-index">
-                    Take Free Skills Check
+                    Take the Skills Check
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>
@@ -303,53 +305,45 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900">AI Literacy Modules</h3>
-                    <p className="text-blue-600 font-medium">Free • 4-6 hours</p>
+                    <p className="text-blue-600 font-medium">8–12 hours</p>
                   </div>
                 </div>
-                <Badge className="bg-blue-100 text-blue-800">Regulatory Relevant</Badge>
+                <Badge className="bg-blue-100 text-blue-800">8 Modules</Badge>
               </div>
 
               <p className="text-gray-600 mb-6 text-lg">
-                Comprehensive 4-module course covering AI fundamentals, machine learning, 
-                clinical applications, and regulatory compliance for healthcare professionals.
+                An eight-module course covering AI fundamentals, how machine learning works, clinical applications, evaluation, regulation, LLMs, and implementation.
               </p>
 
               <div className="space-y-3 mb-8">
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-blue-600" />
-                  <span className="text-gray-700">Interactive modules with real cases</span>
+                  <span className="text-gray-700">Real clinical cases and published studies</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-blue-600" />
-                  <span className="text-gray-700">Self-paced learning</span>
+                  <span className="text-gray-700">Self-paced, work through at your own rhythm</span>
                 </div>
                  <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-blue-600" />
-                  <span className="text-gray-700">Evidence-Based</span>
+                  <span className="text-gray-700">Covers EU AI Act, FDA, and CE frameworks</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-blue-600" />
-                  <span className="text-gray-700">By Clinicans for Clinicians</span>
+                  <span className="text-gray-700">Written by a clinician, for clinicians</span>
                 </div>
               </div>
 
               <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3">
                 <Link href="/modules">
-                  Start Free Course
+                  Start the Course
                   <GraduationCap className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
             </Card>
           </div>
 
-          <div className="text-center mt-12">
-            <p className="text-gray-600 mb-4">
-              Join healthcare professionals who have started their AI journey
-            </p>
-            <div className="flex items-center justify-center space-x-1">
-              <div className="text-gray-600 font-medium">Expert-designed curriculum</div>
-            </div>
-          </div>
+          
         </div>
       </section>
 
@@ -357,23 +351,21 @@ export default function HomePage() {
       <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Ready to Lead the Future of Healthcare?
+            Ready to start?
           </h2>
           <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
-            Join the growing community of healthcare professionals who are mastering AI 
-            to improve patient outcomes, enhance clinical decision-making, and stay ahead 
-            of regulatory requirements.
+            Take the five-minute skills check to see where you stand, or open Module 1 and start reading.
           </p>
 
           <Button asChild className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-lg py-3">
                   <Link href="/readiness-index">
-                    Start Your AI Skills Check 
+                    Take the Skills Check 
                   </Link>
           </Button>
 
-          <div className="text-center text-blue-200">
+          <div className="text-center text-blue-200 mt-6">
             <p className="text-sm">
-              Join healthcare professionals already transforming their practice with AI
+              Or <Link href="/modules" className="underline hover:text-white">browse the modules</Link> and pick a topic.
             </p>
           </div>
         </div>
@@ -381,4 +373,3 @@ export default function HomePage() {
     </div>
   );
 }
-
