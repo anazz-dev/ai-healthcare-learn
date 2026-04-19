@@ -85,9 +85,6 @@ export default function ModulesPage() {
 
       {/* Course Hero */}
       <div className="mb-10">
-        <span className="inline-block bg-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
-          Online Certificate Course
-        </span>
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
           AI Literacy for Healthcare Professionals
         </h1>
@@ -102,7 +99,6 @@ export default function ModulesPage() {
           { value: '8', label: 'Modules' },
           { value: 'Regulatory', label: 'Relevant' },
           { value: 'Self-paced', label: 'Online' },
-          { value: 'Certificate', label: 'On Completion' },
         ].map((stat) => (
           <div key={stat.label} className="bg-blue-50 rounded-lg p-4 text-center">
             <div className="text-xl font-bold text-blue-700">{stat.value}</div>
@@ -178,21 +174,6 @@ export default function ModulesPage() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="mt-12 bg-blue-600 text-white rounded-xl p-8 text-center">
-        <h2 className="text-2xl font-bold mb-2">Ready to earn your certificate?</h2>
-        <p className="text-blue-100 mb-5 text-sm max-w-xl mx-auto">
-          Complete all 8 modules and receive a verified Certificate of Completion in AI Literacy for Healthcare Professionals.
-        </p>
-        <Link
-          href="/progress"
-          className="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors"
-        >
-          View My Progress
-        </Link>
-         <p className="text-blue-100 mb-5 text-sm max-w-xl mx-auto">
-          This course is not CME/CPD accredited. 
-        </p>
-      </div>
 
     </div>
   );

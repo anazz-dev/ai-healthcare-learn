@@ -43,7 +43,7 @@ const courses: Course[] = [
   {
     id: 'ai-literacy',
     title: 'AI Literacy for Healthcare Professionals',
-    description: 'Master the fundamentals of AI in healthcare with this comprehensive course covering everything from basic concepts to regulatory compliance.',
+    description: 'Learn the fundamentals of AI in healthcare with this comprehensive course covering everything from basic concepts to regulatory compliance.',
     type: 'free',
     duration: '4-6 hours',
     modules: 4,
@@ -53,11 +53,9 @@ const courses: Course[] = [
     accreditation: 'Regulatory Relevant',
     features: [
       'Interactive modules with real-world examples',
-      'Downloadable resources and guides',
-      'Professional certificate upon completion',
+      'Evidence-based',
       'Self-paced learning',
       'Mobile-friendly content',
-      'Community discussion forums'
     ]
   },
   {

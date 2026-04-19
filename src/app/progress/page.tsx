@@ -11,9 +11,6 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
-import UnifiedEmailForm from '@/components/UnifiedEmailForm';
 
 const ALL_MODULES = [
   { id: 'module-1', title: "What AI Really Is (And Isn't): A Clinician's First Look" },
@@ -30,8 +27,6 @@ const TOTAL_MODULES = ALL_MODULES.length;
 
 export default function ProgressPage() {
   const [completionStatus, setCompletionStatus] = useState<Record<string, boolean>>({});
-  const [showCertForm, setShowCertForm] = useState(false);
-  const [certOpened, setCertOpened] = useState(false);
 
   useEffect(() => {
     const storedProgress = localStorage.getItem('aiHealthcareProgress');
@@ -49,16 +44,6 @@ export default function ProgressPage() {
 
   const completedCount = ALL_MODULES.filter(m => completionStatus[m.id]).length;
   const overallProgress = Math.round((completedCount / TOTAL_MODULES) * 100);
-  const allModulesComplete = completedCount === TOTAL_MODULES;
-
-  const handleCertificateSubmit = (data: { name: string; email: string }) => {
-    const slug = encodeURIComponent(
-      data.name.trim().toLowerCase().replace(/\s+/g, '-')
-    );
-    window.open(`/certificate/${slug}`, '_blank', 'noopener,noreferrer');
-    setCertOpened(true);
-    setShowCertForm(false);
-  };
 
   return (
     <div>
@@ -118,103 +103,6 @@ export default function ProgressPage() {
         </CardContent>
       </Card>
 
-      {/* ── Certificate section ── */}
-      <Card style={{ marginTop: '2rem' }}>
-        <CardHeader>
-          <CardTitle>Professional Certificate</CardTitle>
-          <CardDescription>
-            {allModulesComplete
-              ? 'Your certificate is ready — enter your details below to generate it'
-              : `Complete all ${TOTAL_MODULES} modules to unlock your certificate`}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {/* Modules not yet complete */}
-          {!allModulesComplete && (
-            <div>
-              <p>
-                You have completed {completedCount} of {TOTAL_MODULES} modules.
-                Finish the remaining{' '}
-                {TOTAL_MODULES - completedCount} module
-                {TOTAL_MODULES - completedCount !== 1 ? 's' : ''} to unlock your certificate.
-              </p>
-              <Link href="/modules">
-                <Button variant="outline">
-                  Continue Learning <ArrowRight style={{ marginLeft: '0.5rem' }} />
-                </Button>
-              </Link>
-            </div>
-          )}
-
-          {/* All complete — initial CTA */}
-          {allModulesComplete && !showCertForm && !certOpened && (
-            <div>
-              <h3>Congratulations — all 8 modules complete!</h3>
-              <p>
-                Generate your free verified certificate of completion. Enter your
-                details and it will open instantly in a new tab.
-              </p>
-              <Button
-                onClick={() => setShowCertForm(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
-              >
-                Get My Certificate
-              </Button>
-            </div>
-          )}
-
-          {/* Email / consent form */}
-          {allModulesComplete && showCertForm && (
-            <div style={{ maxWidth: '480px' }}>
-              <p style={{ fontSize: '0.9rem', color: '#555', marginBottom: '1.25rem' }}>
-                Your name will appear on the certificate exactly as you enter it.
-                We'll also add you to our mailing list — you can opt out at any time.
-              </p>
-
-              <UnifiedEmailForm
-                purpose="certificate"
-                onSubmit={handleCertificateSubmit}
-                title="Generate Your Certificate"
-                description="Enter your details below. Your certificate will open in a new tab immediately after submission."
-                buttonText="Generate My Certificate"
-              />
-
-              <button
-                type="button"
-                onClick={() => setShowCertForm(false)}
-                style={{
-                  marginTop: '0.75rem',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  color: '#666',
-                  textDecoration: 'underline',
-                  fontSize: '0.85rem',
-                }}
-              >
-                Cancel
-              </button>
-            </div>
-          )}
-
-          {/* Certificate already opened */}
-          {certOpened && (
-            <div>
-              <p>
-                <strong>Your certificate has opened in a new tab.</strong>{' '}
-                If a pop-up blocker prevented it, allow pop-ups for this site and{' '}
-                <button
-                  onClick={() => { setCertOpened(false); setShowCertForm(true); }}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#2563eb', textDecoration: 'underline', padding: 0 }}
-                >
-                  try again
-                </button>
-                .
-              </p>
-            </div>
-          )}
-        </CardContent>
-      </Card>
     </div>
   );
 }

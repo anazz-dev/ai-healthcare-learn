@@ -302,8 +302,8 @@ export default function HomePage() {
                     <BookOpen className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900">AI Literacy Course</h3>
-                    <p className="text-blue-600 font-medium">Free • 4-6 hours • Certificate</p>
+                    <h3 className="text-2xl font-bold text-gray-900">AI Literacy Modules</h3>
+                    <p className="text-blue-600 font-medium">Free • 4-6 hours</p>
                   </div>
                 </div>
                 <Badge className="bg-blue-100 text-blue-800">Regulatory Relevant</Badge>
@@ -321,15 +321,15 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-blue-600" />
-                  <span className="text-gray-700">Professional certificate</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-blue-600" />
                   <span className="text-gray-700">Self-paced learning</span>
                 </div>
+                 <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-5 h-5 text-blue-600" />
+                  <span className="text-gray-700">Evidence-Based</span>
+                </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-5 h-5 text-blue-600" />
-                  <span className="text-gray-700">Lifetime access</span>
+                  <span className="text-gray-700">By Clinicans for Clinicians</span>
                 </div>
               </div>
 
