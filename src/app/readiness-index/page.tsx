@@ -104,7 +104,7 @@ export default function ReadinessIndexPage() {
             Continue Your Clinical AI Learning Journey
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Take your AI skills to the next level with our comprehensive courses and certification programs.
+            Take your AI skills to the next level with the modules.
           </p>
           <div className="flex justify-center">
             <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
