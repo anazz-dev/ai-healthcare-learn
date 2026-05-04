@@ -137,12 +137,6 @@ export default function ModulesPage() {
         </p>
       </div>
 
-      <div className="bg-gray-50 rounded-xl p-6 mb-10">
-      <p className="text-gray-600 text-sm leading-relaxed">
-      <strong>Note:</strong> No certificate of completion is issued for this course.
-      </p>
-      </div>
-
       {/* Progress Bar */}
       {completedCount > 0 && (
         <div className="mb-8 bg-white border border-gray-200 rounded-xl p-5">
