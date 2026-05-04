@@ -165,7 +165,7 @@ export default function CertificateActions({ name }: CertificateActionsProps) {
         {/* Footer */}
         <div style={{ textAlign: 'center', marginTop: '20px', paddingTop: '12px', borderTop: '1px solid #e5e0d0' }}>
           <p style={{ fontSize: '10px', color: '#aaa', margin: 0, letterSpacing: '0.5px' }}>
-            Certificate ID: <strong style={{ color: '#888' }}>{certificateId}</strong> · Verified by Clinical AI Academy · clinicalai.academy
+            Certificate ID: <strong style={{ color: '#888' }}>{certificateId}</strong> clinicalai.academy
           </p>
         </div>
       </div>
