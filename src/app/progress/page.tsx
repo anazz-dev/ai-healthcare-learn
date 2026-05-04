@@ -50,7 +50,6 @@ export default function ProgressPage() {
       <h1>Your Learning Progress</h1>
       <p>Track your journey in Clinical AI literacy</p>
 
-      {/* ── Progress overview ── */}
       <Card>
         <CardHeader>
           <CardTitle>Course Progress</CardTitle>
@@ -93,6 +92,10 @@ export default function ProgressPage() {
             ))}
           </div>
 
+          <p className="text-gray-600 text-sm leading-relaxed">
+          Please note that no certificate of completion is issued for this course.
+          </p>
+
           <div style={{ marginTop: '1.5rem' }}>
             <h3>Assessments</h3>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -102,7 +105,6 @@ export default function ProgressPage() {
           </div>
         </CardContent>
       </Card>
-
     </div>
   );
 }

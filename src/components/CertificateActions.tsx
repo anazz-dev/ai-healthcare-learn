@@ -3,6 +3,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Download } from 'lucide-react';
 
+function LinkedInIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
 interface CertificateActionsProps {
   name: string;
 }
@@ -100,7 +108,7 @@ export default function CertificateActions({ name }: CertificateActionsProps) {
             AI Literacy for Healthcare Professionals
           </h2>
           <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>
-            Clinical AI Academy · AI for Healthcare Series · 8 modules
+            Clinical AI Academy · AI for Healthcare Series · 8 modules · approx. 8 hours CPD
           </p>
         </div>
 
@@ -133,6 +141,25 @@ export default function CertificateActions({ name }: CertificateActionsProps) {
         <div style={{ width: '100%', height: '1px', background: 'linear-gradient(90deg, transparent, #d4af37, transparent)', margin: '16px 0' }} />
 
         {/* EU AI Act alignment box */}
+        <div style={{
+          background: 'linear-gradient(135deg, #f0f4ff, #e8f0fe)',
+          border: '1px solid #c7d7f7',
+          borderLeft: '4px solid #2563eb',
+          borderRadius: '6px',
+          padding: '14px 18px',
+          margin: '16px 0',
+        }}>
+          <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: '#1d4ed8', margin: '0 0 6px' }}>
+            EU AI Act — AI Literacy Alignment (Article 4)
+          </p>
+          <p style={{ fontSize: '11px', color: '#1e3a6e', margin: '0 0 6px', lineHeight: 1.6 }}>
+            This programme is designed to address the AI literacy obligations set out in Article 4 of Regulation (EU) 2024/1689 (the EU Artificial Intelligence Act), which requires deployers of AI systems in high-risk domains — including healthcare — to ensure that their personnel possess a sufficient level of AI literacy, taking into account their technical knowledge, experience, education, and the context of deployment.
+          </p>
+          <p style={{ fontSize: '11px', color: '#1e3a6e', margin: 0, lineHeight: 1.6 }}>
+            Completion of this course demonstrates that the holder has acquired foundational and applied AI literacy competencies relevant to clinical practice, including critical evaluation of AI tools, understanding of regulatory frameworks (FDA SaMD, EU MDR, EU AI Act), responsible use of generative AI, and governance principles for safe AI deployment in healthcare settings.
+          </p>
+        </div>
+
         {/* Award date and signature */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '20px' }}>
           <div>
@@ -142,7 +169,7 @@ export default function CertificateActions({ name }: CertificateActionsProps) {
           <div style={{ textAlign: 'center' }}>
             <p style={{
               fontFamily: "'Great Vibes', cursive",
-              fontSize: '22px',
+              fontSize: '42px',
               color: '#1a1a2e',
               borderBottom: '1px solid #bbb',
               paddingBottom: '2px',
@@ -158,16 +185,13 @@ export default function CertificateActions({ name }: CertificateActionsProps) {
         {/* Footer */}
         <div style={{ textAlign: 'center', marginTop: '20px', paddingTop: '12px', borderTop: '1px solid #e5e0d0' }}>
           <p style={{ fontSize: '10px', color: '#aaa', margin: 0, letterSpacing: '0.5px' }}>
-            Certificate ID: <strong style={{ color: '#888' }}>{certificateId}</strong> 
-          </p>
-           <p style={{ fontSize: '10px', color: '#aaa', margin: 0, letterSpacing: '0.5px' }}>
-            This course is not CME/CPD accredited course.
+            Certificate ID: <strong style={{ color: '#888' }}>{certificateId}</strong> · Verified by Clinical AI Academy · clinicalai.academy
           </p>
         </div>
       </div>
 
       {/* Action buttons */}
-      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginTop: '24px' }}>
+      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginTop: '24px', flexWrap: 'wrap' }}>
         <button
           onClick={handlePrint}
           style={{
@@ -186,6 +210,36 @@ export default function CertificateActions({ name }: CertificateActionsProps) {
         >
           <Download size={16} />
           Download / Print PDF
+        </button>
+
+        <button
+          onClick={() => {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(
+              `I just completed "AI Literacy for Healthcare Professionals" at Clinical AI Academy! 🎓`
+            );
+            window.open(
+              `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}`,
+              '_blank',
+              'noopener,noreferrer,width=600,height=600'
+            );
+          }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '10px 24px',
+            background: '#0077b5',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '6px',
+            fontSize: '14px',
+            fontWeight: 600,
+            cursor: 'pointer',
+          }}
+        >
+          <LinkedInIcon />
+          Share on LinkedIn
         </button>
       </div>
     </>
