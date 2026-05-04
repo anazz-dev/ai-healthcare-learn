@@ -140,26 +140,6 @@ export default function CertificateActions({ name }: CertificateActionsProps) {
 
         <div style={{ width: '100%', height: '1px', background: 'linear-gradient(90deg, transparent, #d4af37, transparent)', margin: '16px 0' }} />
 
-        {/* EU AI Act alignment box */}
-        <div style={{
-          background: 'linear-gradient(135deg, #f0f4ff, #e8f0fe)',
-          border: '1px solid #c7d7f7',
-          borderLeft: '4px solid #2563eb',
-          borderRadius: '6px',
-          padding: '14px 18px',
-          margin: '16px 0',
-        }}>
-          <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: '#1d4ed8', margin: '0 0 6px' }}>
-            EU AI Act — AI Literacy Alignment (Article 4)
-          </p>
-          <p style={{ fontSize: '11px', color: '#1e3a6e', margin: '0 0 6px', lineHeight: 1.6 }}>
-            This programme is designed to address the AI literacy obligations set out in Article 4 of Regulation (EU) 2024/1689 (the EU Artificial Intelligence Act), which requires deployers of AI systems in high-risk domains — including healthcare — to ensure that their personnel possess a sufficient level of AI literacy, taking into account their technical knowledge, experience, education, and the context of deployment.
-          </p>
-          <p style={{ fontSize: '11px', color: '#1e3a6e', margin: 0, lineHeight: 1.6 }}>
-            Completion of this course demonstrates that the holder has acquired foundational and applied AI literacy competencies relevant to clinical practice, including critical evaluation of AI tools, understanding of regulatory frameworks (FDA SaMD, EU MDR, EU AI Act), responsible use of generative AI, and governance principles for safe AI deployment in healthcare settings.
-          </p>
-        </div>
-
         {/* Award date and signature */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '20px' }}>
           <div>
@@ -169,7 +149,7 @@ export default function CertificateActions({ name }: CertificateActionsProps) {
           <div style={{ textAlign: 'center' }}>
             <p style={{
               fontFamily: "'Great Vibes', cursive",
-              fontSize: '42px',
+              fontSize: '22px',
               color: '#1a1a2e',
               borderBottom: '1px solid #bbb',
               paddingBottom: '2px',
