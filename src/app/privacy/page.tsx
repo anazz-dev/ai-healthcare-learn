@@ -203,7 +203,7 @@ const PrivacyPolicyPage: React.FC = () => {
         </p>
         <p className="mt-2">
           Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:<br />
-          Dr. Ahmad Nazzal, 69115 Heidelberg, Darwinstrasse 6, Germany
+          Dr. Ahmad Nazzal, Heidelberg, Germany
         </p>
       </div>
 
