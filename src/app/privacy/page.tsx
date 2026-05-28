@@ -196,7 +196,7 @@ const PrivacyPolicyPage: React.FC = () => {
         <h2 className="text-2xl font-semibold mb-3">Impressum</h2>
         <p>
           Dr. Ahmad Nazzal<br />
-          69115 Heidelberg, Darwinstrasse 6, Germany 
+          Heidelberg, Germany
         </p>
         <p>
           <strong>E-Mail:</strong> contact@clinicalaiacademy.com
