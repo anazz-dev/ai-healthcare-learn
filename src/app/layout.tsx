@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/Layout"; // Import the custom Layout component
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI for Healthcare Professionals",
-  description: "Learn about Artificial Intelligence in Healthcare",
+  title: "Clinical AI Academy",
+  description: "A clinical AI knowledge check and an open learning path for healthcare professionals.",
 };
 
 export default function RootLayout({
@@ -17,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Layout>{children}</Layout> {/* Wrap children with the custom Layout */}
       </body>
     </html>

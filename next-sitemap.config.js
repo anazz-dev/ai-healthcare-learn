@@ -1,6 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://clinicalaiacademy.com',
+  siteUrl: 'https://clinicalai.academy',
   generateRobotsTxt: true,
-  outDir: './public',  // ← required for static hosting on Vercel
+  outDir: './public',
+  exclude: ['/academy', '/progress', '/certificate/*', '/contact', '/service', '/payment-success', '/api/*'],
 };

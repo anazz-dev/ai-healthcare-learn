@@ -1,14 +1,17 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
+import type { Metadata } from 'next';
+import fs from 'node:fs';
+import path from 'node:path';
 import InteractiveModuleViewer from '@/components/InteractiveModuleViewer';
 import { quizData } from '@/lib/quizData';
+import { modules } from '@/lib/learning-path';
 
-// Define Learning Objectives JSX separately
+const module = modules[7];
+export const metadata: Metadata = { title: `${module.title} | Clinical AI Academy`, description: module.description };
+
 const learningObjectives = (
   <div className="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 p-4 rounded-lg mb-6">
-    <h2 className="text-xl font-semibold mb-2 text-blue-800 dark:text-blue-200">Learning Objectives</h2>
-    <p className="mb-2 text-blue-700 dark:text-blue-300">By the end of this module, learners will be able to:</p>
+    <h2 className="text-xl font-semibold mb-2 text-blue-800 dark:text-blue-200">In this module</h2>
+    <p className="mb-2 text-blue-700 dark:text-blue-300">Topics to explore:</p>
     <ul className="list-disc list-inside space-y-1 text-blue-700 dark:text-blue-300">
       <li>Describe the full lifecycle of an AI deployment in a healthcare setting</li>
       <li>Explain why workflow redesign is essential for successful AI implementation</li>
@@ -20,45 +23,7 @@ const learningObjectives = (
   </div>
 );
 
-const Module8Page = () => {
-  const [moduleContent, setModuleContent] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('/content/module8_content.html')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.text();
-      })
-      .then(html => {
-        setModuleContent(html);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching module content:', error);
-        setModuleContent('<p>Error loading module content. Please try again later.</p>');
-        setIsLoading(false);
-      });
-  }, []);
-
-  const module8Quiz = quizData['module-8']?.questions || [];
-
-  if (isLoading) {
-    return <p>Loading module content...</p>;
-  }
-
-  return (
-    <InteractiveModuleViewer
-      moduleId="module-8"
-      moduleTitle="Module 8: AI Implementation & Change Management in Healthcare"
-      htmlContent={moduleContent}
-      learningObjectives={learningObjectives}
-      quizQuestions={module8Quiz}
-      previousModulePath="/modules/module-7"
-    />
-  );
-};
-
-export default Module8Page;
+export default function ModulePage() {
+  const htmlContent = fs.readFileSync(path.join(process.cwd(), 'public/content/module8_content.html'), 'utf8');
+  return <InteractiveModuleViewer htmlContent={htmlContent} moduleId={module.id} moduleTitle={module.title} learningObjectives={learningObjectives} quizQuestions={quizData[module.id]?.questions || []} previousModulePath="/modules/module-7" />;
+}

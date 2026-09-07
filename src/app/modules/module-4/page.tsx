@@ -1,14 +1,17 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
+import type { Metadata } from 'next';
+import fs from 'node:fs';
+import path from 'node:path';
 import InteractiveModuleViewer from '@/components/InteractiveModuleViewer';
-import { quizData } from '@/lib/quizData'; // Assuming quizData holds all quizzes
+import { quizData } from '@/lib/quizData';
+import { modules } from '@/lib/learning-path';
 
-// Define Learning Objectives JSX separately
+const module = modules[3];
+export const metadata: Metadata = { title: `${module.title} | Clinical AI Academy`, description: module.description };
+
 const learningObjectives = (
   <div className="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 p-4 rounded-lg mb-6">
-    <h2 className="text-xl font-semibold mb-2 text-blue-800 dark:text-blue-200">Learning Objectives</h2>
-    <p className="mb-2 text-blue-700 dark:text-blue-300">By the end of this module, learners will be able to:</p>
+    <h2 className="text-xl font-semibold mb-2 text-blue-800 dark:text-blue-200">In this module</h2>
+    <p className="mb-2 text-blue-700 dark:text-blue-300">Topics to explore:</p>
     <ul className="list-disc list-inside space-y-1 text-blue-700 dark:text-blue-300">
       <li>Describe the WHO’s six ethical principles for AI in health</li>
       <li>Identify common sources of bias in training data and model behaviour</li>
@@ -19,51 +22,7 @@ const learningObjectives = (
   </div>
 );
 
-const Module4Page = () => {
-  const [moduleContent, setModuleContent] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Fetch the HTML content for Module 4 from the public directory
-    fetch('/content/module4_content.html') // Path relative to the public directory
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.text();
-      })
-      .then(html => {
-        setModuleContent(html);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching module content:', error);
-        setModuleContent('<p>Error loading module content. Please try again later.</p>');
-        setIsLoading(false);
-      });
-  }, []);
-
-  // Extract quiz questions for Module 4
-  const module4Quiz = quizData['module-4']?.questions || [];
-  const module4Title = quizData['module-4']?.title || "Module 4 Quiz";
-
-  if (isLoading) {
-    return <div>Loading module content...</div>; // Or a loading spinner
-  }
-
-  return (
-    <InteractiveModuleViewer
-      moduleTitle="Trustworthy AI: Ethics, Risk, and Regulation in Clinical Practice"
-      htmlContent={moduleContent}
-      learningObjectives={learningObjectives} // Pass learning objectives
-      quizTitle={module4Title}
-      quizQuestions={module4Quiz} // Pass the imported quiz data
-      moduleId="module-4"
-      previousModulePath="/modules/module-3"
-      // No nextModulePath for the last module
-    />
-  );
-};
-
-export default Module4Page;
-
+export default function ModulePage() {
+  const htmlContent = fs.readFileSync(path.join(process.cwd(), 'public/content/module4_content.html'), 'utf8');
+  return <InteractiveModuleViewer htmlContent={htmlContent} moduleId={module.id} moduleTitle={module.title} learningObjectives={learningObjectives} quizQuestions={quizData[module.id]?.questions || []} previousModulePath="/modules/module-3" nextModulePath="/modules/module-5" />;
+}

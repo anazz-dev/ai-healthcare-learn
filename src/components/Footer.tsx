@@ -1,18 +1,5 @@
 import Link from 'next/link';
 
 export default function Footer() {
-  return (
-    <footer className="bg-gray-100 text-gray-600 p-4 mt-8">
-      <nav className="container mx-auto text-center text-sm">
-        <ul className="flex justify-center space-x-4">
-          {/* Optional links based on design spec */}
-          {/* <li><Link href="/about" className="hover:underline">About</Link></li> */}
-          <li><Link href="/privacy" className="hover:underline">Privacy Policy</Link></li>
-          {/* <li><Link href="/contact" className="hover:underline">Contact</Link></li> */}
-        </ul>
-        <p className="mt-2">&copy; {new Date().getFullYear()} Clinical AI Academy. All rights reserved.</p>
-      </nav>
-    </footer>
-  );
+  return <footer className="site-footer"><div className="academy-shell footer-inner"><div><p className="footer-brand">Clinical AI Academy</p><p>Open learning about AI in healthcare.</p></div><nav aria-label="Further resources"><Link href="/blog">Reading</Link><a href="https://www.youtube.com/@clinicalaiacademy" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://clinicalaiacademy.substack.com/" target="_blank" rel="noopener noreferrer">Newsletter</a><Link href="/privacy">Privacy</Link></nav><p className="copyright">© {new Date().getFullYear()} Clinical AI Academy</p></div></footer>;
 }
-

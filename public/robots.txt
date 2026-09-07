@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://clinicalaiacademy.com
+Host: https://clinicalai.academy
 
 # Sitemaps
-Sitemap: https://clinicalaiacademy.com/sitemap.xml
+Sitemap: https://clinicalai.academy/sitemap.xml

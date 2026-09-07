@@ -45,8 +45,8 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">Clinical AI Academy Blog</h1>
+    <div className="academy-shell py-12">
+      <h1 className="text-4xl font-bold mb-8">Further reading</h1>
       
       <div className="space-y-8">
         {posts.map((post) => (
@@ -56,7 +56,6 @@ export default function BlogPage() {
                 {post.title}
               </Link>
             </h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{post.date}</p>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               {post.excerpt}
             </p>
