@@ -69,7 +69,6 @@ export default function PrivacyPage() {
         <h2 id="your-rights">Your data-protection rights</h2>
         <p>Where the GDPR’s conditions are met, you may request access, correction, deletion, restriction of processing or data portability. You may object, on grounds relating to your particular situation, to processing based on legitimate interests. If processing is based on consent, you may withdraw it without affecting the lawfulness of earlier processing.</p>
         <p>You may use the operator’s email or postal address above to exercise your rights. Answers held only in your browser are not available to the operator.</p>
-        <p>You may also lodge a complaint with a data-protection supervisory authority, particularly in the EU country of your habitual residence, workplace or the alleged infringement. <a className="text-link" href="https://www.edpb.europa.eu/about-edpb/about-edpb/members_en" target="_blank" rel="noopener noreferrer">Find the relevant authority through the European Data Protection Board</a>.</p>
       </section>
 
       <section aria-labelledby="notice-changes">
