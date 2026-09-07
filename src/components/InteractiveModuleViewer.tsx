@@ -1,11 +1,13 @@
-
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
-import { Progress } from '@/components/ui/progress';
-import { Button } from '@/components/ui/button';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
 import Link from 'next/link';
-import Quiz, { QuizQuestion } from '@/components/Quiz'; // Import Quiz component and type
+import { ArrowLeft, ArrowRight, BookOpen } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import Quiz, { QuizQuestion } from '@/components/Quiz';
+import { splitModuleSections } from '@/lib/module-sections';
 
 interface InteractiveModuleViewerProps {
   htmlContent: string;
@@ -13,211 +15,36 @@ interface InteractiveModuleViewerProps {
   nextModulePath?: string;
   previousModulePath?: string;
   moduleTitle: string;
-  learningObjectives: React.ReactNode;
+  learningObjectives: ReactNode;
   quizQuestions?: QuizQuestion[];
 }
 
-const InteractiveModuleViewer: React.FC<InteractiveModuleViewerProps> = ({
-  htmlContent,
-  moduleId,
-  nextModulePath,
-  previousModulePath,
-  moduleTitle,
-  learningObjectives,
-  quizQuestions,
-}) => {
-  const slides = useMemo(() => {
-    // Split HTML content by H2 tags
-    const sections = htmlContent.split(/<h2[^>]*>/i);
-    const formattedSlides: string[] = [];
-
-    // Handle content before the first H2
-    if (sections.length > 0 && sections[0].trim().length > 0) {
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = sections[0];
-        if (tempDiv.textContent?.trim()) {
-            formattedSlides.push(sections[0].trim());
-        }
-    }
-
-    // Add subsequent sections, prepending the H2 tag
-    for (let i = 1; i < sections.length; i++) {
-      const section = sections[i];
-      const h2Match = htmlContent.match(/<h2[^>]*>/gi);
-      if (h2Match && h2Match[i-1]) {
-          const trimmedSection = section.trim();
-          if (trimmedSection) {
-            formattedSlides.push(`${h2Match[i-1]}${trimmedSection}`);
-          }
-      } else {
-          const trimmedSection = section.trim();
-          if (trimmedSection) {
-              formattedSlides.push(`<h2></h2>${trimmedSection}`);
-          }
-      }
-    }
-
-    if (formattedSlides.length === 0 && htmlContent.trim()) {
-      formattedSlides.push(htmlContent.trim());
-    }
-
-    return formattedSlides.filter(slide => slide.length > 0);
-  }, [htmlContent]);
-
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [showQuiz, setShowQuiz] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(false); // Track if module (quiz) is completed
-
-  // Check initial completion status on mount
-  useEffect(() => {
-    try {
-      const storedProgress = localStorage.getItem('aiHealthcareProgress') || '{}';
-      const progressData = JSON.parse(storedProgress);
-      if (progressData[moduleId]) {
-        setIsCompleted(true);
-      }
-    } catch (error) {
-      console.error("Failed to read progress from localStorage:", error);
-    }
-  }, [moduleId]);
-
-  const totalSlides = slides.length;
-  const hasQuiz = quizQuestions && quizQuestions.length > 0;
-  const totalSteps = totalSlides + (hasQuiz ? 1 : 0);
-  const currentStep = showQuiz ? totalSteps : currentSlideIndex + 1;
-  const progress = totalSteps > 0 ? (currentStep / totalSteps) * 100 : 0;
-
-  const isFirstSlide = currentSlideIndex === 0 && !showQuiz;
-  const isLastSlide = currentSlideIndex === totalSlides - 1;
-  const canShowQuiz = isLastSlide && hasQuiz;
-
-  const goToNextSlide = () => {
-    if (!isLastSlide) {
-      setCurrentSlideIndex(prev => prev + 1);
-    } else if (canShowQuiz && !showQuiz) {
-      setShowQuiz(true);
-    }
-  };
-
-  const goToPreviousSlide = () => {
-    if (showQuiz) {
-      setShowQuiz(false);
-    } else if (currentSlideIndex > 0) {
-      // Corrected: Decrement index to go to previous slide
-      setCurrentSlideIndex(prev => prev - 1);
-    }
-  };
-
-  // This function is called by the Quiz component ONLY when the quiz is PASSED
-  const handleQuizPassed = () => {
-    try {
-      const storedProgress = localStorage.getItem('aiHealthcareProgress') || '{}';
-      const progressData = JSON.parse(storedProgress);
-      progressData[moduleId] = true;
-      localStorage.setItem('aiHealthcareProgress', JSON.stringify(progressData));
-      setIsCompleted(true); // Update state to reflect completion
-      // Quiz component shows its own completion message
-    } catch (error) {
-      console.error("Failed to update progress in localStorage:", error);
-      alert('Could not save progress.');
-    }
-  };
-
-  if (totalSlides === 0) {
-    return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-4">{moduleTitle}</h1>
-            <p className="text-red-500">Error: Could not parse HTML content into slides for this module.</p>
-            {previousModulePath && (
-              <Link href={previousModulePath} passHref>
-                <Button variant="outline" className="mt-4">← Previous Module</Button>
-              </Link>
-            )}
-        </div>
-    );
-}
+export default function InteractiveModuleViewer({ htmlContent, moduleId, nextModulePath, previousModulePath, moduleTitle, learningObjectives, quizQuestions = [] }: InteractiveModuleViewerProps) {
+  const sections = useMemo(() => splitModuleSections(htmlContent), [htmlContent]);
+  const [current, setCurrent] = useState(0);
+  const [practice, setPractice] = useState(false);
+  const [navigated, setNavigated] = useState(false);
+  const content = useRef<HTMLDivElement>(null);
+  useEffect(() => { if (navigated) content.current?.focus(); }, [current, practice, navigated]);
+  const moveTo = (index: number) => { setCurrent(index); setPractice(false); setNavigated(true); };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Use responsive text size for title */}
-      <h1 className="text-2xl md:text-3xl font-bold mb-4">{moduleTitle}</h1>
-
-      {isFirstSlide && learningObjectives}
-
-      <div className="my-6">
-        <Progress value={progress} className="w-full h-2" />
-        <p className="text-sm text-muted-foreground mt-2 text-right">
-          {showQuiz ? `Quiz` : `Slide ${currentSlideIndex + 1} of ${totalSlides}`}
-          {` (Step ${currentStep} of ${totalSteps})`}
-        </p>
+    <div className="reader-shell">
+      <Link href={`/modules#${moduleId}`} className="text-link"><ArrowLeft size={17} aria-hidden="true" />The learning path</Link>
+      <header className="reader-heading"><p className="eyebrow">MODULE {moduleId.split('-')[1]} / 8</p><h1>{moduleTitle.replace(/^Module \d+: /, '')}</h1></header>
+      <div className="reader-tools">
+        <div className="flex items-center gap-3 min-w-0 max-w-full"><span id="section-label" className="text-sm shrink-0">Jump to</span><Select value={String(current)} onValueChange={value => moveTo(Number(value))}><SelectTrigger aria-labelledby="section-label" className="w-[min(360px,55vw)] min-h-11"><SelectValue /></SelectTrigger><SelectContent>{sections.map((section, index) => <SelectItem value={String(index)} key={index}>{index + 1}. {section.title}</SelectItem>)}</SelectContent></Select></div>
+        {quizQuestions.length > 0 && <Button className="academy-button" variant="outline" onClick={() => {setPractice(!practice); setNavigated(true);}}><BookOpen size={17} aria-hidden="true" />{practice ? 'Back to reading' : 'Optional practice'}</Button>}
       </div>
-
-      {showQuiz ? (
-        hasQuiz ? (
-          <Quiz questions={quizQuestions} onQuizComplete={handleQuizPassed} />
-        ) : (
-          <p>Quiz is loading or not available for this module.</p>
-        )
-      ) : (
-        <article
-          // Add responsive text size adjustments if needed via prose classes
-          className="prose dark:prose-invert max-w-none mb-8 prose-sm sm:prose-base"
-          dangerouslySetInnerHTML={{ __html: slides[currentSlideIndex] }}
-        />
-      )}
-
-      {/* Completion Message - Show after quiz is passed */}
-      {isCompleted && showQuiz && (
-        <div className="mt-6 p-4 rounded-md border bg-green-100 border-green-300 text-green-800 dark:bg-green-900/50 dark:border-green-700 dark:text-green-200">
-          <h4 className="font-semibold">Module Complete!</h4>
-          <p>You have successfully passed the quiz for this module.</p>
-        </div>
-      )}
-
-      {/* Responsive Bottom Navigation */}
-      <div className="mt-8 flex flex-col sm:flex-row sm:justify-between sm:items-center border-t pt-6 dark:border-gray-700 space-y-4 sm:space-y-0">
-        {/* Previous Button Area (Always on left or top) */}
-        <div className="flex justify-start">
-          {(isFirstSlide && previousModulePath) ? (
-            <Link href={previousModulePath} passHref>
-              <Button variant="outline" className="w-full sm:w-auto">← Previous Module</Button>
-            </Link>
-          ) : (
-            <Button onClick={goToPreviousSlide} disabled={isFirstSlide} variant="outline" className="w-full sm:w-auto">
-              {showQuiz ? '← Back to Content' : '← Previous Slide'}
-            </Button>
-          )}
-        </div>
-
-        {/* Next/Completion Button Area (Always on right or bottom) */}
-        <div className="flex justify-end">
-          {/* Show Next Slide/Start Quiz button only when not showing quiz */}
-          {!showQuiz && (
-            <Button onClick={goToNextSlide} variant="default" className="w-full sm:w-auto">
-              {isLastSlide && canShowQuiz ? 'Start Quiz →' : 'Next Slide →'}
-            </Button>
-          )}
-
-          {/* Show Next Module/Back to Modules buttons ONLY if module is completed (quiz passed or no quiz) */}
-          {(isCompleted || !hasQuiz) && (
-              <div className="w-full sm:w-auto">
-                  {nextModulePath ? (
-                      <Link href={nextModulePath} passHref>
-                          <Button variant="default" className="w-full">Next Module →</Button>
-                      </Link>
-                  ) : (
-                      // On the last module, link back to the main modules page or progress page
-                      <Link href="/progress" passHref>
-                          <Button variant="default" className="w-full">View Progress</Button>
-                      </Link>
-                  )}
-              </div>
-          )}
-        </div>
+      <div ref={content} tabIndex={-1}>
+        {practice ? <div><h2 className="text-2xl font-semibold">Check your understanding</h2><p className="practice-note">Try these questions and read the explanations. You can return to the material or move to another module at any time.</p><Quiz questions={quizQuestions} /></div> : <>
+          <p className="reader-position">Section {current + 1} of {sections.length}</p>
+          {current === 0 && <div className="my-6">{learningObjectives}</div>}
+          <article className="prose reader-content" dangerouslySetInnerHTML={{ __html: sections[current]?.html || '<p>This module is temporarily unavailable.</p>' }} />
+        </>}
       </div>
+      {!practice && <div className="reader-nav"><Button variant="outline" className="academy-button" disabled={current === 0} onClick={() => moveTo(current - 1)}><ArrowLeft size={17} aria-hidden="true" />Previous section</Button>{current < sections.length - 1 ? <Button className="academy-button" onClick={() => moveTo(current + 1)}>Next section <ArrowRight size={17} aria-hidden="true" /></Button> : quizQuestions.length > 0 ? <Button variant="outline" className="academy-button" onClick={() => {setPractice(true); setNavigated(true);}}>Try the practice questions</Button> : null}</div>}
+      <nav className="module-nav" aria-label="Module navigation">{previousModulePath ? <Link className="text-link" href={previousModulePath}><ArrowLeft size={17} aria-hidden="true" />Previous module</Link> : <Link className="text-link" href="/modules">View the full path</Link>}{nextModulePath ? <Link className="text-link" href={nextModulePath}>Next module <ArrowRight size={17} aria-hidden="true" /></Link> : <Link className="text-link" href="/modules">Return to the learning path <ArrowRight size={17} aria-hidden="true" /></Link>}</nav>
     </div>
   );
-};
-
-export default InteractiveModuleViewer;
-
+}
