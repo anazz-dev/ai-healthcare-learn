@@ -18,7 +18,7 @@ export default function PrivacyPage() {
         <address className="not-italic leading-relaxed mb-4">
           Ahmad Nazzal<br />
           Nightingalestrasse 1<br />
-          Heidelberg<br />
+          69115, Heidelberg<br />
           Germany
         </address>
         <p>Email for legal and privacy matters: <a className="text-link" href="mailto:contact@clinicalaiacademy.com">contact@clinicalaiacademy.com</a></p>
