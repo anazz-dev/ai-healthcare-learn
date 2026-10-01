@@ -15,14 +15,7 @@ export default function PrivacyPage() {
       <section aria-labelledby="operator">
         <h2 id="operator">Website operator (Impressum)</h2>
         <p>Clinical AI Academy (CAIA) is an independent educational information project run by an individual. Access is free; this website does not sell courses, certificates or consultations.</p>
-        <address className="not-italic leading-relaxed mb-4">
-          Ahmad Nazzal<br />
-          Nightingalestrasse 1<br />
-          69115, Heidelberg<br />
-          Germany
-        </address>
         <p>Email for legal and privacy matters: <a className="text-link" href="mailto:contact@clinicalaiacademy.com">contact@clinicalaiacademy.com</a></p>
-        <p>The operator above is the data controller for this website and the person responsible for its editorial content under § 18(2) MStV, at the same address.</p>
       </section>
 
       <section aria-labelledby="educational-scope">
